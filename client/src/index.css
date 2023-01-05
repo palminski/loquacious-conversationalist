@@ -18,7 +18,7 @@ code {
 }
 .top-bar{
   padding: 10px;
-  background-color: rgb(67, 60, 107);
+  background-color: rgb(49, 54, 99);
 }
 .home-button{
   position: absolute;
@@ -29,7 +29,7 @@ nav{
    margin-bottom: 35px;
 }
 nav h1{
-  color: antiquewhite;
+  color: aliceblue;
   margin: 0;
 }
 nav ul {
@@ -37,9 +37,9 @@ nav ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: rgb(25, 19, 46);
-  border-radius: 0 0 35px 0;
-  width: 90%;
+  background-color: rgb(30, 32, 58);
+  
+  
 }
 .navigation-link{
   float:left;
@@ -49,9 +49,9 @@ nav ul {
   color: aliceblue;
 }
 .navigation-link:hover{
-  background-color: rgb(67, 60, 107);
+  background-color: rgb(49, 54, 99);
 }
 
 .current-navigation-link{
-  background-color: rgb(67, 60, 107);
+  background-color: rgb(49, 54, 99);
 }
