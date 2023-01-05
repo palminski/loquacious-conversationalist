@@ -10,7 +10,7 @@ const deckSchema = new Schema(
         },
         description: {
             type: String,
-            required: true,
+            required: false,
             trim: true
         },
         cards: [cardSchema]
