@@ -14,10 +14,10 @@ const typeDefs = gql`
     }
     type Card {
         _id: ID
-        side_a_title: String
-        side_a_description: String
-        side_b_title: String
-        side_b_description: String
+        sideATitle: String
+        sideADescription: String
+        sideBTitle: String
+        sideBDescription: String
     }
 
     type Auth {
@@ -37,6 +37,8 @@ const typeDefs = gql`
         loginUser(username: String!, password: String!): Auth
 
         addDeck(title: String!, description: String): User
+
+        addCard(deckId: ID!, sideATitle: String!, sideADescription: String, sideBTitle: String!, sideBDescription: String): User
     }
 `
 

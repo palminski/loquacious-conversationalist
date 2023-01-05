@@ -2,22 +2,22 @@ const {Schema} = require('mongoose');
 
 const cardSchema = new Schema(
     {
-        side_a_title: {
+        sideATitle: {
             type: String,
             required: true,
             trim: true
         },
-        side_a_description: {
+        sideADescription: {
             type: String,
             required: false,
             trim: true
         },
-        side_b_title: {
+        sideBTitle: {
             type: String,
             required: true,
             trim: true
         },
-        side_b_description: {
+        sideBDescription: {
             type: String,
             required: false,
             trim: true

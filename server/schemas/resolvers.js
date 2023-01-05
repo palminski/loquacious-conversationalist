@@ -45,7 +45,18 @@ const resolvers = {
                 );
                 return updatedUser;
             }
-            throw new AuthenticationError('you need to be logged in to add a dack');
+            throw new AuthenticationError('you need to be logged in to add a deck');
+        },
+        addCard: async (parent, {deckId, sideATitle, sideADescription, sideBTitle, sideBDescription}, context) => {
+            if (context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                    {_id: context.user._id,  "decks._id":deckId},
+                    {$push: {"decks.$.cards": {sideATitle: sideATitle, sideADescription:sideADescription, sideBTitle: sideBTitle, sideBDescription:sideBDescription}}},
+                    {new:true, runValidators:true}
+                )
+                return updatedUser;
+            }
+            throw new AuthenticationError('you need to be logged in to add a card');
         }
     }
 };
