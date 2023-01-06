@@ -47,6 +47,17 @@ const resolvers = {
             }
             throw new AuthenticationError('you need to be logged in to add a deck');
         },
+        deleteDeck: async (parent, {deckId}, context) => {
+            if (context.user) {
+                const updatedUser = await User.findByIdAndUpdate(
+                    {_id: context.user._id},
+                    {$pull: {decks: {_id: deckId}}},
+                    {new:true}
+                );
+                return updatedUser;
+            }
+            throw new AuthenticationError('You must be logged in to delete one of your decks!');
+        },
         addCard: async (parent, {deckId, sideATitle, sideADescription, sideBTitle, sideBDescription}, context) => {
             if (context.user) {
                 const updatedUser = await User.findOneAndUpdate(
@@ -57,6 +68,17 @@ const resolvers = {
                 return updatedUser;
             }
             throw new AuthenticationError('you need to be logged in to add a card');
+        },
+        deleteCard: async (parent, {deckId, cardId}, context) => {
+            if (context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                    {_id: context.user._id,  "decks._id":deckId},
+                    {$pull: {"decks.$.cards": {_id: cardId}}},
+                    {new:true}
+                )
+                return updatedUser;
+            }
+            throw new AuthenticationError('you need to be logged in to delete a card');
         }
     }
 };
