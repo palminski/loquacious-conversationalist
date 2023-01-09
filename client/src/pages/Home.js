@@ -2,18 +2,23 @@ import { useQuery } from "@apollo/client";
 import {QUERY_ALL_USERS, QUERY_CURRENT_USER} from "../utils/queries"
 
 const Home = () => {
-    const {data:currentUser} = useQuery(QUERY_CURRENT_USER);
+    const {data:me} = useQuery(QUERY_CURRENT_USER);
     const {loading, data} = useQuery(QUERY_ALL_USERS);
     const users = (data?.users)
-    
-    console.log(currentUser);
+    const currentUser = me?.currentUser;
+
     return (
         <>
             
             {currentUser && 
             <>
-            <h2>Me</h2>
-            <p>{currentUser.currentUser.username} - {currentUser.currentUser._id}</p>
+            <h2>{currentUser.username}'s Decks</h2>
+            <ul>
+            {currentUser.decks && currentUser.decks.map(deck => (
+                <li key={deck._id}>{deck.title}</li>
+            ))}
+            </ul>
+            
             </>
             }
             <h2>All Users</h2>

@@ -13,7 +13,18 @@ export const QUERY_CURRENT_USER = gql`
 query CurrentUser {
     currentUser {
       username
+      decks {
       _id
+      title
+      description
+      cards {
+        _id
+        sideATitle
+        sideADescription
+        sideBTitle
+        sideBDescription
+      }
+    }
     }
   }
 `
