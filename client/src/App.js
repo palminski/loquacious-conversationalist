@@ -10,6 +10,7 @@ import Nav from './components/Nav';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Decks from './pages/Decks';
 
 //------[Set Up Apollo]---------------
 const httpLink = createHttpLink({
@@ -44,6 +45,7 @@ function App() {
       {pageSelected === 'Home' && <Home/>}
       {pageSelected === 'Log In' && <Login setPageSelected={setPageSelected}/>}
       {pageSelected === 'Sign Up' && <Signup setPageSelected={setPageSelected}/>}
+      {pageSelected === 'Decks' && <Decks/>}
 
     </div>
     </ApolloProvider>
