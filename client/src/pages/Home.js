@@ -15,7 +15,7 @@ const Home = () => {
             <h2>{currentUser.username}'s Decks</h2>
             <ul>
             {currentUser.decks && currentUser.decks.map(deck => (
-                <li key={deck._id}>{deck.title}</li>
+                <li key={deck._id}>{deck.title} - {deck.cards.length} cards</li>
             ))}
             </ul>
             
