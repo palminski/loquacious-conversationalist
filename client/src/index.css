@@ -90,6 +90,7 @@ nav ul {
   background-color: rgb(49, 54, 99);
   color: aliceblue;
   width: 97%;
+  cursor: pointer;
 
 }
 .deck-list li:hover {
@@ -106,6 +107,11 @@ nav ul {
 }
 .deck-list li:last-of-type {
   border-bottom-right-radius: 10px;
+}
+.selected-deck{
+  background-color: rgb(131, 115, 46) !important;
+  width: 100% !important;
+  border-radius: 0 !important; 
 }
 
 .deck-list h2 {
