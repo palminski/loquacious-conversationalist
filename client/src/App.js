@@ -11,6 +11,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Decks from './pages/Decks';
+import Cards from './pages/Cards';
 
 //------[Set Up Apollo]---------------
 const httpLink = createHttpLink({
@@ -46,6 +47,7 @@ function App() {
       {pageSelected === 'Log In' && <Login setPageSelected={setPageSelected}/>}
       {pageSelected === 'Sign Up' && <Signup setPageSelected={setPageSelected}/>}
       {pageSelected === 'Decks' && <Decks/>}
+      {pageSelected === 'Cards' && <Cards/>}
 
     </div>
     </ApolloProvider>

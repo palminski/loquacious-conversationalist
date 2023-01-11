@@ -39,6 +39,11 @@ const Nav = (props) => {
                                 Decks
                             </li>
                         </a>
+                        <a href="#Cards"onClick={() => setPageSelected('Cards')}>
+                            <li className={`${(pageSelected === 'Cards') && 'current-navigation-link'} navigation-link`}>
+                                Cards
+                            </li>
+                        </a>
                         <a href='/' onClick={() => { Auth.logout() }}>
                             <li className='navigation-link'>
                                 Logout

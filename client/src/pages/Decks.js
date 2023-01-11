@@ -67,7 +67,7 @@ const Decks = () => {
                 <button className="add-button" onClick={toggleModal}>Add Deck</button>
         </div>
         
-            {modalOpen && <AddDeckModal/>}
+            {modalOpen && <AddDeckModal toggleModal={toggleModal}/>}
         </>
         
     )

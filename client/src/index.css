@@ -89,7 +89,7 @@ nav ul {
   transition-duration: 0.5s;
   background-color: rgb(49, 54, 99);
   color: aliceblue;
-  width: 95%;
+  width: 97%;
 
 }
 .deck-list li:hover {
@@ -110,6 +110,7 @@ nav ul {
 
 .deck-list h2 {
   padding: 15px;
+  margin: 0;
 }
 .deck-list li h3 {
   margin-left: 15px;
@@ -139,10 +140,8 @@ nav ul {
 .delete-button:hover {
   color: rgb(255, 255, 255);
   background-color: rgb(119, 12, 12);
-  border-radius: 0px;
+  border-radius: 5px;
   border-color: rgb(255, 255, 255);
-  
-
 }
 
 .add-button {
@@ -160,4 +159,29 @@ nav ul {
 
 .add-button:hover {
   padding-top: 20px;
+}
+
+/* Modal */
+.modal-background {
+  background: rgba(0, 0, 0, 0.67);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 1;
+  overflow: auto;
+  position: fixed;
+}
+.modal-body {
+
+  padding: 10px;
+  border-radius: 15px 15px 15px 15px;
+  background: aliceblue;
+  top: 10px;
+  bottom: 10%;
+  margin: 50px auto;
+  width: 80%;
+}
+.modal-body h2 {
+  margin: 0;
 }
