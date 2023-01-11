@@ -1,19 +1,43 @@
 import {useState} from 'react';
+import {useMutation, useQuery} from '@apollo/client';
+import { ADD_DECK } from '../utils/mutations';
+import {QUERY_CURRENT_USER} from "../utils/queries"
 
 const AddDeckModal = () => {
-
+    
+    //===[States]=============================================
     const [formState, setFormState] = useState({title:'',description:''})
 
+    //===[Queries]=============================================
+    const {refetch} = useQuery(QUERY_CURRENT_USER);
+
+    //===[Mutations]=============================================
+    const [addDeck] = useMutation(ADD_DECK);
+
+    //===[Functions]=============================================
     function handleFormChange (e) {
         setFormState({...formState, [e.target.name]:e.target.value});
     }
 
-    function handleFormSubmit (e) {
+    async function handleFormSubmit (e) {
         e.preventDefault();
         console.log(formState);
-        setFormState({title:'',description:''});
+        setFormState({title:'',description:''}); 
+        try {
+            const mutationResponse = await addDeck({
+                variables: {
+                    title: formState.title,
+                    description: formState.description
+                }
+            });
+            refetch();
+        }
+        catch (error) {
+            console.log(error)
+        }
+        
     }
-
+    //===[Return]=============================================
     return(
         <>
         <h1>Add Deck</h1>

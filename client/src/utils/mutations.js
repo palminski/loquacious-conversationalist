@@ -22,3 +22,15 @@ mutation AddUser($username: String!, $password: String!) {
   }
 }
 `
+
+export const ADD_DECK = gql`
+mutation AddDeck($title: String!, $description: String) {
+  addDeck(title: $title, description: $description) {
+  username
+  decks {
+    title
+    description
+  }  
+  }
+}
+`
