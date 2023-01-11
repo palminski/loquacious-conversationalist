@@ -48,19 +48,28 @@ const Decks = () => {
 
     return (
         <>
-            <button onClick={toggleModal}>Add Deck</button>
-            <h2>My Decks</h2>
-            <ul>
-                {decks && decks.map(deck => (
-                    <li key={deck._id}>
-                        <h3>{deck.title}</h3>
-                        <button onClick={() => handleDeleteDeck(deck._id)}>Delete</button>
-                    </li>
-                ))}
-            </ul>
+            <div className="container">
 
+                <ul className="deck-list">
+                    <h2>My Decks</h2>
+                    {decks && decks.map(deck => (
+                        <li key={deck._id}>
+                            <div className="flex-between">
+                                <h3>{deck.title} {deck.description && ` - ${deck.description}`}</h3>
+                                <div className="hidden-buttons">
+                                    <button className="delete-button" onClick={() => handleDeleteDeck(deck._id)}>Delete</button>
+                                </div>
+                            </div>
+                        </li>
+                    ))}
+
+                </ul>
+                <button className="add-button" onClick={toggleModal}>Add Deck</button>
+        </div>
+        
             {modalOpen && <AddDeckModal/>}
         </>
+        
     )
 }
 

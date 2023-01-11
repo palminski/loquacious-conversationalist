@@ -5,11 +5,27 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: aliceblue;
+}
+
+button {
+  cursor: pointer;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+/* utility */
+.container {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.flex-between{
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
 }
 
 /* Nav Bar Styling */
@@ -54,4 +70,94 @@ nav ul {
 
 .current-navigation-link{
   background-color: rgb(49, 54, 99);
+}
+
+/* Decks */
+.deck-list {
+  background-color: rgb(30, 32, 58);
+  color: aliceblue;
+  list-style-type: none;
+  padding-left: 0;
+  padding-bottom: 15px;
+  border-radius: 10px 10px 10px 0;
+  width: 80%;
+  margin: 0;
+  text-align: left;
+}
+
+.deck-list li {
+  transition-duration: 0.5s;
+  background-color: rgb(49, 54, 99);
+  color: aliceblue;
+  width: 95%;
+
+}
+.deck-list li:hover {
+  width: 100%;
+  border-radius: 0 !important; 
+}
+
+.deck-list li:nth-child(even) {
+  background-color: rgb(80, 84, 126);
+  color: aliceblue;
+}
+.deck-list li:first-of-type {
+  border-top-right-radius: 10px;
+}
+.deck-list li:last-of-type {
+  border-bottom-right-radius: 10px;
+}
+
+.deck-list h2 {
+  padding: 15px;
+}
+.deck-list li h3 {
+  margin-left: 15px;
+  display: inline;
+}
+
+.deck-list li .hidden-buttons {
+  transition-duration: 0.5s;
+  visibility: hidden;
+  opacity: 0;
+  margin-right: 15px;
+}
+
+.deck-list li:hover .hidden-buttons {
+  visibility: visible;
+  opacity: 1;
+}
+
+.delete-button {
+  color: rgb(255, 255, 255);
+  border-radius: 10px;
+  border-color: rgb(255, 255, 255);
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0);
+  transition-duration: 0.5s;
+}
+.delete-button:hover {
+  color: rgb(255, 255, 255);
+  background-color: rgb(119, 12, 12);
+  border-radius: 0px;
+  border-color: rgb(255, 255, 255);
+  
+
+}
+
+.add-button {
+  transition-duration: 0.5s;
+  margin: 0;
+  display: block;
+  border: 0;
+  align-items: left;
+  background-color: rgb(30, 32, 58);
+  color: white;
+  padding: 10px;
+  border-radius: 0 0 10px 10px;
+  font-size: larger;
+}
+
+.add-button:hover {
+  padding-top: 20px;
 }
