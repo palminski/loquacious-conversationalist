@@ -34,3 +34,15 @@ mutation AddDeck($title: String!, $description: String) {
   }
 }
 `
+
+export const DELETE_DECK = gql`
+mutation DeleteDeck($deckId: ID!) {
+  deleteDeck(deckId: $deckId) {
+    username
+    decks {
+      title
+      _id
+    }
+  }
+}
+`
