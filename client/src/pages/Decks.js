@@ -61,9 +61,9 @@ const Decks = () => {
                 <ul className="deck-list">
                     <h2>My Decks</h2>
                     {decks && decks.map(deck => (
-                        <li className={(currentDeckId === deck._id) && "selected-deck"} key={deck._id} onClick={() => dispatch(setDeck(deck))}>
+                        <li className={`${(currentDeckId === deck._id) && "selected-deck"}`} key={deck._id} onClick={() => dispatch(setDeck(deck))}>
                             <div className="flex-between">
-                                <h3>{deck.title} {deck.description && ` - ${deck.description}`}</h3>
+                                <h3>{deck.title} {(deck.description) && ` - ${deck.description}`}</h3>
                                 <div className="hidden-buttons">
                                     <button className="delete-button" onClick={(e) => {e.stopPropagation();handleDeleteDeck(deck._id)}}>Delete</button>
                                 </div>

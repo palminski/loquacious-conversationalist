@@ -1,13 +1,18 @@
 import {useSelector, useDispatch} from 'react-redux';
+import {useMutation, useQuery} from '@apollo/client';
 import {useState} from 'react';
-import {
-    setDeck, selectDeck
-} from '../utils/slices/deckSlice'
+import { ADD_CARD } from '../utils/mutations';
+import { QUERY_CURRENT_USER } from '../utils/queries';
+import {setDeck, updateCards, selectDeck} from '../utils/slices/deckSlice';
 
 const Cards = () => {
     const dispatch = useDispatch();
-    console.log(useSelector(selectDeck));
+
     const deck = useSelector(selectDeck);
+
+    const {refetch} = useQuery(QUERY_CURRENT_USER);
+
+    const [addCard] = useMutation(ADD_CARD);
 
     const [formState, setFormState] = useState({sideATitle:'',sideADescription:'',sideBTitle:'',sideBDescription:''})
 
@@ -16,7 +21,27 @@ const Cards = () => {
     }
     async function handleFormSubmit(e) {
         e.preventDefault()
-        console.log(formState);
+
+        try {
+            const mutationResponse = await addCard({
+                variables: {
+                    deckId: deck._id,
+                    sideATitle: formState.sideATitle,
+                    sideBTitle: formState.sideBTitle,
+                    sideADescription: formState.sideADescription,
+                    sideBDescription: formState.sideBDescription
+                }
+            });
+            refetch();
+            const updatedCardArray = (mutationResponse.data.addCard.decks.find(x => x._id === deck._id));
+            
+            dispatch(updateCards(updatedCardArray));
+            
+        }
+        catch (error) {
+            console.log(error)
+        }
+
     }
 
     return (
@@ -29,6 +54,7 @@ const Cards = () => {
                             <h3>Side A</h3>
                             <label htmlFor="sideATitle">Side A Title: </label>
                             <input required={true} type="text" id="sideATitle" name="sideATitle" placeholder="Title for Side A" onChange={handleFormChange} value={formState.sideATitle}></input>
+                            <br/>
                             <label htmlFor="sideADescription">Side A Description: </label>
                             <textarea required={true} type="text" id="sideADescription" name="sideADescription" placeholder="Title for Side A" onChange={handleFormChange} value={formState.sideADescription}></textarea>
                         </div>
@@ -36,6 +62,7 @@ const Cards = () => {
                             <h3>Side B</h3>
                             <label htmlFor="sideBTitle">Side B Title: </label>
                             <input required={true} type="text" id="sideBTitle" name="sideBTitle" placeholder="Title for Side A" onChange={handleFormChange} value={formState.sideBTitle}></input>
+                            <br/>
                             <label htmlFor="sideBDescription">Side B Description: </label>
                             <textarea required={true} type="text" id="sideBDescription" name="sideBDescription" placeholder="Title for Side A" onChange={handleFormChange} value={formState.sideBDescription}></textarea>
                         </div>
@@ -48,7 +75,7 @@ const Cards = () => {
             <ul>
                 <h3>Cards</h3>
                 {deck.cards.map(card => (
-                    <li key={card._id}>{card.sideATitle} - {card.sideBTitle}</li>
+                    <li key={card._id}>{card.sideATitle} - {card.sideBTitle} - {card._id}</li>
                 ))}
             </ul>
             }

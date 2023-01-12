@@ -16,11 +16,16 @@ export const deckSlice = createSlice({
         
         setDeck: (state, action) => {
             state.value = action.payload;
+        },
+        updateCards: (state, action) => {
+            state.value.cards = (action.payload.cards);
+            
+            console.log(action.payload);
         }
     },
 });
 
-export const {setDeck} = deckSlice.actions;
+export const {setDeck, updateCards} = deckSlice.actions;
 export const selectDeck = (state) => state.deck.value
 
 export default deckSlice.reducer;
