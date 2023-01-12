@@ -32,6 +32,7 @@ const Cards = () => {
                     sideBDescription: formState.sideBDescription
                 }
             });
+            setFormState({sideATitle:'',sideADescription:'',sideBTitle:'',sideBDescription:''});
             refetch();
             const updatedCardArray = (mutationResponse.data.addCard.decks.find(x => x._id === deck._id));
             
@@ -45,17 +46,19 @@ const Cards = () => {
     }
 
     return (
-        <>            
-            <div className='new-card-form'>
+        <>    
+        <div className='container'>
+        <div className='new-card-form'>
                 <h2>Add Cards to {deck.title}</h2>
                 <form>
-                    <div className='flex-around'>
-                        <div className='side-for side-a'>
+                    <div className='flex-left'>
+                        <div className='side-form side-a'>
                             <h3>Side A</h3>
                             <label htmlFor="sideATitle">Side A Title: </label>
                             <input required={true} type="text" id="sideATitle" name="sideATitle" placeholder="Title for Side A" onChange={handleFormChange} value={formState.sideATitle}></input>
                             <br/>
                             <label htmlFor="sideADescription">Side A Description: </label>
+                            <br/>
                             <textarea required={true} type="text" id="sideADescription" name="sideADescription" placeholder="Title for Side A" onChange={handleFormChange} value={formState.sideADescription}></textarea>
                         </div>
                         <div className='side-form side-b'>
@@ -64,12 +67,15 @@ const Cards = () => {
                             <input required={true} type="text" id="sideBTitle" name="sideBTitle" placeholder="Title for Side A" onChange={handleFormChange} value={formState.sideBTitle}></input>
                             <br/>
                             <label htmlFor="sideBDescription">Side B Description: </label>
+                            <br/>
                             <textarea required={true} type="text" id="sideBDescription" name="sideBDescription" placeholder="Title for Side A" onChange={handleFormChange} value={formState.sideBDescription}></textarea>
                         </div>
                     </div>
-                    <button onClick={handleFormSubmit}>Add Card</button>
+                    <button className='add-card-button' onClick={handleFormSubmit}>Add Card</button>
                 </form>
             </div>
+        </div>        
+            
 
             {(deck.cards.length > 0) &&
             <ul>

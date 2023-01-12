@@ -27,11 +27,12 @@ code {
   display: flex;
   justify-content: space-between;
 }
-.flex-around{
+.flex-left{
   align-items: center;
   display: flex;
-  justify-content: space-around;
+  justify-content: left;
 }
+
 
 /* Nav Bar Styling */
 .flex-container{
@@ -119,7 +120,7 @@ nav ul {
   border-radius: 0 !important; 
 }
 
-.deck-list h2 {
+h2 {
   padding: 15px;
   margin: 0;
 }
@@ -143,7 +144,7 @@ nav ul {
 .delete-button {
   color: rgb(255, 255, 255);
   border-radius: 10px;
-  border-color: rgb(255, 255, 255);
+  border: solid rgb(255, 255, 255) 1px;
   padding: 5px;
   background-color: rgba(0, 0, 0, 0);
   transition-duration: 0.5s;
@@ -200,19 +201,48 @@ nav ul {
 /* Cards Page */
 .new-card-form{
   width: 80%;
-  margin-left: auto;
-  margin-right: auto;
+  
+  margin: 0;
+  text-align: left;
   border-radius: 10px;
   color: aliceblue;
   background-color: rgb(30, 32, 58);
+  
 }
 
 .new-card-form form {
   background-color: rgb(80, 84, 126);
+  border-radius: 0 0 10px 10px;
+}
+.side-form{
+  margin-top: 10px;
+  
+  padding: 10px;
 }
 .side-a{
   background-color: rgb(121, 123, 151) !important;
+  border-radius: 10px 0 0 0;
+  margin-left: 10px;
 }
 .side-b{
   background-color: rgb(131, 115, 46) !important;
+  border-radius: 0 10px 10px 0;
+}
+.add-card-button {
+  font-size: large;
+  margin-left:10px;
+  margin-bottom: 10px;
+  color: rgb(255, 255, 255);
+  border-radius: 0 0 10px 10px;
+  border: solid rgb(121, 123, 151) 2px;
+  border-top: 0;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0);
+  transition-duration: 0.5s;
+  outline: none;
+}
+.add-card-button:hover {
+  
+  background-color: rgb(121, 123, 151);
+  
 }
