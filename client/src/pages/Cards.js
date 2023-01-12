@@ -6,17 +6,23 @@ import { QUERY_CURRENT_USER } from '../utils/queries';
 import {setDeck, updateCards, selectDeck} from '../utils/slices/deckSlice';
 
 const Cards = () => {
+    //===[Redux]==============================================
     const dispatch = useDispatch();
-
     const deck = useSelector(selectDeck);
 
+    //===[Queries]============================================
     const {refetch} = useQuery(QUERY_CURRENT_USER);
 
+    //===[Mutations]==========================================
     const [addCard] = useMutation(ADD_CARD);
     const [deleteCard] = useMutation(DELETE_CARD);
 
-    const [formState, setFormState] = useState({sideATitle:'',sideADescription:'',sideBTitle:'',sideBDescription:''})
+    //===[States]=============================================
+    const [formState, setFormState] = useState({sideATitle:'',sideADescription:'',sideBTitle:'',sideBDescription:''});
 
+    const [selectedCard, setSelectedCard] = useState(null)
+
+    //===[Functions]==========================================
     function handleFormChange (e) {
         setFormState({...formState, [e.target.name]:e.target.value});
     }
@@ -52,7 +58,7 @@ const Cards = () => {
             });
             
             refetch();
-            console.log(mutationResponse);
+            setSelectedCard(null);
             const updatedCardArray = (mutationResponse.data.deleteCard.decks.find(x => x._id === deck._id));
             dispatch(updateCards(updatedCardArray));
         }
@@ -60,6 +66,9 @@ const Cards = () => {
             console.log(error)
         }
     }
+
+    //===[RETURN JSX]===============================================================================
+
     return (
         <>    
         <div className='container'>
@@ -96,13 +105,24 @@ const Cards = () => {
             <ul className='card-list'>
                 <h3>Cards</h3>
                 {deck.cards.map(card => (
-                    <li key={card._id}>{card.sideATitle} - {card.sideBTitle} -{">"} 
-                    <button onClick={() => handleDeleteCard(card._id)}>Delete</button>
+                    <li onClick={() => setSelectedCard(card)} key={card._id} className={`${(selectedCard?._id === card._id) && "selected-card"}`}>
+                        {card.sideATitle} - {card.sideBTitle} 
                     </li>
                 ))}
             </ul>
             }
         </div>
+
+        {selectedCard && 
+
+            <>
+            <h1>{selectedCard.sideATitle} - {selectedCard.sideBTitle}</h1>
+            <h4>{selectedCard.sideADescription} - {selectedCard.sideBDescription}</h4>
+
+            <button onClick={() => handleDeleteCard(selectedCard._id)}>Delete</button>
+            </>
+
+        }
             
             
             
