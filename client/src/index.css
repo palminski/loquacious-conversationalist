@@ -27,6 +27,12 @@ code {
   display: flex;
   justify-content: space-between;
 }
+.flex-left{
+  align-items: center;
+  display: flex;
+  justify-content: left;
+}
+
 
 /* Nav Bar Styling */
 .flex-container{
@@ -90,6 +96,7 @@ nav ul {
   background-color: rgb(49, 54, 99);
   color: aliceblue;
   width: 97%;
+  cursor: pointer;
 
 }
 .deck-list li:hover {
@@ -107,8 +114,13 @@ nav ul {
 .deck-list li:last-of-type {
   border-bottom-right-radius: 10px;
 }
+.selected-deck{
+  background-color: rgb(131, 115, 46) !important;
+  width: 100% !important;
+  border-radius: 0 !important; 
+}
 
-.deck-list h2 {
+h2 {
   padding: 15px;
   margin: 0;
 }
@@ -132,7 +144,7 @@ nav ul {
 .delete-button {
   color: rgb(255, 255, 255);
   border-radius: 10px;
-  border-color: rgb(255, 255, 255);
+  border: solid rgb(255, 255, 255) 1px;
   padding: 5px;
   background-color: rgba(0, 0, 0, 0);
   transition-duration: 0.5s;
@@ -184,4 +196,87 @@ nav ul {
 }
 .modal-body h2 {
   margin: 0;
+}
+
+/* Cards Page */
+.new-card-form{
+  width: 80%;
+  
+  margin: 0;
+  text-align: left;
+  border-radius: 10px;
+  color: aliceblue;
+  background-color: rgb(30, 32, 58);
+  
+}
+
+.new-card-form form {
+  background-color: rgb(80, 84, 126);
+  border-radius: 0 0 10px 0px;
+}
+.side-form{
+  margin-top: 10px;
+  
+  padding: 10px;
+}
+.side-a{
+  background-color: rgb(121, 123, 151) !important;
+  border-radius: 10px 0 0 0;
+  margin-left: 10px;
+}
+.side-b{
+  background-color: rgb(131, 115, 46) !important;
+  border-radius: 0 10px 10px 0;
+}
+.add-card-button {
+  font-size: large;
+  margin-left:10px;
+  margin-bottom: 10px;
+  color: rgb(255, 255, 255);
+  border-radius: 0 0 10px 10px;
+  border: solid rgb(121, 123, 151) 2px;
+  border-top: 0;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0);
+  transition-duration: 0.5s;
+  outline: none;
+}
+.add-card-button:hover {
+  background-color: rgb(121, 123, 151);
+}
+.card-list-container{
+  background-color: rgb(80, 84, 126);
+  margin-top: 0;
+  border-radius: 0 0 10px 10px;
+  padding: 10px;
+  padding-left: 0;
+  width: max-content;
+}
+.card-list {
+  background-color: rgb(30, 32, 58);
+  color: aliceblue;
+  list-style-type: none;
+  padding:10px;
+  border-radius: 10px;
+  width: max-content;
+  margin: 0;
+  margin-left: 10px;
+  text-align: left;
+}
+.card-list h3 {
+  margin: 0;
+}
+.card-list li {
+  background-color: rgb(49, 54, 99);
+  padding: 5px;
+  
+}
+.card-list li:nth-child(even) { 
+  background-color: rgb(80, 84, 126);
+}
+.card-list li:first-of-type {
+  border-radius: 10px 10px 0 0;
+}
+.card-list li:last-of-type {
+  border-radius: 0 0 10px 10px;
 }

@@ -53,8 +53,9 @@ const AddDeckModal = ({toggleModal}) => {
                         <label htmlFor="description">Deck Description: </label>
                         <input type="text" id="description" name="description" placeholder="Deck Description" onChange={handleFormChange} value={formState.description}></input>
                         <br />
-                        <button onClick={toggleModal}>Cancel</button>
                         <button>Save</button>
+                        <button onClick={toggleModal}>Cancel</button>
+                        
                     </form>
                 </div>
             </div>

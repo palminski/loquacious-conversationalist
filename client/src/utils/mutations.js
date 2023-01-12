@@ -46,3 +46,36 @@ mutation DeleteDeck($deckId: ID!) {
   }
 }
 `
+
+export const ADD_CARD = gql`
+mutation AddCard($deckId: ID!, $sideATitle: String!, $sideBTitle: String!, $sideADescription: String, $sideBDescription: String) {
+  addCard(deckId: $deckId, sideATitle: $sideATitle, sideBTitle: $sideBTitle, sideADescription: $sideADescription, sideBDescription: $sideBDescription) {
+    decks {
+      _id
+      cards {
+        _id
+        sideATitle
+        sideBTitle
+        sideBDescription
+        sideADescription
+      }
+    }
+  }
+}
+`
+export const DELETE_CARD = gql`
+mutation DeleteCard($deckId: ID!, $cardId: ID!) {
+  deleteCard(deckId: $deckId, cardId: $cardId) {
+    decks {
+      _id
+      cards {
+        _id
+        sideATitle
+        sideBTitle
+        sideBDescription
+        sideADescription
+      }
+    }
+  }
+}
+`
