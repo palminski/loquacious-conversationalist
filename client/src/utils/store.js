@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import decksReducer from './slices/decksSlice';
+import deckReducer from './slices/deckSlice';
 
 export const store = configureStore({
     reducer: {
-        decks: decksReducer,
+        deck: deckReducer,
     },
 });
