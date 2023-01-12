@@ -212,7 +212,7 @@ h2 {
 
 .new-card-form form {
   background-color: rgb(80, 84, 126);
-  border-radius: 0 0 10px 10px;
+  border-radius: 0 0 10px 0px;
 }
 .side-form{
   margin-top: 10px;
@@ -242,7 +242,41 @@ h2 {
   outline: none;
 }
 .add-card-button:hover {
-  
   background-color: rgb(121, 123, 151);
+}
+.card-list-container{
+  background-color: rgb(80, 84, 126);
+  margin-top: 0;
+  border-radius: 0 0 10px 10px;
+  padding: 10px;
+  padding-left: 0;
+  width: max-content;
+}
+.card-list {
+  background-color: rgb(30, 32, 58);
+  color: aliceblue;
+  list-style-type: none;
+  padding:10px;
+  border-radius: 10px;
+  width: max-content;
+  margin: 0;
+  margin-left: 10px;
+  text-align: left;
+}
+.card-list h3 {
+  margin: 0;
+}
+.card-list li {
+  background-color: rgb(49, 54, 99);
+  padding: 5px;
   
+}
+.card-list li:nth-child(even) { 
+  background-color: rgb(80, 84, 126);
+}
+.card-list li:first-of-type {
+  border-radius: 10px 10px 0 0;
+}
+.card-list li:last-of-type {
+  border-radius: 0 0 10px 10px;
 }

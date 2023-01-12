@@ -1,7 +1,7 @@
 import {useSelector, useDispatch} from 'react-redux';
 import {useMutation, useQuery} from '@apollo/client';
 import {useState} from 'react';
-import { ADD_CARD } from '../utils/mutations';
+import { ADD_CARD, DELETE_CARD } from '../utils/mutations';
 import { QUERY_CURRENT_USER } from '../utils/queries';
 import {setDeck, updateCards, selectDeck} from '../utils/slices/deckSlice';
 
@@ -13,6 +13,7 @@ const Cards = () => {
     const {refetch} = useQuery(QUERY_CURRENT_USER);
 
     const [addCard] = useMutation(ADD_CARD);
+    const [deleteCard] = useMutation(DELETE_CARD);
 
     const [formState, setFormState] = useState({sideATitle:'',sideADescription:'',sideBTitle:'',sideBDescription:''})
 
@@ -21,7 +22,6 @@ const Cards = () => {
     }
     async function handleFormSubmit(e) {
         e.preventDefault()
-
         try {
             const mutationResponse = await addCard({
                 variables: {
@@ -37,14 +37,29 @@ const Cards = () => {
             const updatedCardArray = (mutationResponse.data.addCard.decks.find(x => x._id === deck._id));
             
             dispatch(updateCards(updatedCardArray));
-            
         }
         catch (error) {
             console.log(error)
         }
-
     }
-
+    async function handleDeleteCard (cardId) {
+        try {
+            const mutationResponse = await deleteCard({
+                variables: {
+                    deckId: deck._id,
+                    cardId: cardId,
+                }
+            });
+            
+            refetch();
+            console.log(mutationResponse);
+            const updatedCardArray = (mutationResponse.data.deleteCard.decks.find(x => x._id === deck._id));
+            dispatch(updateCards(updatedCardArray));
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
     return (
         <>    
         <div className='container'>
@@ -76,15 +91,19 @@ const Cards = () => {
             </div>
         </div>        
             
-
+        <div className='container card-list-container'>
             {(deck.cards.length > 0) &&
-            <ul>
+            <ul className='card-list'>
                 <h3>Cards</h3>
                 {deck.cards.map(card => (
-                    <li key={card._id}>{card.sideATitle} - {card.sideBTitle} - {card._id}</li>
+                    <li key={card._id}>{card.sideATitle} - {card.sideBTitle} -{">"} 
+                    <button onClick={() => handleDeleteCard(card._id)}>Delete</button>
+                    </li>
                 ))}
             </ul>
             }
+        </div>
+            
             
             
         </>
