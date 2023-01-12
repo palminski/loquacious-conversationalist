@@ -269,6 +269,7 @@ h2 {
 .card-list li {
   background-color: rgb(49, 54, 99);
   padding: 5px;
+  cursor: pointer;
   
 }
 .card-list li:nth-child(even) { 
@@ -279,4 +280,8 @@ h2 {
 }
 .card-list li:last-of-type {
   border-radius: 0 0 10px 10px;
+}
+.selected-card{
+  background-color: rgb(131, 115, 46) !important;
+  
 }
