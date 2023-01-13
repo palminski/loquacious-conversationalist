@@ -40,6 +40,7 @@ const typeDefs = gql`
         deleteDeck(deckId: ID!): User
 
         addCard(deckId: ID!, sideATitle: String!, sideADescription: String, sideBTitle: String!, sideBDescription: String): User
+        editCard(deckId: ID!, cardId: ID!, sideATitle: String!, sideADescription: String, sideBTitle: String!, sideBDescription: String): User
         deleteCard(deckId: ID!, cardId: ID!): User
     }
 `
