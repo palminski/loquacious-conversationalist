@@ -1,7 +1,7 @@
 import {useSelector, useDispatch} from 'react-redux';
 import {useMutation, useQuery} from '@apollo/client';
 import {useState} from 'react';
-import { ADD_CARD, DELETE_CARD } from '../utils/mutations';
+import { ADD_CARD, EDIT_CARD, DELETE_CARD } from '../utils/mutations';
 import { QUERY_CURRENT_USER } from '../utils/queries';
 import {setDeck, updateCards, selectDeck} from '../utils/slices/deckSlice';
 
@@ -15,6 +15,7 @@ const Cards = () => {
 
     //===[Mutations]==========================================
     const [addCard] = useMutation(ADD_CARD);
+    const [editCard] = useMutation(EDIT_CARD);
     const [deleteCard] = useMutation(DELETE_CARD);
 
     //===[States]=============================================
@@ -30,20 +31,44 @@ const Cards = () => {
     async function handleFormSubmit(e) {
         e.preventDefault()
         try {
-            const mutationResponse = await addCard({
-                variables: {
-                    deckId: deck._id,
-                    sideATitle: formState.sideATitle,
-                    sideBTitle: formState.sideBTitle,
-                    sideADescription: formState.sideADescription,
-                    sideBDescription: formState.sideBDescription
-                }
-            });
-            setFormState({sideATitle:'',sideADescription:'',sideBTitle:'',sideBDescription:''});
-            refetch();
-            setSelectedCard(null);
-            const updatedCardArray = (mutationResponse.data.addCard.decks.find(x => x._id === deck._id));
-            dispatch(updateCards(updatedCardArray));
+
+            if (!selectedCard) {
+                const mutationResponse = await addCard({
+                    variables: {
+                        deckId: deck._id,
+                        sideATitle: formState.sideATitle,
+                        sideBTitle: formState.sideBTitle,
+                        sideADescription: formState.sideADescription,
+                        sideBDescription: formState.sideBDescription
+                    }
+                });
+                setFormState({ sideATitle: '', sideADescription: '', sideBTitle: '', sideBDescription: '' });
+                refetch();
+                setSelectedCard(null);
+                const updatedCardArray = (mutationResponse.data.addCard.decks.find(x => x._id === deck._id));
+                dispatch(updateCards(updatedCardArray));
+            }
+            else
+            {
+                console.log("adding card");
+                const mutationResponse = await editCard({
+                    variables: {
+                        deckId: deck._id,
+                        cardId: selectedCard._id,
+                        sideATitle: formState.sideATitle,
+                        sideBTitle: formState.sideBTitle,
+                        sideADescription: formState.sideADescription,
+                        sideBDescription: formState.sideBDescription
+                    }
+                });
+                setFormState({ sideATitle: '', sideADescription: '', sideBTitle: '', sideBDescription: '' });
+                refetch();
+                setSelectedCard(null);
+                const updatedCardArray = (mutationResponse.data.editCard.decks.find(x => x._id === deck._id));
+                dispatch(updateCards(updatedCardArray));
+            }
+            
+            
         }
         catch (error) {
             console.log(error)
@@ -99,7 +124,7 @@ const Cards = () => {
                             <textarea required={true} type="text" id="sideBDescription" name="sideBDescription" placeholder="Title for Side A" onChange={handleFormChange} value={formState.sideBDescription}></textarea>
                         </div>
                     </div>
-                    <button className='add-card-button' onClick={handleFormSubmit}>Add Card</button>
+                    <button className='add-card-button' onClick={handleFormSubmit}>{selectedCard ? "Save Card" : "Add Card"}</button>
                     {selectedCard && <button className='add-card-button' onClick={handleDeleteCard}>Delete Card</button>}
                 </form>
             
