@@ -22,7 +22,7 @@ const Cards = () => {
     const [formState, setFormState] = useState({sideATitle:'',sideADescription:'',sideBTitle:'',sideBDescription:''});
 
     const [selectedCard, setSelectedCard] = useState(null)
-    const [selectedSideA, setSelectedSideA] = useState(true)
+    
 
     //===[Functions]==========================================
     function handleFormChange (e) {
@@ -101,7 +101,8 @@ const Cards = () => {
         <>    
         <div className='container'>
         <div className='new-card-form'>
-                <h2>Add Cards to {deck.title}</h2>
+                <h2>{deck.title}</h2>
+                {deck.description && <h3 className='description'>{deck.description}</h3>}
                 
                     <form>
                     <div className='flex-left'>

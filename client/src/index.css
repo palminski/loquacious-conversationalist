@@ -125,6 +125,7 @@ h2 {
   padding: 15px;
   margin: 0;
 }
+
 .deck-list li h3 {
   margin-left: 15px;
   display: inline;
@@ -201,6 +202,11 @@ h2 {
 }
 
 /* Cards Page */
+
+.description {
+  padding: 15px;
+  margin: 0;
+}
 .new-card-form{
   width: 80%;
   
