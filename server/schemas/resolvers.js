@@ -69,6 +69,16 @@ const resolvers = {
             }
             throw new AuthenticationError('you need to be logged in to add a card');
         },
+        editCard: async(parent, {deckId, cardId, sideATitle, sideADescription, sideBTitle, sideBDescription}, context) => {
+            if (context.user) {
+                const user = await User.findById(context.user._id);
+                const index = user.decks[user.decks.findIndex(deck => deck._id.toString() === deckId)].cards.findIndex(card => card._id.toString() === cardId);
+                const replacer = {_id: cardId, sideATitle, sideADescription, sideBTitle, sideBDescription};
+                user.decks[user.decks.findIndex(deck => deck._id.toString() === deckId)].cards.splice(index,1,replacer);
+                await user.save();
+                return user;
+            }
+        },
         deleteCard: async (parent, {deckId, cardId}, context) => {
             if (context.user) {
                 const updatedUser = await User.findOneAndUpdate(
