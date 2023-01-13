@@ -21,6 +21,7 @@ const Cards = () => {
     const [formState, setFormState] = useState({sideATitle:'',sideADescription:'',sideBTitle:'',sideBDescription:''});
 
     const [selectedCard, setSelectedCard] = useState(null)
+    const [selectedSideA, setSelectedSideA] = useState(true)
 
     //===[Functions]==========================================
     function handleFormChange (e) {
@@ -40,24 +41,26 @@ const Cards = () => {
             });
             setFormState({sideATitle:'',sideADescription:'',sideBTitle:'',sideBDescription:''});
             refetch();
+            setSelectedCard(null);
             const updatedCardArray = (mutationResponse.data.addCard.decks.find(x => x._id === deck._id));
-            
             dispatch(updateCards(updatedCardArray));
         }
         catch (error) {
             console.log(error)
         }
     }
-    async function handleDeleteCard (cardId) {
+    async function handleDeleteCard (e) {
+        e.preventDefault();
         try {
             const mutationResponse = await deleteCard({
                 variables: {
                     deckId: deck._id,
-                    cardId: cardId,
+                    cardId: selectedCard._id,
                 }
             });
             
             refetch();
+            setFormState({sideATitle:'',sideADescription:'',sideBTitle:'',sideBDescription:''});
             setSelectedCard(null);
             const updatedCardArray = (mutationResponse.data.deleteCard.decks.find(x => x._id === deck._id));
             dispatch(updateCards(updatedCardArray));
@@ -74,7 +77,8 @@ const Cards = () => {
         <div className='container'>
         <div className='new-card-form'>
                 <h2>Add Cards to {deck.title}</h2>
-                <form>
+                
+                    <form>
                     <div className='flex-left'>
                         <div className='side-form side-a'>
                             <h3>Side A</h3>
@@ -96,7 +100,10 @@ const Cards = () => {
                         </div>
                     </div>
                     <button className='add-card-button' onClick={handleFormSubmit}>Add Card</button>
+                    {selectedCard && <button className='add-card-button' onClick={handleDeleteCard}>Delete Card</button>}
                 </form>
+            
+                
             </div>
         </div>        
             
@@ -105,7 +112,7 @@ const Cards = () => {
             <ul className='card-list'>
                 <h3>Cards</h3>
                 {deck.cards.map(card => (
-                    <li onClick={() => setSelectedCard(card)} key={card._id} className={`${(selectedCard?._id === card._id) && "selected-card"}`}>
+                    <li onClick={() => {setSelectedCard(card); setFormState({sideATitle:card.sideATitle,sideADescription:card.sideADescription,sideBTitle:card.sideBTitle,sideBDescription:card.sideBDescription});}} key={card._id} className={`${(selectedCard?._id === card._id) && "selected-card"}`}>
                         {card.sideATitle} - {card.sideBTitle} 
                     </li>
                 ))}
@@ -113,16 +120,7 @@ const Cards = () => {
             }
         </div>
 
-        {selectedCard && 
-
-            <>
-            <h1>{selectedCard.sideATitle} - {selectedCard.sideBTitle}</h1>
-            <h4>{selectedCard.sideADescription} - {selectedCard.sideBDescription}</h4>
-
-            <button onClick={() => handleDeleteCard(selectedCard._id)}>Delete</button>
-            </>
-
-        }
+        
             
             
             

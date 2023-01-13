@@ -31,6 +31,7 @@ code {
   align-items: center;
   display: flex;
   justify-content: left;
+  flex-wrap: wrap;
 }
 
 
@@ -186,6 +187,7 @@ h2 {
 }
 .modal-body {
 
+  transition-duration: 0.5s;
   padding: 10px;
   border-radius: 15px 15px 15px 15px;
   background: aliceblue;
@@ -250,7 +252,7 @@ h2 {
   border-radius: 0 0 10px 10px;
   padding: 10px;
   padding-left: 0;
-  width: max-content;
+  width: 50%;
 }
 .card-list {
   background-color: rgb(30, 32, 58);
@@ -258,7 +260,7 @@ h2 {
   list-style-type: none;
   padding:10px;
   border-radius: 10px;
-  width: max-content;
+  width: auto;
   margin: 0;
   margin-left: 10px;
   text-align: left;
