@@ -352,3 +352,10 @@ h2 {
   background-color: rgb(131, 115, 46) !important;
   
 }
+/* REVIEW PAGE */
+.card-to-review {
+  background-color: rgb(131, 115, 46) !important;
+}
+.card-to-review:nth-child(even) {
+  background-color: rgb(94, 82, 32) !important;
+}

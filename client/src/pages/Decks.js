@@ -14,6 +14,8 @@ const Decks = () => {
     //===[Redux]==============================================
     const dispatch = useDispatch();
     const currentDeckId = useSelector(selectDeck)._id;
+
+    
     
     //===[States]=============================================   
     const [modalOpen, setModalOpen] = useState(false);
@@ -21,7 +23,8 @@ const Decks = () => {
     //===[Queries]=============================================   
     const {loading, data, refetch} = useQuery(QUERY_CURRENT_USER);
     const decks = (data?.currentUser.decks)
-    console.log(data);
+    
+    
 
     //===[Mutations]=============================================   
     const [deleteDeck] = useMutation(DELETE_DECK);
@@ -53,6 +56,8 @@ const Decks = () => {
         };
         setModalOpen(!modalOpen);
     }
+
+    
     
     //===[RETURN JSX]===============================================================================
     
