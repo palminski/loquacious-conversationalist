@@ -98,7 +98,8 @@ const Cards = () => {
     //===[RETURN JSX]===============================================================================
 
     return (
-        <>    
+        <div className="grow-in">  
+        
         <div className='container'>
         <div className='new-card-form'>
                 <h2>{deck.title}</h2>
@@ -150,7 +151,7 @@ const Cards = () => {
             
             
             
-        </>
+        </div>
         
     );
 

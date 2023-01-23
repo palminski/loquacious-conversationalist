@@ -57,7 +57,7 @@ const Decks = () => {
     //===[RETURN JSX]===============================================================================
     
     return (
-        <>
+        <div className="grow-in"> 
             <div className="container">
 
                 <ul className="deck-list">
@@ -78,7 +78,7 @@ const Decks = () => {
         </div>
         
             {modalOpen && <AddDeckModal toggleModal={toggleModal}/>}
-        </>
+        </div>
         
     )
 }

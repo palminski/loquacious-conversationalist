@@ -1,3 +1,7 @@
+:root {
+  --background-color : rgb(138, 141, 175);
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,7 +9,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: aliceblue;
+  background-color: var(--background-color);
 }
 
 button {
@@ -16,6 +20,53 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* Key Frames */
+@keyframes grow-in {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to{
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    right: 100%;
+    opacity: 0;
+  }
+  to{
+    right: 50%;
+    opacity: 1;
+  }
+}
+@keyframes slide-in-right {
+  from {
+    left: 100%;
+    opacity: 0;
+  }
+  to{
+    left: 50%;
+    opacity: 1;
+  }
+}
+/* Classes for animations */
+.grow-in{
+  animation-name: grow-in;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+}
+.slide-in-left{
+  animation-name: slide-in-left;
+  animation-duration: 0.3s;
+}
+.slide-in-right{
+  animation-name: slide-in-right;
+  animation-duration: 0.3s;
+}
+
 /* utility */
 .container {
   margin-left: 20px;
@@ -33,7 +84,15 @@ code {
   justify-content: left;
   flex-wrap: wrap;
 }
-
+.white-cover{
+  background: var(--background-color);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 93px;
+  overflow: auto;
+  position: fixed;
+}
 
 /* Nav Bar Styling */
 .flex-container{
@@ -48,7 +107,7 @@ code {
   left: 3px;
 }
 nav{
-   
+  
    margin-bottom: 35px;
 }
 nav h1{
