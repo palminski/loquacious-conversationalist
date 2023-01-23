@@ -82,25 +82,33 @@ const Review = () => {
                     <>
                         {cardsToReview[0] &&
                             <>
-                                {sideA === true ?
-                                    <div className='flashcard-body'>
-                                        <h1>{cardsToReview[0].sideATitle}</h1>
+                            <div className='flashcard'>
+                            <h1>{sideA ? cardsToReview[0].sideATitle : cardsToReview[0].sideBTitle}</h1>
+                            {sideA ?
+                                    <div className='flashcard-body-a'>
+                                        
                                         <h2>{cardsToReview[0].sideADescription}</h2>
+                                        
                                     </div>
                                     :
-                                    <div className='flashcard-body'>
-                                        <h1>{cardsToReview[0].sideBTitle}</h1>
+                                    <div className='flashcard-body-b'>
+                                        
                                         <h2>{cardsToReview[0].sideBDescription}</h2>
                                     </div>
                                 }
-                                <h2>{cardsToReview.length} cards left to review</h2>
-                                <button className="add-button" onClick={() => setSideA(!sideA)}>Flip Card</button>
-                                <button className="add-button" onClick={() => handleCorrect()}>Correct</button>
-                                <button className="add-button" onClick={() => handleIncorrect()}>Incorrect</button>
+                            </div>
+                                
+                                
+                                <button className="add-button tab" onClick={() => setSideA(!sideA)}>Flip Card</button>
+                                <button className="add-button tab" onClick={() => handleCorrect()}>Correct</button>
+                                <button className="add-button tab" onClick={() => handleIncorrect()}>Incorrect</button>
+                                
+                                
+                                
 
                             </>
                         }
-                        <button className="add-button" onClick={changeModeSelect}>Review Selected Cards</button>
+                        <button className="add-button tab" onClick={changeModeSelect}>Review Selected Cards</button>
                     </>
                 }
 

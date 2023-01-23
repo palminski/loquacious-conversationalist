@@ -20,6 +20,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+h1 {
+  color: aliceblue;
+}
+h2 {
+  color: aliceblue;
+}
 /* Key Frames */
 @keyframes grow-in {
   from {
@@ -358,4 +364,19 @@ h2 {
 }
 .card-to-review:nth-child(even) {
   background-color: rgb(94, 82, 32) !important;
+}
+
+.flashcard{
+  background-color: rgb(30, 32, 58);
+  padding: 10px;
+  border-radius: 10px 10px 10px 0px;
+}
+.flashcard-body-a{
+  background-color: rgb(80, 84, 126);
+}
+.flashcard-body-b{
+  background-color: rgb(49, 54, 99);
+}
+.tab {
+  float:left;
 }
