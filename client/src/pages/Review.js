@@ -11,12 +11,14 @@ const Review = () => {
     let [selectedCards, setSelectedCards] = useState(allCards.map(card => ({ ...card, active: true })))
     let [mode, setMode] = useState("select");
     let [cardsToReview, setCardsToReview] = useState([]);
-    let [currentCardIndex,setCurrentCardIndex] = useState(0)
+    let [sideA, setSideA] = useState(true);
+
 
 
 
     //===[Functions]==============================================
-    const updateselectedCards = (index) => {
+
+    const updateSelectedCards = (index) => {
         console.log(index)
         let updatedArray = [...selectedCards];
         updatedArray[index].active = !selectedCards[index].active;
@@ -24,6 +26,7 @@ const Review = () => {
         setSelectedCards(updatedArray);
     }
 
+    //--review and select page modes
     const changeModeReview = () => {
         let cardsToAdd = []
         selectedCards.map(card => {
@@ -33,14 +36,26 @@ const Review = () => {
         });
         setCardsToReview(cardsToAdd);
         setMode('review');
-        
+
     }
     const changeModeSelect = () => {
-        
         setMode('select');
-        
     }
-    
+
+    //--Correct/Incorrect
+    const handleCorrect = () => {
+        let updatedArray = [...cardsToReview];
+        updatedArray.shift();
+        setCardsToReview(updatedArray);
+        setSideA(true);
+    }
+    const handleIncorrect = () => {
+        let updatedArray = [...cardsToReview];
+        updatedArray.push(updatedArray.shift());
+        setCardsToReview(updatedArray);
+        setSideA(true);
+    }
+
 
     //===[RETURN JSX]===============================================================================
 
@@ -53,7 +68,7 @@ const Review = () => {
                         <ul className="deck-list">
                             <h2>Select Cards to Review from {deck.title}</h2>
                             {selectedCards && selectedCards.map(card => (
-                                <li className={`${card.active === true && "card-to-review"}`} key={card._id} onClick={() => updateselectedCards(selectedCards.indexOf(card))}>
+                                <li className={`${card.active === true && "card-to-review"}`} key={card._id} onClick={() => updateSelectedCards(selectedCards.indexOf(card))}>
                                     <h2>{card.sideATitle} / {card.sideBTitle}</h2>
                                 </li>
 
@@ -65,12 +80,27 @@ const Review = () => {
                 }
                 {mode === 'review' &&
                     <>
-                    {cardsToReview[0] &&
-                        <>
-                            <h1>{cardsToReview[0].sideATitle}</h1>
-                        </>
-                    }
-                    <button className="add-button" onClick={changeModeSelect}>Review Selected Cards</button>
+                        {cardsToReview[0] &&
+                            <>
+                                {sideA === true ?
+                                    <div className='flashcard-body'>
+                                        <h1>{cardsToReview[0].sideATitle}</h1>
+                                        <h2>{cardsToReview[0].sideADescription}</h2>
+                                    </div>
+                                    :
+                                    <div className='flashcard-body'>
+                                        <h1>{cardsToReview[0].sideBTitle}</h1>
+                                        <h2>{cardsToReview[0].sideBDescription}</h2>
+                                    </div>
+                                }
+                                <h2>{cardsToReview.length} cards left to review</h2>
+                                <button className="add-button" onClick={() => setSideA(!sideA)}>Flip Card</button>
+                                <button className="add-button" onClick={() => handleCorrect()}>Correct</button>
+                                <button className="add-button" onClick={() => handleIncorrect()}>Incorrect</button>
+
+                            </>
+                        }
+                        <button className="add-button" onClick={changeModeSelect}>Review Selected Cards</button>
                     </>
                 }
 
