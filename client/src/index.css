@@ -35,21 +35,21 @@ code {
 @keyframes slide-in-left {
   from {
     right: 100%;
-    opacity: 0;
+    background: rgb(85, 80, 114);
   }
   to{
     right: 50%;
-    opacity: 1;
+    background: var(--background-color);
   }
 }
 @keyframes slide-in-right {
   from {
     left: 100%;
-    opacity: 0;
+    background: rgb(85, 80, 114);
   }
   to{
     left: 50%;
-    opacity: 1;
+    background: var(--background-color);
   }
 }
 /* Classes for animations */
