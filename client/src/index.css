@@ -1,3 +1,7 @@
+:root {
+  --background-color : rgb(138, 141, 175);
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,7 +9,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: aliceblue;
+  background-color: var(--background-color);
 }
 
 button {
@@ -16,6 +20,59 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+h1 {
+  color: aliceblue;
+}
+h2 {
+  color: aliceblue;
+}
+/* Key Frames */
+@keyframes grow-in {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to{
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    right: 100%;
+    background: rgb(85, 80, 114);
+  }
+  to{
+    right: 50%;
+    background: var(--background-color);
+  }
+}
+@keyframes slide-in-right {
+  from {
+    left: 100%;
+    background: rgb(85, 80, 114);
+  }
+  to{
+    left: 50%;
+    background: var(--background-color);
+  }
+}
+/* Classes for animations */
+.grow-in{
+  animation-name: grow-in;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+}
+.slide-in-left{
+  animation-name: slide-in-left;
+  animation-duration: 0.3s;
+}
+.slide-in-right{
+  animation-name: slide-in-right;
+  animation-duration: 0.3s;
+}
+
 /* utility */
 .container {
   margin-left: 20px;
@@ -33,7 +90,15 @@ code {
   justify-content: left;
   flex-wrap: wrap;
 }
-
+.white-cover{
+  background: var(--background-color);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 93px;
+  overflow: auto;
+  position: fixed;
+}
 
 /* Nav Bar Styling */
 .flex-container{
@@ -48,7 +113,7 @@ code {
   left: 3px;
 }
 nav{
-   
+  
    margin-bottom: 35px;
 }
 nav h1{
@@ -125,6 +190,7 @@ h2 {
   padding: 15px;
   margin: 0;
 }
+
 .deck-list li h3 {
   margin-left: 15px;
   display: inline;
@@ -201,6 +267,11 @@ h2 {
 }
 
 /* Cards Page */
+
+.description {
+  padding: 15px;
+  margin: 0;
+}
 .new-card-form{
   width: 80%;
   
@@ -286,4 +357,26 @@ h2 {
 .selected-card{
   background-color: rgb(131, 115, 46) !important;
   
+}
+/* REVIEW PAGE */
+.card-to-review {
+  background-color: rgb(131, 115, 46) !important;
+}
+.card-to-review:nth-child(even) {
+  background-color: rgb(94, 82, 32) !important;
+}
+
+.flashcard{
+  background-color: rgb(30, 32, 58);
+  padding: 10px;
+  border-radius: 10px 10px 10px 0px;
+}
+.flashcard-body-a{
+  background-color: rgb(80, 84, 126);
+}
+.flashcard-body-b{
+  background-color: rgb(49, 54, 99);
+}
+.tab {
+  float:left;
 }

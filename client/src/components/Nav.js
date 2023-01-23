@@ -1,7 +1,20 @@
 import Auth from "../utils/auth";
+import {useState} from 'react';
 
 const Nav = (props) => {
     const {pageSelected, setPageSelected} = props;
+    const [coverOn, setCoverOn] = useState(false);
+
+    const changePage = (newPage) => {
+        console.log("hello")
+        setCoverOn(true);
+
+        setTimeout(()=> {
+            setCoverOn(false);
+            setPageSelected(newPage);
+        }, 550)
+    }
+
 
     return (
         <nav>
@@ -12,20 +25,20 @@ const Nav = (props) => {
 
 
             <ul>
-                <a href='#Home' onClick={() => setPageSelected('Home')}>
+                <a href='#Home' onClick={() => changePage('Home')}>
                     <li className={`${(pageSelected === 'Home') && 'current-navigation-link'} navigation-link`}>
                         Home
                     </li>
                 </a>
                 {!Auth.loggedIn() &&
-                    <a href='#LogIn' onClick={() => setPageSelected('Log In')}>
+                    <a href='#LogIn' onClick={() => changePage('Log In')}>
                         <li className={`${(pageSelected === 'Log In') && 'current-navigation-link'} navigation-link`}>
                             Log In
                         </li>
                     </a>
                 }
                 {!Auth.loggedIn() &&
-                    <a href='#SignUp' onClick={() => setPageSelected('Sign Up')}>
+                    <a href='#SignUp' onClick={() => changePage('Sign Up')}>
                         <li className={`${(pageSelected === 'Sign Up') && 'current-navigation-link'} navigation-link`}>
                             Sign Up
                         </li>
@@ -34,14 +47,19 @@ const Nav = (props) => {
                 {Auth.loggedIn() &&
                     <>
                         
-                        <a href="#Decks"onClick={() => setPageSelected('Decks')}>
+                        <a href="#Decks"onClick={() => changePage('Decks')}>
                             <li className={`${(pageSelected === 'Decks') && 'current-navigation-link'} navigation-link`}>
                                 Decks
                             </li>
                         </a>
-                        <a href="#Cards"onClick={() => setPageSelected('Cards')}>
+                        <a href="#Cards"onClick={() => changePage('Cards')}>
                             <li className={`${(pageSelected === 'Cards') && 'current-navigation-link'} navigation-link`}>
                                 Cards
+                            </li>
+                        </a>
+                        <a href="#Review"onClick={() => changePage('Review')}>
+                            <li className={`${(pageSelected === 'Review') && 'current-navigation-link'} navigation-link`}>
+                                Review
                             </li>
                         </a>
                         <a href='/' onClick={() => { Auth.logout() }}>
@@ -53,6 +71,10 @@ const Nav = (props) => {
                     
                 }
             </ul>
+            {coverOn && <>
+                <div className='white-cover slide-in-left'></div>
+                <div className='white-cover slide-in-right'></div>
+            </>}
         </nav>
     )
 }
