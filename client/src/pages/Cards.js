@@ -134,13 +134,14 @@ const Cards = () => {
             </div>
         </div>        
             
-        <div className='container card-list-container'>
+        <div className='container '>
             {(deck.cards.length > 0) &&
             <ul className='card-list'>
-                <h3>Cards</h3>
+                
                 {deck.cards.map(card => (
                     <li onClick={() => {setSelectedCard(card); setFormState({sideATitle:card.sideATitle,sideADescription:card.sideADescription,sideBTitle:card.sideBTitle,sideBDescription:card.sideBDescription});}} key={card._id} className={`${(selectedCard?._id === card._id) && "selected-card"}`}>
-                        {card.sideATitle} - {card.sideBTitle} 
+                        
+                        <h3>{card.sideATitle} - {card.sideBTitle} </h3>
                     </li>
                 ))}
             </ul>

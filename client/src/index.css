@@ -223,7 +223,7 @@ h2 {
   border-color: rgb(255, 255, 255);
 }
 
-.add-button {
+.bottom-button-extend {
   transition-duration: 0.5s;
   margin: 0;
   display: block;
@@ -236,7 +236,7 @@ h2 {
   font-size: larger;
 }
 
-.add-button:hover {
+.bottom-button-extend:hover {
   padding-top: 20px;
 }
 
@@ -276,8 +276,9 @@ h2 {
   width: 80%;
   
   margin: 0;
+  padding-bottom: 15px;
   text-align: left;
-  border-radius: 10px;
+  border-radius: 10px 10px 10px 0;
   color: aliceblue;
   background-color: rgb(30, 32, 58);
   
@@ -285,7 +286,7 @@ h2 {
 
 .new-card-form form {
   background-color: rgb(80, 84, 126);
-  border-radius: 0 0 10px 0px;
+  
 }
 .side-form{
   margin-top: 10px;
@@ -317,23 +318,16 @@ h2 {
 .add-card-button:hover {
   background-color: rgb(121, 123, 151);
 }
-.card-list-container{
-  background-color: rgb(80, 84, 126);
-  margin-top: 0;
-  border-radius: 0 0 10px 10px;
-  padding: 10px;
-  padding-left: 0;
-  width: 50%;
-}
+
 .card-list {
   background-color: rgb(30, 32, 58);
   color: aliceblue;
   list-style-type: none;
-  padding:10px;
-  border-radius: 10px;
-  width: auto;
+  padding: 0 10px 10px 10px;
+  border-radius: 0 0 10px 10px;
+  width: 60%;
   margin: 0;
-  margin-left: 10px;
+  
   text-align: left;
 }
 .card-list h3 {
@@ -341,7 +335,7 @@ h2 {
 }
 .card-list li {
   background-color: rgb(49, 54, 99);
-  padding: 5px;
+  padding: 10px;
   cursor: pointer;
   
 }

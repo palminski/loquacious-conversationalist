@@ -75,7 +75,7 @@ const Review = () => {
 
                             ))}
                         </ul>
-                        <button className="add-button" onClick={changeModeReview}>Review Selected Cards</button>
+                        <button className="bottom-button-extend" onClick={changeModeReview}>Review Selected Cards</button>
                     </>
                 }
                 {mode === 'review' &&
@@ -99,16 +99,16 @@ const Review = () => {
                             </div>
                                 
                                 
-                                <button className="add-button tab" onClick={() => setSideA(!sideA)}>Flip Card</button>
-                                <button className="add-button tab" onClick={() => handleCorrect()}>Correct</button>
-                                <button className="add-button tab" onClick={() => handleIncorrect()}>Incorrect</button>
+                                <button className="bottom-button-extend tab" onClick={() => setSideA(!sideA)}>Flip Card</button>
+                                <button className="bottom-button-extend tab" onClick={() => handleCorrect()}>Correct</button>
+                                <button className="bottom-button-extend tab" onClick={() => handleIncorrect()}>Incorrect</button>
                                 
                                 
                                 
 
                             </>
                         }
-                        <button className="add-button tab" onClick={changeModeSelect}>Review Selected Cards</button>
+                        <button className="bottom-button-extend tab" onClick={changeModeSelect}>Review Selected Cards</button>
                     </>
                 }
 
