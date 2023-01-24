@@ -420,15 +420,79 @@ h2 {
 
 .flashcard{
   background-color: rgb(30, 32, 58);
-  padding: 10px;
+  width: 80%;
   border-radius: 10px 10px 10px 0px;
+  padding: 10px;
 }
-.flashcard-body-a{
+
+.flashcard-deck-title{
+  text-align: left;
+  padding: 15px;
+  padding-top: 0;
+  margin: 0;
+}
+.review-number{
+  font-size: large;
+}
+.flashcard-body{
   background-color: rgb(80, 84, 126);
+  border-radius: 10px;
 }
-.flashcard-body-b{
-  background-color: rgb(49, 54, 99);
+.flip-button{
+  font-size: large;
+  padding: 10px 20px 10px 20px;
+  margin: 10px;
+  color: rgb(255, 255, 255);
+  background-color: rgba(0, 0, 0, 0);
+  border: solid rgb(255, 255, 255) 2px;
+  width: 40%;
+  border-radius: 10px;;
 }
+
 .tab {
   float:left;
+  font-size: large;
+  margin-right: 5px;
+  color: rgb(255, 255, 255);
+  border-radius: 0 0 10px 10px;
+  border: solid rgb(30, 32, 58) 2px;
+  border-top: 0;
+  padding: 10px 20px 10px 20px;
+  transition-duration: 0.5s;
+  outline: none;
+  
+}
+
+.correct {
+  background-color: rgb(38, 83, 41);
+}
+.correct:hover {
+  background-color: rgb(44, 126, 49);
+  border: solid rgb(44, 126, 49) 2px;
+  border-top: 0;
+}
+.incorrect {
+  background-color: rgb(90, 33, 33);
+}
+.incorrect:hover {
+  background-color: rgb(133, 36, 36);
+  border: solid rgb(133, 36, 36) 2px;
+  border-top: 0;
+}
+.card-description {
+  margin: 5px 10px 5px 10px;
+  min-height: 100px;
+  transition-duration: 0.5s;
+  background-color: rgb(30, 32, 58);
+
+  border-radius: 10px;
+}
+.card-description:hover {
+  margin: 5px 10px 5px 10px;
+
+  border-radius: 10px;
+}
+
+.card-title {
+  min-height: 40px;
 }
