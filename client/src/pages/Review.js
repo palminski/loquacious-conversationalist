@@ -11,6 +11,7 @@ const Review = () => {
     const [cardsToReview, setCardsToReview] = useState(shuffleArray(copyArray));
     const [sideA, setSideA] = useState(true);
     const [descriptionVisable, setDescriptionVisable] = useState(false);
+    const [lastCard, setLastCard] = useState('none'); 
 
 
 
@@ -22,6 +23,7 @@ const Review = () => {
             let j = Math.floor(Math.random() * (i + 1));
             [array[i], array[j]] = [array[j], array[i]];
         }
+        
         return array;
     }
 
@@ -31,6 +33,8 @@ const Review = () => {
         copyArray.shift();
         setSideA(true);
         setDescriptionVisable(false);
+        
+        setLastCard("correct");
         setCardsToReview(copyArray);
     }
     const handleIncorrect = () => {
@@ -38,24 +42,29 @@ const Review = () => {
         copyArray.push(copyArray.shift());
         setSideA(true);
         setDescriptionVisable(false);
+        
+        setLastCard("incorrect");
         setCardsToReview(copyArray);
     }
 
     //--reshuffle
     const reshuffleCards = () => {
         copyArray = [...deck.cards];
+        setLastCard("none");
         setCardsToReview(shuffleArray(copyArray))
     }
+    
+    
 
 
     //===[RETURN JSX]===============================================================================
 
     return (
-        <>
+        <div className='review-background'>
             <div className='container grow-in'>
                 {cardsToReview.length > 0 ?
                     <>
-                        <div className='flashcard'>
+                        <div className={`flashcard ${lastCard}-card`}>
                             <h2 className="flashcard-deck-title">{deck.title} - <span className='review-number'>{cardsToReview.length} cards left to review</span></h2>
                             {sideA ?
                                 <>
@@ -114,8 +123,10 @@ const Review = () => {
                     </>
                 }
             </div>
-
-        </>
+            
+            </div>
+                
+        
 
 
     )

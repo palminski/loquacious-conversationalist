@@ -62,6 +62,23 @@ h2 {
     background: var(--background-color);
   }
 }
+
+@keyframes correct-card {
+  from {
+    background-color: rgb(44, 126, 49);
+  }
+  to{
+    background-color: rgb(30, 32, 58);
+  }
+}
+@keyframes incorrect-card {
+  from {
+    background-color: rgb(133, 36, 36);
+  }
+  to{
+    background-color: rgb(30, 32, 58);
+  }
+}
 /* Classes for animations */
 .grow-in{
   animation-name: grow-in;
@@ -423,6 +440,14 @@ h2 {
   width: 80%;
   border-radius: 10px 10px 10px 0px;
   padding: 10px;
+}
+.correct-card {
+  animation-name: correct-card;
+  animation-duration: 0.5s;
+}
+.incorrect-card {
+  animation-name: incorrect-card;
+  animation-duration: 0.5s;
 }
 
 .flashcard-deck-title{
