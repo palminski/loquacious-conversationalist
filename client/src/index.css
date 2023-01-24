@@ -2,6 +2,10 @@
   --background-color : rgb(138, 141, 175);
 }
 
+::placeholder{
+  color: aliceblue;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -287,6 +291,56 @@ h2 {
 .new-card-form form {
   background-color: rgb(80, 84, 126);
   
+  
+}
+.edit-card {
+  
+  padding: 0 10px 0 10px;
+  text-align: center;
+}
+.edit-card label {
+  font-size: larger;
+}
+.edit-card input {
+  text-align: center;
+  width: 90%;
+  height: 30px;
+  font-size: large;
+  color: aliceblue;
+  background-color: rgba(240, 248, 255, 0);
+  border: solid 2px aliceblue;
+  border-radius: 15px;
+  transition-duration: 0.5s;
+}
+.edit-card textarea {
+  text-align: center;
+  padding: 5px;
+  width: 90%;
+  resize: none;
+  color: aliceblue;
+  background-color: rgba(240, 248, 255, 0);
+  border: solid 2px aliceblue;
+  border-radius: 15px;
+  transition-duration: 0.5s;
+}
+
+.edit-card input:hover {
+  background-color: rgba(30, 32, 58, 0.466);
+}
+.edit-card input:focus {
+  background-color: rgb(30, 32, 58);
+}
+.edit-card textarea:hover {
+  background-color: rgba(30, 32, 58, 0.466);
+}
+.edit-card textarea:focus {
+  background-color: rgb(30, 32, 58);
+}
+
+.edit-card h2 {
+  
+  padding: 0;
+  margin-bottom: 10px;
 }
 .side-form{
   margin-top: 10px;
@@ -296,11 +350,15 @@ h2 {
 .side-a{
   background-color: rgb(121, 123, 151) !important;
   border-radius: 10px 0 0 0;
-  margin-left: 10px;
+  flex-grow: 1;
+  width: auto;
 }
 .side-b{
   background-color: rgb(131, 115, 46) !important;
   border-radius: 0 10px 10px 0;
+  width: auto;
+  flex-grow: 1;
+ 
 }
 .add-card-button {
   font-size: large;

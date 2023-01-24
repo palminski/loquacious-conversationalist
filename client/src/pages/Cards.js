@@ -106,24 +106,24 @@ const Cards = () => {
                 {deck.description && <h3 className='description'>{deck.description}</h3>}
                 
                     <form>
-                    <div className='flex-left'>
+                    <div className='flex-left edit-card'>
                         <div className='side-form side-a'>
-                            <h3>Side A</h3>
-                            <label htmlFor="sideATitle">Side A Title: </label>
+                            <h2>Front</h2>
+                            <label htmlFor="sideATitle">Side A Title</label>
                             <input required={true} type="text" id="sideATitle" name="sideATitle" placeholder="Title for Side A" onChange={handleFormChange} value={formState.sideATitle}></input>
                             <br/>
-                            <label htmlFor="sideADescription">Side A Description: </label>
+                            <label htmlFor="sideADescription">Side A Description</label>
                             <br/>
-                            <textarea required={true} type="text" id="sideADescription" name="sideADescription" placeholder="Title for Side A" onChange={handleFormChange} value={formState.sideADescription}></textarea>
+                            <textarea rows={7} required={true} type="text" id="sideADescription" name="sideADescription" placeholder="Title for Side A" onChange={handleFormChange} value={formState.sideADescription}></textarea>
                         </div>
                         <div className='side-form side-b'>
-                            <h3>Side B</h3>
-                            <label htmlFor="sideBTitle">Side B Title: </label>
+                            <h2>Back</h2>
+                            <label htmlFor="sideBTitle">Side B Title</label>
                             <input required={true} type="text" id="sideBTitle" name="sideBTitle" placeholder="Title for Side A" onChange={handleFormChange} value={formState.sideBTitle}></input>
                             <br/>
-                            <label htmlFor="sideBDescription">Side B Description: </label>
+                            <label htmlFor="sideBDescription">Side B Description</label>
                             <br/>
-                            <textarea required={true} type="text" id="sideBDescription" name="sideBDescription" placeholder="Title for Side A" onChange={handleFormChange} value={formState.sideBDescription}></textarea>
+                            <textarea rows={7} required={true} type="text" id="sideBDescription" name="sideBDescription" placeholder="Title for Side A" onChange={handleFormChange} value={formState.sideBDescription}></textarea>
                         </div>
                     </div>
                     <button className='add-card-button' onClick={handleFormSubmit}>{selectedCard ? "Save Card" : "Add Card"}</button>
