@@ -34,8 +34,9 @@ const Review = () => {
         setSideA(true);
         setDescriptionVisable(false);
         
-        setLastCard("correct");
+        handleCover("correct");
         setCardsToReview(copyArray);
+        
     }
     const handleIncorrect = () => {
         copyArray = [...cardsToReview];
@@ -43,14 +44,22 @@ const Review = () => {
         setSideA(true);
         setDescriptionVisable(false);
         
-        setLastCard("incorrect");
+        handleCover("incorrect");
         setCardsToReview(copyArray);
+    }
+
+    //--handle cover
+    const handleCover = (lastCard) => {
+        setLastCard(lastCard);
+        setTimeout(()=>{
+            setLastCard("none");
+        },500)
     }
 
     //--reshuffle
     const reshuffleCards = () => {
         copyArray = [...deck.cards];
-        setLastCard("none");
+        
         setCardsToReview(shuffleArray(copyArray))
     }
     
@@ -64,7 +73,7 @@ const Review = () => {
             <div className='container grow-in'>
                 {cardsToReview.length > 0 ?
                     <>
-                        <div className={`flashcard ${lastCard}-card`}>
+                        <div className={`flashcard `}>
                             <h2 className="flashcard-deck-title">{deck.title} - <span className='review-number'>{cardsToReview.length} cards left to review</span></h2>
                             {sideA ?
                                 <>
@@ -123,7 +132,8 @@ const Review = () => {
                     </>
                 }
             </div>
-            
+            {lastCard === "correct" && <div className='feedback-cover correct-cover'></div>}
+            {lastCard === "incorrect" && <div className='feedback-cover incorrect-cover'></div>}
             </div>
                 
         

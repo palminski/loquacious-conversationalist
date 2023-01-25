@@ -68,7 +68,7 @@ h2 {
     background-color: rgb(44, 126, 49);
   }
   to{
-    background-color: rgb(30, 32, 58);
+    background-color: rgba(30, 32, 58, 0);
   }
 }
 @keyframes incorrect-card {
@@ -76,7 +76,7 @@ h2 {
     background-color: rgb(133, 36, 36);
   }
   to{
-    background-color: rgb(30, 32, 58);
+    background-color: rgba(1, 3, 36, 0);
   }
 }
 /* Classes for animations */
@@ -520,4 +520,22 @@ h2 {
 
 .card-title {
   min-height: 40px;
+}
+
+.feedback-cover{
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: -1;
+  overflow: auto;
+  position: fixed;
+}
+.incorrect-cover {
+  animation-name: incorrect-card;
+  animation-duration: 0.5s;
+}
+.correct-cover {
+  animation-name: correct-card;
+  animation-duration: 0.5s;
 }
