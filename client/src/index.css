@@ -2,6 +2,10 @@
   --background-color : rgb(138, 141, 175);
 }
 
+::placeholder{
+  color: aliceblue;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -56,6 +60,23 @@ h2 {
   to{
     left: 50%;
     background: var(--background-color);
+  }
+}
+
+@keyframes correct-card {
+  from {
+    background-color: rgb(44, 126, 49);
+  }
+  to{
+    background-color: rgba(30, 32, 58, 0);
+  }
+}
+@keyframes incorrect-card {
+  from {
+    background-color: rgb(133, 36, 36);
+  }
+  to{
+    background-color: rgba(1, 3, 36, 0);
   }
 }
 /* Classes for animations */
@@ -223,7 +244,7 @@ h2 {
   border-color: rgb(255, 255, 255);
 }
 
-.add-button {
+.bottom-button-extend {
   transition-duration: 0.5s;
   margin: 0;
   display: block;
@@ -236,7 +257,7 @@ h2 {
   font-size: larger;
 }
 
-.add-button:hover {
+.bottom-button-extend:hover {
   padding-top: 20px;
 }
 
@@ -276,8 +297,9 @@ h2 {
   width: 80%;
   
   margin: 0;
+  padding-bottom: 15px;
   text-align: left;
-  border-radius: 10px;
+  border-radius: 10px 10px 10px 0;
   color: aliceblue;
   background-color: rgb(30, 32, 58);
   
@@ -285,7 +307,57 @@ h2 {
 
 .new-card-form form {
   background-color: rgb(80, 84, 126);
-  border-radius: 0 0 10px 0px;
+  
+  
+}
+.edit-card {
+  
+  padding: 0 10px 0 10px;
+  text-align: center;
+}
+.edit-card label {
+  font-size: larger;
+}
+.edit-card input {
+  text-align: center;
+  width: 90%;
+  height: 30px;
+  font-size: large;
+  color: aliceblue;
+  background-color: rgba(240, 248, 255, 0);
+  border: solid 2px aliceblue;
+  border-radius: 15px;
+  transition-duration: 0.5s;
+}
+.edit-card textarea {
+  text-align: center;
+  padding: 5px;
+  width: 90%;
+  resize: none;
+  color: aliceblue;
+  background-color: rgba(240, 248, 255, 0);
+  border: solid 2px aliceblue;
+  border-radius: 15px;
+  transition-duration: 0.5s;
+}
+
+.edit-card input:hover {
+  background-color: rgba(30, 32, 58, 0.466);
+}
+.edit-card input:focus {
+  background-color: rgb(30, 32, 58);
+}
+.edit-card textarea:hover {
+  background-color: rgba(30, 32, 58, 0.466);
+}
+.edit-card textarea:focus {
+  background-color: rgb(30, 32, 58);
+}
+
+.edit-card h2 {
+  
+  padding: 0;
+  margin-bottom: 10px;
 }
 .side-form{
   margin-top: 10px;
@@ -295,11 +367,15 @@ h2 {
 .side-a{
   background-color: rgb(121, 123, 151) !important;
   border-radius: 10px 0 0 0;
-  margin-left: 10px;
+  flex-grow: 1;
+  width: auto;
 }
 .side-b{
   background-color: rgb(131, 115, 46) !important;
   border-radius: 0 10px 10px 0;
+  width: auto;
+  flex-grow: 1;
+ 
 }
 .add-card-button {
   font-size: large;
@@ -317,23 +393,16 @@ h2 {
 .add-card-button:hover {
   background-color: rgb(121, 123, 151);
 }
-.card-list-container{
-  background-color: rgb(80, 84, 126);
-  margin-top: 0;
-  border-radius: 0 0 10px 10px;
-  padding: 10px;
-  padding-left: 0;
-  width: 50%;
-}
+
 .card-list {
   background-color: rgb(30, 32, 58);
   color: aliceblue;
   list-style-type: none;
-  padding:10px;
-  border-radius: 10px;
-  width: auto;
+  padding: 0 10px 10px 10px;
+  border-radius: 0 0 10px 10px;
+  width: 60%;
   margin: 0;
-  margin-left: 10px;
+  
   text-align: left;
 }
 .card-list h3 {
@@ -341,7 +410,7 @@ h2 {
 }
 .card-list li {
   background-color: rgb(49, 54, 99);
-  padding: 5px;
+  padding: 10px;
   cursor: pointer;
   
 }
@@ -368,15 +437,105 @@ h2 {
 
 .flashcard{
   background-color: rgb(30, 32, 58);
-  padding: 10px;
+  width: 80%;
   border-radius: 10px 10px 10px 0px;
+  padding: 10px;
 }
-.flashcard-body-a{
+.correct-card {
+  animation-name: correct-card;
+  animation-duration: 0.5s;
+}
+.incorrect-card {
+  animation-name: incorrect-card;
+  animation-duration: 0.5s;
+}
+
+.flashcard-deck-title{
+  text-align: left;
+  padding: 15px;
+  padding-top: 0;
+  margin: 0;
+}
+.review-number{
+  font-size: large;
+}
+.flashcard-body{
   background-color: rgb(80, 84, 126);
+  border-radius: 10px;
 }
-.flashcard-body-b{
-  background-color: rgb(49, 54, 99);
+.flip-button{
+  font-size: large;
+  padding: 10px 20px 10px 20px;
+  margin: 10px;
+  color: rgb(255, 255, 255);
+  background-color: rgba(0, 0, 0, 0);
+  border: solid rgb(255, 255, 255) 2px;
+  width: 40%;
+  border-radius: 10px;;
 }
+
 .tab {
   float:left;
+  font-size: large;
+  margin-right: 5px;
+  color: rgb(255, 255, 255);
+  border-radius: 0 0 10px 10px;
+  border: solid rgb(30, 32, 58) 2px;
+  border-top: 0;
+  padding: 10px 20px 10px 20px;
+  transition-duration: 0.5s;
+  outline: none;
+  
+}
+
+.correct {
+  background-color: rgb(38, 83, 41);
+}
+.correct:hover {
+  background-color: rgb(44, 126, 49);
+  border: solid rgb(44, 126, 49) 2px;
+  border-top: 0;
+}
+.incorrect {
+  background-color: rgb(90, 33, 33);
+}
+.incorrect:hover {
+  background-color: rgb(133, 36, 36);
+  border: solid rgb(133, 36, 36) 2px;
+  border-top: 0;
+}
+.card-description {
+  margin: 5px 10px 5px 10px;
+  min-height: 100px;
+  transition-duration: 0.5s;
+  background-color: rgb(30, 32, 58);
+
+  border-radius: 10px;
+}
+.card-description:hover {
+  margin: 5px 10px 5px 10px;
+
+  border-radius: 10px;
+}
+
+.card-title {
+  min-height: 40px;
+}
+
+.feedback-cover{
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: -1;
+  overflow: auto;
+  position: fixed;
+}
+.incorrect-cover {
+  animation-name: incorrect-card;
+  animation-duration: 0.5s;
+}
+.correct-cover {
+  animation-name: correct-card;
+  animation-duration: 0.5s;
 }

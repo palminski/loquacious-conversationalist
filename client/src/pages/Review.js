@@ -5,118 +5,139 @@ import { useSelector } from 'react-redux';
 const Review = () => {
     //===[Redux]==============================================
     const deck = useSelector(selectDeck);
-
+    let copyArray = [...deck.cards];
     //===[States]=============================================
-    let allCards = deck.cards;
-    let [selectedCards, setSelectedCards] = useState(allCards.map(card => ({ ...card, active: true })))
-    let [mode, setMode] = useState("select");
-    let [cardsToReview, setCardsToReview] = useState([]);
-    let [sideA, setSideA] = useState(true);
 
+    const [cardsToReview, setCardsToReview] = useState(shuffleArray(copyArray));
+    const [sideA, setSideA] = useState(true);
+    const [descriptionVisable, setDescriptionVisable] = useState(false);
+    const [lastCard, setLastCard] = useState('none'); 
 
 
 
     //===[Functions]==============================================
 
-    const updateSelectedCards = (index) => {
-        console.log(index)
-        let updatedArray = [...selectedCards];
-        updatedArray[index].active = !selectedCards[index].active;
-        console.log(updatedArray)
-        setSelectedCards(updatedArray);
-    }
-
-    //--review and select page modes
-    const changeModeReview = () => {
-        let cardsToAdd = []
-        selectedCards.map(card => {
-            if (card.active === true) {
-                cardsToAdd.push(card)
-            }
-        });
-        setCardsToReview(cardsToAdd);
-        setMode('review');
-
-    }
-    const changeModeSelect = () => {
-        setMode('select');
+    //--Shuffle
+    function shuffleArray(array) {   //Hoisted to top
+        for (let i = array.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        
+        return array;
     }
 
     //--Correct/Incorrect
     const handleCorrect = () => {
-        let updatedArray = [...cardsToReview];
-        updatedArray.shift();
-        setCardsToReview(updatedArray);
+        copyArray = [...cardsToReview];
+        copyArray.shift();
         setSideA(true);
+        setDescriptionVisable(false);
+        
+        handleCover("correct");
+        setCardsToReview(copyArray);
+        
     }
     const handleIncorrect = () => {
-        let updatedArray = [...cardsToReview];
-        updatedArray.push(updatedArray.shift());
-        setCardsToReview(updatedArray);
+        copyArray = [...cardsToReview];
+        copyArray.push(copyArray.shift());
         setSideA(true);
+        setDescriptionVisable(false);
+        
+        handleCover("incorrect");
+        setCardsToReview(copyArray);
     }
+
+    //--handle cover
+    const handleCover = (lastCard) => {
+        setLastCard(lastCard);
+        setTimeout(()=>{
+            setLastCard("none");
+        },500)
+    }
+
+    //--reshuffle
+    const reshuffleCards = () => {
+        copyArray = [...deck.cards];
+        
+        setCardsToReview(shuffleArray(copyArray))
+    }
+    
+    
 
 
     //===[RETURN JSX]===============================================================================
 
     return (
-        <div className="grow-in">
-            <div className="container">
-
-                {mode === "select" &&
+        <div className='review-background'>
+            <div className='container grow-in'>
+                {cardsToReview.length > 0 ?
                     <>
-                        <ul className="deck-list">
-                            <h2>Select Cards to Review from {deck.title}</h2>
-                            {selectedCards && selectedCards.map(card => (
-                                <li className={`${card.active === true && "card-to-review"}`} key={card._id} onClick={() => updateSelectedCards(selectedCards.indexOf(card))}>
-                                    <h2>{card.sideATitle} / {card.sideBTitle}</h2>
-                                </li>
-
-
-                            ))}
-                        </ul>
-                        <button className="add-button" onClick={changeModeReview}>Review Selected Cards</button>
-                    </>
-                }
-                {mode === 'review' &&
-                    <>
-                        {cardsToReview[0] &&
-                            <>
-                            <div className='flashcard'>
-                            <h1>{sideA ? cardsToReview[0].sideATitle : cardsToReview[0].sideBTitle}</h1>
+                        <div className={`flashcard `}>
+                            <h2 className="flashcard-deck-title">{deck.title} - <span className='review-number'>{cardsToReview.length} cards left to review</span></h2>
                             {sideA ?
-                                    <div className='flashcard-body-a'>
-                                        
-                                        <h2>{cardsToReview[0].sideADescription}</h2>
-                                        
-                                    </div>
-                                    :
-                                    <div className='flashcard-body-b'>
-                                        
-                                        <h2>{cardsToReview[0].sideBDescription}</h2>
-                                    </div>
-                                }
-                            </div>
-                                
-                                
-                                <button className="add-button tab" onClick={() => setSideA(!sideA)}>Flip Card</button>
-                                <button className="add-button tab" onClick={() => handleCorrect()}>Correct</button>
-                                <button className="add-button tab" onClick={() => handleIncorrect()}>Incorrect</button>
-                                
-                                
-                                
+                                <>
+                                    <div className='flashcard-body'>
+                                        <h2 className='card-title'>{cardsToReview[0].sideATitle}</h2>
+                                        {cardsToReview[0].sideADescription &&
+                                            <>
+                                                
+                                                <h2 className='card-description'>
 
-                            </>
-                        }
-                        <button className="add-button tab" onClick={changeModeSelect}>Review Selected Cards</button>
+                                                    {descriptionVisable && <span>{cardsToReview[0].sideADescription}</span>}
+                                                    
+                                                </h2>
+                                                <button className='flip-button' onClick={() => setDescriptionVisable(!descriptionVisable)}>Reveal Description</button>
+                                            </>
+                                        }
+                                        
+                                        <button className='flip-button' onClick={() => setSideA(!sideA)}>Flip Card</button>
+                                    </div>
+                                    
+                                </>
+
+                                :
+                                <>
+                                    <div className='flashcard-body'>
+                                    <h2 className='card-title'>{cardsToReview[0].sideBTitle}</h2>
+                                    {cardsToReview[0].sideBDescription &&
+                                        <>
+                                            
+                                            <h2 className='card-description'>
+
+                                                    {descriptionVisable && <span>{cardsToReview[0].sideBDescription}</span>}
+                                                    
+                                                </h2>
+                                                <button className='flip-button' onClick={() => setDescriptionVisable(!descriptionVisable)}>Reveal Description</button>
+                                        </>
+                                    }
+                                    
+                                    <button className='flip-button' onClick={() => setSideA(!sideA)}>Flip Card</button>
+                                    
+                                </div>
+                                
+                                </>
+                                
+                            }
+
+                        </div>
+
+                        <button className='tab correct' onClick={() => handleCorrect()}>Correct</button>
+                        <button className="tab incorrect" onClick={() => handleIncorrect()}>Incorrect</button>
+                    </>
+                    :
+                    <>
+                        <h1>All Cards Reviewed!</h1>
+                        <button onClick={() => reshuffleCards()}>Reshuffle</button>
                     </>
                 }
-
-
-
             </div>
+            {lastCard === "correct" && <div className='feedback-cover correct-cover'></div>}
+            {lastCard === "incorrect" && <div className='feedback-cover incorrect-cover'></div>}
+            </div>
+                
+        
 
-        </div>
 
     )
 }

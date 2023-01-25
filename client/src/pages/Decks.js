@@ -79,7 +79,7 @@ const Decks = () => {
                     ))}
 
                 </ul>
-                <button className="add-button" onClick={toggleModal}>Add Deck</button>
+                <button className="bottom-button-extend" onClick={toggleModal}>Add Deck</button>
         </div>
         
             {modalOpen && <AddDeckModal toggleModal={toggleModal}/>}
