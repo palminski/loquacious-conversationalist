@@ -8,7 +8,7 @@ const Home = () => {
     const currentUser = me?.currentUser;
 
     return (
-        <>
+        <div className="grow-in"> 
             
             {currentUser && 
             <>
@@ -27,7 +27,7 @@ const Home = () => {
                     <li key={user._id}>{user.username} - {user._id}</li>
                 ))}
             </ul>
-        </>
+        </div>
     )
 }
 

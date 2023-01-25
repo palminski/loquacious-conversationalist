@@ -14,6 +14,8 @@ const Decks = () => {
     //===[Redux]==============================================
     const dispatch = useDispatch();
     const currentDeckId = useSelector(selectDeck)._id;
+
+    
     
     //===[States]=============================================   
     const [modalOpen, setModalOpen] = useState(false);
@@ -21,7 +23,8 @@ const Decks = () => {
     //===[Queries]=============================================   
     const {loading, data, refetch} = useQuery(QUERY_CURRENT_USER);
     const decks = (data?.currentUser.decks)
-    console.log(data);
+    
+    
 
     //===[Mutations]=============================================   
     const [deleteDeck] = useMutation(DELETE_DECK);
@@ -53,11 +56,13 @@ const Decks = () => {
         };
         setModalOpen(!modalOpen);
     }
+
+    
     
     //===[RETURN JSX]===============================================================================
     
     return (
-        <>
+        <div className="grow-in"> 
             <div className="container">
 
                 <ul className="deck-list">
@@ -74,11 +79,11 @@ const Decks = () => {
                     ))}
 
                 </ul>
-                <button className="add-button" onClick={toggleModal}>Add Deck</button>
+                <button className="bottom-button-extend" onClick={toggleModal}>Add Deck</button>
         </div>
         
             {modalOpen && <AddDeckModal toggleModal={toggleModal}/>}
-        </>
+        </div>
         
     )
 }

@@ -34,7 +34,7 @@ const Signup = (props) => {
     }
 
     return (
-        <>
+        <div className="grow-in"> 
             
             <form onSubmit={handleFormSubmit}>
                 <label htmlFor="username">Username: </label>
@@ -45,7 +45,7 @@ const Signup = (props) => {
 
                 <button type="submit">Submit</button>
             </form>
-        </>
+        </div>
     );
 }
 
