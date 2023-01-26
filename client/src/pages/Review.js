@@ -144,11 +144,16 @@ const Review = () => {
                     :
                     <>
                         {deck.title ?
-                            <>
-                                <h1>All Cards Reviewed!</h1>
-                                <button onClick={() => reshuffleCards()}>Reshuffle</button>
+                            
+                                <div className='no-deck-warning'>
+                            <h1>All Cards Reviewed!</h1>
+                            <hr></hr>
+                            <h2>Click the button below to review again or select a new deck to review!</h2>
+                            <button onClick={() => reshuffleCards()}>Reshuffle</button>
+                        </div>
+                                
 
-                            </>
+                            
                             :
                             <div className='no-deck-warning'>
                                 <h1>No Deck Selected</h1>

@@ -129,6 +129,25 @@ h2 {
   overflow: auto;
   position: fixed;
 }
+/* Home Styling */
+.welcome-card {
+  background-color: rgb(30, 32, 58);
+  border-radius: 10px;
+  color: aliceblue;
+  width: 80%;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.welcome-card p{
+  margin: 0;
+  padding: 10px;
+  background-color: rgb(49, 54, 99);
+  border-radius: 0 0 10px 10px;
+}
+.tutorial {
+  width: 60%;
+}
 
 /* Nav Bar Styling */
 .flex-container{
@@ -583,4 +602,9 @@ label {
   padding-top: 5px;
   /* margin: 0 20px; */
   border-radius: 10px;
+}
+.no-deck-warning button{
+  
+  margin: 10px;
+  padding: 5px 105px;
 }
