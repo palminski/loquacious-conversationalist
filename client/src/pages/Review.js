@@ -79,7 +79,7 @@ const Review = () => {
                                 <>
                                     <div className='flashcard-body'>
                                         <h2 className='card-title'>{cardsToReview[0].sideATitle}</h2>
-                                        {cardsToReview[0].sideADescription &&
+                                        {cardsToReview[0].sideADescription ?
                                             <>
 
                                                 <h2 className='card-description'>
@@ -88,6 +88,14 @@ const Review = () => {
 
                                                 </h2>
                                                 <button className='flip-button' onClick={() => setDescriptionVisable(!descriptionVisable)}>Reveal Description</button>
+                                            </>
+                                            :
+                                            <>
+                                                <h2 className='card-description zero-opacity'>
+
+                                                    
+
+                                                </h2>
                                             </>
                                         }
 
@@ -100,7 +108,7 @@ const Review = () => {
                                 <>
                                     <div className='flashcard-body'>
                                         <h2 className='card-title'>{cardsToReview[0].sideBTitle}</h2>
-                                        {cardsToReview[0].sideBDescription &&
+                                        {cardsToReview[0].sideBDescription ?
                                             <>
 
                                                 <h2 className='card-description'>
@@ -109,6 +117,14 @@ const Review = () => {
 
                                                 </h2>
                                                 <button className='flip-button' onClick={() => setDescriptionVisable(!descriptionVisable)}>Reveal Description</button>
+                                            </>
+                                            :
+                                            <>
+                                                <h2 className='card-description zero-opacity'>
+
+                                                    
+
+                                                </h2>
                                             </>
                                         }
 
