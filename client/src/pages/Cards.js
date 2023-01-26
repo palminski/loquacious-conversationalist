@@ -9,6 +9,7 @@ const Cards = () => {
     //===[Redux]==============================================
     const dispatch = useDispatch();
     const deck = useSelector(selectDeck);
+    console.log(deck)
 
     //===[Queries]============================================
     const { refetch } = useQuery(QUERY_CURRENT_USER);

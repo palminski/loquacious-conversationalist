@@ -11,7 +11,7 @@ const Review = () => {
     const [cardsToReview, setCardsToReview] = useState(shuffleArray(copyArray));
     const [sideA, setSideA] = useState(true);
     const [descriptionVisable, setDescriptionVisable] = useState(false);
-    const [lastCard, setLastCard] = useState('none'); 
+    const [lastCard, setLastCard] = useState('none');
 
 
 
@@ -23,7 +23,7 @@ const Review = () => {
             let j = Math.floor(Math.random() * (i + 1));
             [array[i], array[j]] = [array[j], array[i]];
         }
-        
+
         return array;
     }
 
@@ -33,17 +33,17 @@ const Review = () => {
         copyArray.shift();
         setSideA(true);
         setDescriptionVisable(false);
-        
+
         handleCover("correct");
         setCardsToReview(copyArray);
-        
+
     }
     const handleIncorrect = () => {
         copyArray = [...cardsToReview];
         copyArray.push(copyArray.shift());
         setSideA(true);
         setDescriptionVisable(false);
-        
+
         handleCover("incorrect");
         setCardsToReview(copyArray);
     }
@@ -51,19 +51,19 @@ const Review = () => {
     //--handle cover
     const handleCover = (lastCard) => {
         setLastCard(lastCard);
-        setTimeout(()=>{
+        setTimeout(() => {
             setLastCard("none");
-        },500)
+        }, 500)
     }
 
     //--reshuffle
     const reshuffleCards = () => {
         copyArray = [...deck.cards];
-        
+
         setCardsToReview(shuffleArray(copyArray))
     }
-    
-    
+
+
 
 
     //===[RETURN JSX]===============================================================================
@@ -81,43 +81,43 @@ const Review = () => {
                                         <h2 className='card-title'>{cardsToReview[0].sideATitle}</h2>
                                         {cardsToReview[0].sideADescription &&
                                             <>
-                                                
+
                                                 <h2 className='card-description'>
 
                                                     {descriptionVisable && <span>{cardsToReview[0].sideADescription}</span>}
-                                                    
+
                                                 </h2>
                                                 <button className='flip-button' onClick={() => setDescriptionVisable(!descriptionVisable)}>Reveal Description</button>
                                             </>
                                         }
-                                        
+
                                         <button className='flip-button' onClick={() => setSideA(!sideA)}>Flip Card</button>
                                     </div>
-                                    
+
                                 </>
 
                                 :
                                 <>
                                     <div className='flashcard-body'>
-                                    <h2 className='card-title'>{cardsToReview[0].sideBTitle}</h2>
-                                    {cardsToReview[0].sideBDescription &&
-                                        <>
-                                            
-                                            <h2 className='card-description'>
+                                        <h2 className='card-title'>{cardsToReview[0].sideBTitle}</h2>
+                                        {cardsToReview[0].sideBDescription &&
+                                            <>
+
+                                                <h2 className='card-description'>
 
                                                     {descriptionVisable && <span>{cardsToReview[0].sideBDescription}</span>}
-                                                    
+
                                                 </h2>
                                                 <button className='flip-button' onClick={() => setDescriptionVisable(!descriptionVisable)}>Reveal Description</button>
-                                        </>
-                                    }
-                                    
-                                    <button className='flip-button' onClick={() => setSideA(!sideA)}>Flip Card</button>
-                                    
-                                </div>
-                                
+                                            </>
+                                        }
+
+                                        <button className='flip-button' onClick={() => setSideA(!sideA)}>Flip Card</button>
+
+                                    </div>
+
                                 </>
-                                
+
                             }
 
                         </div>
@@ -127,16 +127,26 @@ const Review = () => {
                     </>
                     :
                     <>
-                        <h1>All Cards Reviewed!</h1>
-                        <button onClick={() => reshuffleCards()}>Reshuffle</button>
+                        {deck.title ?
+                            <>
+                                <h1>All Cards Reviewed!</h1>
+                                <button onClick={() => reshuffleCards()}>Reshuffle</button>
+
+                            </>
+                            :
+                            <>
+                                <h1>No deck Selected</h1>
+                            </>
+                        }
+
                     </>
                 }
             </div>
             {lastCard === "correct" && <div className='feedback-cover correct-cover'></div>}
             {lastCard === "incorrect" && <div className='feedback-cover incorrect-cover'></div>}
-            </div>
-                
-        
+        </div>
+
+
 
 
     )

@@ -13,7 +13,8 @@ import AddDeckModal from '../components/AddDeckModal';
 const Decks = () => {
     //===[Redux]==============================================
     const dispatch = useDispatch();
-    const currentDeckId = useSelector(selectDeck)._id;
+    const currentDeck = useSelector(selectDeck)
+    const currentDeckId = currentDeck._id;
 
     
     
@@ -37,6 +38,12 @@ const Decks = () => {
                     deckId: deckId
                 }
             });
+            if (deckId === currentDeck._id) {
+                console.log("deleted active deck");
+                dispatch(setDeck({
+                    cards: []
+                }))
+            }
             refetch();
         }
         catch (error) {
