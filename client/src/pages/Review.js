@@ -69,7 +69,7 @@ const Review = () => {
     //===[RETURN JSX]===============================================================================
 
     return (
-        <div className='review-background'>
+        
             <div className='container grow-in'>
                 {cardsToReview.length > 0 ?
                     <>
@@ -164,10 +164,11 @@ const Review = () => {
 
                     </>
                 }
-            </div>
-            {lastCard === "correct" && <div className='feedback-cover correct-cover'></div>}
+                {lastCard === "correct" && <div className='feedback-cover correct-cover'></div>}
             {lastCard === "incorrect" && <div className='feedback-cover incorrect-cover'></div>}
-        </div>
+            </div>
+            
+        
 
 
 
