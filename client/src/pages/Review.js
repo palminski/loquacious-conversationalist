@@ -77,7 +77,7 @@ const Review = () => {
                             <h2 className="flashcard-deck-title">{deck.title} - <span className='review-number'>{cardsToReview.length} cards left to review</span></h2>
                             {sideA ?
                                 <>
-                                    <div className='flashcard-body'>
+                                    <div className='flashcard-body side-a'>
                                         <h2 className='card-title'>{cardsToReview[0].sideATitle}</h2>
                                         {cardsToReview[0].sideADescription ?
                                             <>
@@ -106,7 +106,7 @@ const Review = () => {
 
                                 :
                                 <>
-                                    <div className='flashcard-body'>
+                                    <div className='flashcard-body side-b'>
                                         <h2 className='card-title'>{cardsToReview[0].sideBTitle}</h2>
                                         {cardsToReview[0].sideBDescription ?
                                             <>
