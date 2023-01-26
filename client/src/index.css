@@ -30,6 +30,7 @@ h1 {
 h2 {
   color: aliceblue;
 }
+
 /* Key Frames */
 @keyframes grow-in {
   from {
@@ -38,6 +39,14 @@ h2 {
   }
   to{
     transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to{
     opacity: 1;
   }
 }
@@ -119,6 +128,25 @@ h2 {
   top: 93px;
   overflow: auto;
   position: fixed;
+}
+/* Home Styling */
+.welcome-card {
+  background-color: rgb(30, 32, 58);
+  border-radius: 10px;
+  color: aliceblue;
+  width: 80%;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.welcome-card p{
+  margin: 0;
+  padding: 10px;
+  background-color: rgb(49, 54, 99);
+  border-radius: 0 0 10px 10px;
+}
+.tutorial {
+  width: 60%;
 }
 
 /* Nav Bar Styling */
@@ -263,6 +291,8 @@ h2 {
 
 /* Modal */
 .modal-background {
+  animation-name: fade-in;
+  animation-duration: 0.5s;
   background: rgba(0, 0, 0, 0.67);
   bottom: 0;
   left: 0;
@@ -275,16 +305,37 @@ h2 {
 .modal-body {
 
   transition-duration: 0.5s;
-  padding: 10px;
+  padding-bottom:15px;
   border-radius: 15px 15px 15px 15px;
-  background: aliceblue;
+  background-color: rgb(80, 84, 126);
   top: 10px;
   bottom: 10%;
   margin: 50px auto;
   width: 80%;
 }
+.modal-body form{
+  padding: 15px;
+  background-color: aliceblue;
+}
+.modal-body input{
+  margin: 10px 0;
+  border-radius: 15px;
+  text-align: center;
+  width: 70%;
+  height: 30px;
+  font-size: large;
+  background-color: aliceblue;
+  border: solid 2px rgb(0, 0, 0);
+}
 .modal-body h2 {
   margin: 0;
+  
+}
+
+.modal-body button {
+  margin: 10px;
+  padding: 5px 105px;
+ 
 }
 
 /* Cards Page */
@@ -315,7 +366,7 @@ h2 {
   padding: 0 10px 0 10px;
   text-align: center;
 }
-.edit-card label {
+label {
   font-size: larger;
 }
 .edit-card input {
@@ -474,6 +525,8 @@ h2 {
   border-radius: 10px;;
 }
 
+
+
 .tab {
   float:left;
   font-size: large;
@@ -512,6 +565,10 @@ h2 {
 
   border-radius: 10px;
 }
+
+.zero-opacity{
+  background-color: rgb(30, 32, 58, 0);
+}
 .card-description:hover {
   margin: 5px 10px 5px 10px;
 
@@ -538,4 +595,85 @@ h2 {
 .correct-cover {
   animation-name: correct-card;
   animation-duration: 0.5s;
+}
+
+/* No deck Selected */
+.no-deck-warning{
+  background-color: rgb(30, 32, 58);
+  padding: 15px;
+  padding-top: 5px;
+  /* margin: 0 20px; */
+  border-radius: 10px;
+}
+.no-deck-warning button{
+  
+  margin: 10px;
+  padding: 5px 105px;
+}
+
+.log-in-button{
+  padding: 3px;
+margin: 10px;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 480px) {
+
+  .deck-list {
+    background-color: rgb(30, 32, 58);
+    color: aliceblue;
+    list-style-type: none;
+    padding-left: 0;
+    padding-bottom: 15px;
+    border-radius: 10px 10px 10px 0;
+    width: 100%;
+    margin: 0;
+    text-align: left;
+  }
+
+  .flashcard{
+    background-color: rgb(30, 32, 58);
+    width: 100%;
+    border-radius: 10px 10px 10px 0px;
+    padding: 10px;
+    
+  }
+
+  .new-card-form{
+    width: 100%;
+    
+    margin: 0;
+    padding-bottom: 15px;
+    text-align: left;
+    border-radius: 10px 10px 10px 0;
+    color: aliceblue;
+    background-color: rgb(30, 32, 58);
+    
+  }
+
+  .welcome-card {
+    background-color: rgb(30, 32, 58);
+    border-radius: 10px;
+    color: aliceblue;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+
+  .tutorial {
+    width: 100%;
+  }
+
+  .card-list {
+    background-color: rgb(30, 32, 58);
+    color: aliceblue;
+    list-style-type: none;
+    padding: 0 10px 10px 10px;
+    border-radius: 0 0 10px 10px;
+    width: 90%;
+    margin: 0;
+    
+    text-align: left;
+  }
 }

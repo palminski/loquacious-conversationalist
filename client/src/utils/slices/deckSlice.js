@@ -2,8 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     value: {
-        title:"testRedux-initial",
-        description:'Test',
+        
         cards: []
     }
 };

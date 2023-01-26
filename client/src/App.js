@@ -1,7 +1,8 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import './App.css';
 import {setContext} from '@apollo/client/link/context'
 import { ApolloProvider, InMemoryCache, ApolloClient, createHttpLink } from '@apollo/client';
+import Auth from "./utils/auth";
 
 //------[Components]------------------
 import Nav from './components/Nav';
@@ -13,6 +14,7 @@ import Signup from './pages/Signup';
 import Decks from './pages/Decks';
 import Cards from './pages/Cards';
 import Review from './pages/Review';
+import LoggedOut from './pages/LoggedOut';
 
 //------[Set Up Apollo]---------------
 const httpLink = createHttpLink({
@@ -39,6 +41,8 @@ function App() {
 
   const [pageSelected, setPageSelected] = useState('Home')
 
+ 
+
   return (
     <ApolloProvider client={client}>
     <div className="App">
@@ -47,9 +51,19 @@ function App() {
       {pageSelected === 'Home' && <Home/>}
       {pageSelected === 'Log In' && <Login setPageSelected={setPageSelected}/>}
       {pageSelected === 'Sign Up' && <Signup setPageSelected={setPageSelected}/>}
+      {Auth.loggedIn() ?
+      <>
       {pageSelected === 'Decks' && <Decks/>}
       {pageSelected === 'Cards' && <Cards/>}
       {pageSelected === 'Review' && <Review/>}
+      </>
+      :
+      <>
+      {pageSelected === 'Decks' && <LoggedOut/>}
+      {pageSelected === 'Cards' && <LoggedOut/>}
+      {pageSelected === 'Review' && <LoggedOut/>}
+      </>
+      }
 
     </div>
     </ApolloProvider>
