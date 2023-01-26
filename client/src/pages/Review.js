@@ -134,9 +134,11 @@ const Review = () => {
 
                             </>
                             :
-                            <>
-                                <h1>No deck Selected</h1>
-                            </>
+                            <div className='no-deck-warning'>
+                                <h1>No Deck Selected</h1>
+                                <hr></hr>
+                                <h2>Please select a deck to either review or add cards to.</h2>
+                            </div>
                         }
 
                     </>
