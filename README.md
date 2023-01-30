@@ -10,7 +10,7 @@
   
   ## Description
  
-    A simple online flashcard program which can be used to help memorize anything you want! Simply sign in from anywhere and create, build, and review decks of flashcards!
+A simple online flashcard program which can be used to help memorize anything you want! Simply sign in from anywhere and create, build, and review decks of flashcards!
 
 
   ## Usage
