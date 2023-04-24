@@ -3,6 +3,8 @@ import {QUERY_ALL_USERS, QUERY_CURRENT_USER} from "../utils/queries"
 import { DELETE_DECK } from "../utils/mutations";
 import {useState} from 'react';
 
+import { useNavigate } from "react-router-dom";
+
 import {useSelector,useDispatch} from 'react-redux';
 import {
     setDeck, selectDeck
@@ -16,7 +18,8 @@ const Decks = () => {
     const currentDeck = useSelector(selectDeck)
     const currentDeckId = currentDeck._id;
 
-    
+    //===[Router]=============================================
+    const navigate = useNavigate();
     
     //===[States]=============================================   
     const [modalOpen, setModalOpen] = useState(false);
@@ -75,7 +78,7 @@ const Decks = () => {
                 <ul className="deck-list">
                     <h2>My Decks</h2>
                     {decks && decks.map(deck => (
-                        <li className={`${(currentDeckId === deck._id) && "selected-deck"}`} key={deck._id} onClick={() => dispatch(setDeck(deck))}>
+                        <li className={`${(currentDeckId === deck._id) && "selected-deck"}`} key={deck._id} onClick={() => {dispatch(setDeck(deck)); navigate('../cards')}}>
                             <div className="flex-between">
                                 <h3>{deck.title} {(deck.description) && ` - ${deck.description}`}</h3>
                                 <div className="hidden-buttons">
