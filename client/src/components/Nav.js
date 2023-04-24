@@ -1,5 +1,6 @@
 import Auth from "../utils/auth";
 import {useState} from 'react';
+import { Link } from 'react-router-dom';
 
 const Nav = (props) => {
     const {pageSelected, setPageSelected} = props;
@@ -25,48 +26,48 @@ const Nav = (props) => {
 
 
             <ul>
-                <a href='#Home' onClick={() => changePage('Home')}>
+                <Link to='/'>
                     <li className={`${(pageSelected === 'Home') && 'current-navigation-link'} navigation-link`}>
                         Home
                     </li>
-                </a>
+                </Link>
                 {!Auth.loggedIn() &&
-                    <a href='#LogIn' onClick={() => changePage('Log In')}>
+                    <Link to='login'>
                         <li className={`${(pageSelected === 'Log In') && 'current-navigation-link'} navigation-link`}>
                             Log In
                         </li>
-                    </a>
+                    </Link>
                 }
                 {!Auth.loggedIn() &&
-                    <a href='#SignUp' onClick={() => changePage('Sign Up')}>
+                    <Link to='signup'>
                         <li className={`${(pageSelected === 'Sign Up') && 'current-navigation-link'} navigation-link`}>
                             Sign Up
                         </li>
-                    </a>
+                    </Link>
                 }
                 {Auth.loggedIn() &&
                     <>
                         
-                        <a href="#Decks"onClick={() => changePage('Decks')}>
+                        <Link to='decks'>
                             <li className={`${(pageSelected === 'Decks') && 'current-navigation-link'} navigation-link`}>
                                 Decks
                             </li>
-                        </a>
-                        <a href="#Cards"onClick={() => changePage('Cards')}>
+                        </Link>
+                        <Link to='cards'>
                             <li className={`${(pageSelected === 'Cards') && 'current-navigation-link'} navigation-link`}>
                                 Cards
                             </li>
-                        </a>
-                        <a href="#Review"onClick={() => changePage('Review')}>
+                        </Link>
+                        <Link to='review'>
                             <li className={`${(pageSelected === 'Review') && 'current-navigation-link'} navigation-link`}>
                                 Review
                             </li>
-                        </a>
-                        <a href='/' onClick={() => { Auth.logout() }}>
+                        </Link>
+                        <Link to="/" onClick={() => { Auth.logout() }}>
                             <li className='navigation-link'>
                                 Logout
                             </li>
-                        </a>
+                        </Link>
                     </>
                     
                 }

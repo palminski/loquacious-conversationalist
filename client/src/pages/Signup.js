@@ -5,6 +5,7 @@ import Auth from "../utils/auth";
 
 
 const Signup = (props) => {
+
     const [formState, setFormState] = useState({ username: '', password: '' });
     const [addUser, {error}] = useMutation(ADD_USER);
 
@@ -25,12 +26,13 @@ const Signup = (props) => {
             });
             const token = response.data.addUser.token
             Auth.login(token);
-            props.setPageSelected("Home");
+
         }
         catch (error) {
             console.log(formState);
             console.log(error)
         }  
+        window.location = "/";
     }
 
     return (

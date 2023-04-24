@@ -1,6 +1,6 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
-import {setContext} from '@apollo/client/link/context'
+import { setContext } from '@apollo/client/link/context'
 import { ApolloProvider, InMemoryCache, ApolloClient, createHttpLink } from '@apollo/client';
 import Auth from "./utils/auth";
 
@@ -15,22 +15,24 @@ import Decks from './pages/Decks';
 import Cards from './pages/Cards';
 import Review from './pages/Review';
 import LoggedOut from './pages/LoggedOut';
+import AlreadyLoggedIn from './pages/AlreadyLoggedIn';
+import NotFound from './pages/NotFound';
 
 //------[Router]----------------------
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 //------[Set Up Apollo]---------------
 const httpLink = createHttpLink({
   //This can be changed to '/graphql' if using proxy in package.json
-  uri: '/graphql'
+  uri: 'http://localhost:3001/graphql'
 });
 
-const authLink = setContext((_, {headers}) => {
+const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
   return {
     headers: {
       ...headers,
-      authorization: token? `Bearer ${token}` : '',
+      authorization: token ? `Bearer ${token}` : '',
     },
   };
 });
@@ -44,31 +46,36 @@ function App() {
 
   const [pageSelected, setPageSelected] = useState('Home')
 
- 
+
 
   return (
     <ApolloProvider client={client}>
-    <div className="App">
-      <Nav pageSelected={pageSelected} setPageSelected={setPageSelected}/>
+      <div className="App">
+        <Nav pageSelected={pageSelected} setPageSelected={setPageSelected} />
+        <Routes>
+          <Route path="/" element={<Home />} />
 
-      {pageSelected === 'Home' && <Home/>}
-      {pageSelected === 'Log In' && <Login setPageSelected={setPageSelected}/>}
-      {pageSelected === 'Sign Up' && <Signup setPageSelected={setPageSelected}/>}
-      {Auth.loggedIn() ?
-      <>
-      {pageSelected === 'Decks' && <Decks/>}
-      {pageSelected === 'Cards' && <Cards/>}
-      {pageSelected === 'Review' && <Review/>}
-      </>
-      :
-      <>
-      {pageSelected === 'Decks' && <LoggedOut/>}
-      {pageSelected === 'Cards' && <LoggedOut/>}
-      {pageSelected === 'Review' && <LoggedOut/>}
-      </>
-      }
 
-    </div>
+          {Auth.loggedIn() ?
+            <>
+              <Route path="/decks" element={<Decks />} />
+              <Route path="/cards" element={<Cards />} />
+              <Route path="/review" element={<Review />} />
+              <Route path="/login" element={<AlreadyLoggedIn />} />
+              <Route path="/signup" element={<AlreadyLoggedIn />} />
+            </>
+            :
+            <>
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/decks" element={<LoggedOut />} />
+              <Route path="/cards" element={<LoggedOut />} />
+              <Route path="/review" element={<LoggedOut />} />
+            </>
+          }
+          <Route path="*" element={<NotFound />}></Route>
+        </Routes>
+      </div>
     </ApolloProvider>
   );
 }
@@ -120,7 +127,5 @@ export default App;
     //       }
     //        <Route path="*" element={<NotFound />}></Route>
     //     </Routes>
-
-
     //   </div>
     // </ApolloProvider>
