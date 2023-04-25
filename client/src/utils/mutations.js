@@ -26,11 +26,8 @@ mutation AddUser($username: String!, $password: String!) {
 export const ADD_DECK = gql`
 mutation AddDeck($title: String!, $description: String) {
   addDeck(title: $title, description: $description) {
-  username
-  decks {
     title
-    description
-  }  
+    description 
   }
 }
 `
@@ -38,11 +35,8 @@ mutation AddDeck($title: String!, $description: String) {
 export const DELETE_DECK = gql`
 mutation DeleteDeck($deckId: ID!) {
   deleteDeck(deckId: $deckId) {
-    username
-    decks {
-      title
-      _id
-    }
+    title
+    _id
   }
 }
 `
@@ -67,7 +61,6 @@ mutation EditCard($deckId: ID!, $cardId: ID!, $sideATitle: String!, $sideADescri
     sideADescription
     sideBDescription
     _id
-    
   }
 }
 `
