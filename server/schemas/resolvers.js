@@ -8,11 +8,11 @@ const resolvers = {
             return User.find()
         },
         currentUser: async(parent,args, context) => {
-            console.log('Searching for current user');
+            
             if(context.user){
-                console.log(`current user ID ${context.user._id}`)
+                
                 const userData = await User.findOne({_id: context.user._id});
-                console.log(`user data ${userData}`)
+                
                 return userData;
             }
             throw new AuthenticationError('Not Logged In');

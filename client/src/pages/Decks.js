@@ -42,7 +42,7 @@ const Decks = () => {
                 }
             });
             if (deckId === currentDeck._id) {
-                console.log("deleted active deck");
+                
                 dispatch(setDeck({
                     cards: []
                 }))

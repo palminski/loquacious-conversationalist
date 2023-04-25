@@ -7,7 +7,7 @@ const Nav = (props) => {
     const [coverOn, setCoverOn] = useState(false);
 
     const changePage = (newPage) => {
-        console.log("hello")
+        
         setCoverOn(true);
 
         setTimeout(()=> {

@@ -9,7 +9,7 @@ const Cards = () => {
     //===[Redux]==============================================
     const dispatch = useDispatch();
     const deck = useSelector(selectDeck);
-    console.log(deck)
+    
 
     //===[Queries]============================================
     const { refetch } = useQuery(QUERY_CURRENT_USER);
@@ -32,7 +32,6 @@ const Cards = () => {
     async function handleFormSubmit(e) {
         e.preventDefault()
         try {
-
             if (!selectedCard) {
                 const mutationResponse = await addCard({
                     variables: {
@@ -41,6 +40,16 @@ const Cards = () => {
                         sideBTitle: formState.sideBTitle,
                         sideADescription: formState.sideADescription,
                         sideBDescription: formState.sideBDescription
+                    },
+                    optimisticResponse: {
+                        addCard: {
+                            _id: -1,
+                        __typename: 'Card',
+                        sideATitle: "test",
+                        sideBTitle: formState.sideBTitle,
+                        sideADescription: formState.sideADescription,
+                        sideBDescription: formState.sideBDescription
+                        }
                     }
                 });
                 setFormState({ sideATitle: '', sideADescription: '', sideBTitle: '', sideBDescription: '' });
@@ -48,12 +57,11 @@ const Cards = () => {
                 setSelectedCard(null);
                 const newCard = mutationResponse.data.addCard;
                 const updatedCardArray = [...deck.cards,newCard];
-                console.log(updatedCardArray);
+                
                 dispatch(updateCards(updatedCardArray));
-                console.log(deck);
+                
             }
             else {
-                console.log("adding card");
                 const mutationResponse = await editCard({
                     variables: {
                         deckId: deck._id,
