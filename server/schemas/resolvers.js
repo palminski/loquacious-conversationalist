@@ -17,6 +17,15 @@ const resolvers = {
             }
             throw new AuthenticationError('Not Logged In');
         },
+        deck: async(parent, {deckId}) => {
+            try{
+                return Deck.findOne({_id: deckId});
+            }
+            catch {
+                console.log("Deck Not Found");
+            }
+            
+        }
     },
     Mutation: {
         //=====[User Mutations]==================================================

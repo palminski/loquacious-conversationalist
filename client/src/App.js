@@ -16,6 +16,7 @@ import Cards from './pages/Cards';
 import Review from './pages/Review';
 import LoggedOut from './pages/LoggedOut';
 import AlreadyLoggedIn from './pages/AlreadyLoggedIn';
+import ReviewShared from './pages/ReviewShared';
 import NotFound from './pages/NotFound';
 
 //------[Router]----------------------
@@ -73,6 +74,10 @@ function App() {
               <Route path="/review" element={<LoggedOut />} />
             </>
           }
+          <Route path='/review-shared'>
+            <Route path='' element={<NotFound />} />
+            <Route path=":id" element={<ReviewShared />} />
+          </Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </div>

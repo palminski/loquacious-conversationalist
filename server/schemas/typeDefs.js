@@ -29,6 +29,7 @@ const typeDefs = gql`
     type Query {
         users: [User]
         currentUser: User
+        deck(deckId: ID!): Deck
     }
 
 
