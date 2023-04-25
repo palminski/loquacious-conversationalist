@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const {User} = require('../models');
+const {User, Deck, Card} = require('../models');
 const {signToken} = require('../utils/auth.js');
 
 const resolvers = {
@@ -19,6 +19,7 @@ const resolvers = {
         },
     },
     Mutation: {
+        //=====[User Mutations]==================================================
         addUser: async (parent, args) => {
             const user = await User.create(args);
             const token = signToken(user);
@@ -36,59 +37,67 @@ const resolvers = {
             const token = signToken(user);
             return{token,user}
         },
+        //=====[Deck Mutations]==================================================
         addDeck: async (parent, {title, description}, context) => {
             if (context.user) {
-                const updatedUser = await User.findOneAndUpdate(
-                    {_id: context.user._id},
-                    {$push: {decks: {title: title, description:description}}},
-                    {new:true, runValidators:true}
-                );
-                return updatedUser;
+                const deck = await Deck.create({userId: context.user._id, title, description})
+                return deck;
             }
             throw new AuthenticationError('you need to be logged in to add a deck');
         },
         deleteDeck: async (parent, {deckId}, context) => {
             if (context.user) {
-                const updatedUser = await User.findByIdAndUpdate(
-                    {_id: context.user._id},
-                    {$pull: {decks: {_id: deckId}}},
-                    {new:true}
-                );
-                return updatedUser;
+                await Card.deleteMany({deckId: deckId});
+                const deletedDeck = await Deck.findOneAndDelete({_id: deckId});
+                return deletedDeck;
             }
             throw new AuthenticationError('You must be logged in to delete one of your decks!');
         },
+        //=====[Card Mutations]==================================================
         addCard: async (parent, {deckId, sideATitle, sideADescription, sideBTitle, sideBDescription}, context) => {
             if (context.user) {
-                const updatedUser = await User.findOneAndUpdate(
-                    {_id: context.user._id,  "decks._id":deckId},
-                    {$push: {"decks.$.cards": {sideATitle: sideATitle, sideADescription:sideADescription, sideBTitle: sideBTitle, sideBDescription:sideBDescription}}},
-                    {new:true, runValidators:true}
-                )
-                return updatedUser;
+                const card = await Card.create({deckId, sideATitle, sideADescription, sideBTitle, sideBDescription})
+                return card;
             }
             throw new AuthenticationError('you need to be logged in to add a card');
         },
         editCard: async(parent, {deckId, cardId, sideATitle, sideADescription, sideBTitle, sideBDescription}, context) => {
             if (context.user) {
-                const user = await User.findById(context.user._id);
-                const index = user.decks[user.decks.findIndex(deck => deck._id.toString() === deckId)].cards.findIndex(card => card._id.toString() === cardId);
-                const replacer = {_id: cardId, sideATitle, sideADescription, sideBTitle, sideBDescription};
-                user.decks[user.decks.findIndex(deck => deck._id.toString() === deckId)].cards.splice(index,1,replacer);
-                await user.save();
-                return user;
+                const updatedCard = await Card.findOneAndUpdate(
+                    {_id: cardId},
+                    {sideATitle, sideADescription, sideBTitle, sideBDescription},
+                    {new:true}
+                );
+                return updatedCard;
             }
+            throw new AuthenticationError('you need to be logged in to edit a card');
         },
         deleteCard: async (parent, {deckId, cardId}, context) => {
             if (context.user) {
-                const updatedUser = await User.findOneAndUpdate(
-                    {_id: context.user._id,  "decks._id":deckId},
-                    {$pull: {"decks.$.cards": {_id: cardId}}},
-                    {new:true}
-                )
-                return updatedUser;
+                const deletedCard = await Card.findOneAndDelete({_id: cardId});
+                return deletedCard;
             }
             throw new AuthenticationError('you need to be logged in to delete a card');
+        }
+    },
+    User: {
+        decks: async(root) => {
+            try{
+                return await Deck.find({userId : root._id})
+            }
+            catch (error) {
+                throw new Error(error)
+            }
+        }
+    },
+    Deck: {
+        cards: async(root) => {
+            try{
+                return await Card.find({deckId : root._id})
+            }
+            catch (error) {
+                throw new Error(error)
+            }
         }
     }
 };
