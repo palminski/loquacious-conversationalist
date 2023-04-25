@@ -46,8 +46,11 @@ const Cards = () => {
                 setFormState({ sideATitle: '', sideADescription: '', sideBTitle: '', sideBDescription: '' });
                 refetch();
                 setSelectedCard(null);
-                const updatedCardArray = (mutationResponse.data.addCard.decks.find(x => x._id === deck._id));
+                const newCard = mutationResponse.data.addCard;
+                const updatedCardArray = [...deck.cards,newCard];
+                console.log(updatedCardArray);
                 dispatch(updateCards(updatedCardArray));
+                console.log(deck);
             }
             else {
                 console.log("adding card");
@@ -64,10 +67,13 @@ const Cards = () => {
                 setFormState({ sideATitle: '', sideADescription: '', sideBTitle: '', sideBDescription: '' });
                 refetch();
                 setSelectedCard(null);
-                const updatedCardArray = (mutationResponse.data.editCard.decks.find(x => x._id === deck._id));
+                
+                const newCard = mutationResponse.data.editCard;
+                const updatedCardArray = [...deck.cards];
+                updatedCardArray[updatedCardArray.findIndex((card) => card._id === newCard._id)] = newCard;
+
                 dispatch(updateCards(updatedCardArray));
             }
-
 
         }
         catch (error) {
@@ -87,7 +93,14 @@ const Cards = () => {
             refetch();
             setFormState({ sideATitle: '', sideADescription: '', sideBTitle: '', sideBDescription: '' });
             setSelectedCard(null);
-            const updatedCardArray = (mutationResponse.data.deleteCard.decks.find(x => x._id === deck._id));
+
+
+            const deletedCard = mutationResponse.data.deleteCard;
+            const updatedCardArray = [...deck.cards];
+
+            let index = updatedCardArray.findIndex((card) => card._id === deletedCard._id)
+            if (index !== -1) updatedCardArray.splice(index,1);
+
             dispatch(updateCards(updatedCardArray));
         }
         catch (error) {

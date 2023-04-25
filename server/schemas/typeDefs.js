@@ -36,12 +36,12 @@ const typeDefs = gql`
         addUser(username: String!, password: String!): Auth
         loginUser(username: String!, password: String!): Auth
 
-        addDeck(title: String!, description: String): User
-        deleteDeck(deckId: ID!): User
+        addDeck(title: String!, description: String): Deck
+        deleteDeck(deckId: ID!): Deck
 
-        addCard(deckId: ID!, sideATitle: String!, sideADescription: String, sideBTitle: String!, sideBDescription: String): User
-        editCard(deckId: ID!, cardId: ID!, sideATitle: String!, sideADescription: String, sideBTitle: String!, sideBDescription: String): User
-        deleteCard(deckId: ID!, cardId: ID!): User
+        addCard(deckId: ID!, sideATitle: String!, sideADescription: String, sideBTitle: String!, sideBDescription: String): Card
+        editCard(deckId: ID!, cardId: ID!, sideATitle: String!, sideADescription: String, sideBTitle: String!, sideBDescription: String): Card
+        deleteCard(deckId: ID!, cardId: ID!): Card
     }
 `
 

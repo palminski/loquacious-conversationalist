@@ -50,16 +50,11 @@ mutation DeleteDeck($deckId: ID!) {
 export const ADD_CARD = gql`
 mutation AddCard($deckId: ID!, $sideATitle: String!, $sideBTitle: String!, $sideADescription: String, $sideBDescription: String) {
   addCard(deckId: $deckId, sideATitle: $sideATitle, sideBTitle: $sideBTitle, sideADescription: $sideADescription, sideBDescription: $sideBDescription) {
-    decks {
-      _id
-      cards {
-        _id
-        sideATitle
-        sideBTitle
-        sideBDescription
-        sideADescription
-      }
-    }
+    sideATitle
+    sideBTitle
+    sideADescription
+    sideBDescription
+    _id
   }
 }
 `
@@ -67,17 +62,11 @@ mutation AddCard($deckId: ID!, $sideATitle: String!, $sideBTitle: String!, $side
 export const EDIT_CARD = gql`
 mutation EditCard($deckId: ID!, $cardId: ID!, $sideATitle: String!, $sideADescription: String, $sideBTitle: String!, $sideBDescription: String) {
   editCard(deckId: $deckId, cardId: $cardId, sideATitle: $sideATitle, sideADescription: $sideADescription, sideBTitle: $sideBTitle, sideBDescription: $sideBDescription) {
-    username
-    decks {
-      _id
-      cards {
-        _id
-        sideATitle
-        sideBTitle
-        sideBDescription
-        sideADescription
-      }
-    }
+    sideATitle
+    sideBTitle
+    sideADescription
+    sideBDescription
+    _id
     
   }
 }
@@ -86,16 +75,11 @@ mutation EditCard($deckId: ID!, $cardId: ID!, $sideATitle: String!, $sideADescri
 export const DELETE_CARD = gql`
 mutation DeleteCard($deckId: ID!, $cardId: ID!) {
   deleteCard(deckId: $deckId, cardId: $cardId) {
-    decks {
-      _id
-      cards {
-        _id
-        sideATitle
-        sideBTitle
-        sideBDescription
-        sideADescription
-      }
-    }
+    sideATitle
+    sideBTitle
+    sideADescription
+    sideBDescription
+    _id
   }
 }
 `
