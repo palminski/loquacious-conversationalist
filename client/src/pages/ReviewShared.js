@@ -29,6 +29,8 @@ function ReviewShared() {
 
     //===[States]=============================================
 
+    const [copied, setCopied] = useState(false);
+
     const [cardsToReview, setCardsToReview] = useState(shuffleArray(copyArray));
     const [sideA, setSideA] = useState(true);
     const [descriptionVisable, setDescriptionVisable] = useState(false);
@@ -41,14 +43,17 @@ function ReviewShared() {
     //--Handle Copy
     async function handleCopy() {
         try {
+            setCopied(true);
             await copyDeck({
                 variables: {
                     deckId: deckId
                 }
             });
+            
             refetch();
         }
         catch(error) {
+            setCopied(false);
             console.log(error)
         }
     }
@@ -186,7 +191,7 @@ function ReviewShared() {
                         <>
                             <h1>Deck not found...</h1>
                         </>}
-                    {Auth.loggedIn() && 
+                    {(Auth.loggedIn() && !copied) && 
                     <>
                     <button onClick={handleCopy}>Copy Deck</button>
                     </>}
