@@ -19,6 +19,7 @@ const resolvers = {
         },
         deck: async(parent, {deckId}) => {
             try{
+                console.log('===[TEST]===')
                 return Deck.findOne({_id: deckId});
             }
             catch {
@@ -49,6 +50,7 @@ const resolvers = {
         //=====[Deck Mutations]==================================================
         addDeck: async (parent, {title, description}, context) => {
             if (context.user) {
+                
                 const deck = await Deck.create({userId: context.user._id, title, description})
                 return deck;
             }

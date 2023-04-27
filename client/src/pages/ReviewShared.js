@@ -5,20 +5,36 @@ import { useQuery } from "@apollo/client";
 
 function ReviewShared() {
 
-    const {id: deckId} = useParams();
+    const { id: deckId } = useParams();
 
-    
+    console.log(deckId)
     //===[Queries]=============================================   
-    const {loading, data, refetch} = useQuery(QUERY_DECK, {
-        variables: {deckId: "64482ff48951f7b1951a0d15"}
+    const { loading, data } = useQuery(QUERY_DECK, {
+        variables: { deckId: deckId }
     });
+    console.log(data);
     const deck = (data?.deck)
 
-    console.log(deck)
     return (
         <>
-        <h1>Viewing Deck with ID: {deckId}</h1>
-        <h1>Title: {deck.title}</h1>
+            {loading ?
+                <>
+                    <h1>Loading...</h1>
+                </>
+                :
+                <>
+                    {deck ?
+                        <>
+                            <h1>Viewing Deck with ID: {deckId}</h1>
+                            <h1>Title: {deck.title}</h1>
+                        </>
+                        :
+                        <>
+                            <h1>Deck not found...</h1>
+                        </>}
+                </>
+            }
+
         </>
     )
 }

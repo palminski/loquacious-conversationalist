@@ -170,6 +170,7 @@ const Cards = () => {
                             </ul>
                         }
                     </div>
+                    <h3>To share this deck use this link! http://localhost:3000/review-shared/{deck._id}</h3>
                 </>
                 :
                         <div className='container'>
