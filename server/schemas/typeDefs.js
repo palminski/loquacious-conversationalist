@@ -40,6 +40,8 @@ const typeDefs = gql`
         addDeck(title: String!, description: String): Deck
         deleteDeck(deckId: ID!): Deck
 
+        copyDeck(deckId: ID!): Deck
+
         addCard(deckId: ID!, sideATitle: String!, sideADescription: String, sideBTitle: String!, sideBDescription: String): Card
         editCard(deckId: ID!, cardId: ID!, sideATitle: String!, sideADescription: String, sideBTitle: String!, sideBDescription: String): Card
         deleteCard(deckId: ID!, cardId: ID!): Card

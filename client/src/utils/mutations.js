@@ -41,6 +41,14 @@ mutation DeleteDeck($deckId: ID!) {
 }
 `
 
+export const COPY_DECK = gql`
+mutation CopyDeck($deckId: ID!) {
+  copyDeck(deckId: $deckId) {
+    _id
+  }
+}
+`
+
 export const ADD_CARD = gql`
 mutation AddCard($deckId: ID!, $sideATitle: String!, $sideBTitle: String!, $sideADescription: String, $sideBDescription: String) {
   addCard(deckId: $deckId, sideATitle: $sideATitle, sideBTitle: $sideBTitle, sideADescription: $sideADescription, sideBDescription: $sideBDescription) {
