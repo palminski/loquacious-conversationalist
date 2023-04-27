@@ -170,7 +170,8 @@ const Cards = () => {
                             </ul>
                         }
                     </div>
-                    <h3>To share this deck use this link! http://localhost:3000/review-shared/{deck._id}</h3>
+                    <h2><button onClick={() => {navigator.clipboard.writeText(`http://localhost:3000/review-shared/${deck._id}`)}}>Copy Shareable Link to CLipboard</button></h2>
+                    
                 </>
                 :
                         <div className='container'>
