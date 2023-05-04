@@ -52,34 +52,38 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <div className="App">
-        <Nav pageSelected={pageSelected} setPageSelected={setPageSelected} />
-        <Routes>
-          <Route path="/" element={<Home />} />
+        <div id='flexBody'>
+          <div id='mainBody'>
+            <Nav pageSelected={pageSelected} setPageSelected={setPageSelected} />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              {Auth.loggedIn() ?
+                <>
+                  <Route path="/decks" element={<Decks />} />
+                  <Route path="/cards" element={<Cards />} />
+                  <Route path="/review" element={<Review />} />
+                  <Route path="/login" element={<AlreadyLoggedIn />} />
+                  <Route path="/signup" element={<AlreadyLoggedIn />} />
+                </>
+                :
+                <>
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/signup" element={<Signup />} />
+                  <Route path="/decks" element={<LoggedOut />} />
+                  <Route path="/cards" element={<LoggedOut />} />
+                  <Route path="/review" element={<LoggedOut />} />
+                </>
+              }
+              <Route path='/review-shared'>
+                <Route path='' element={<NotFound />} />
+                <Route path=":id" element={<ReviewShared />} />
+              </Route>
+              <Route path="*" element={<NotFound />}></Route>
+            </Routes>
+          </div>
+          <div id='footer' className=':3'>Made by William Bolls</div>
+        </div>
 
-
-          {Auth.loggedIn() ?
-            <>
-              <Route path="/decks" element={<Decks />} />
-              <Route path="/cards" element={<Cards />} />
-              <Route path="/review" element={<Review />} />
-              <Route path="/login" element={<AlreadyLoggedIn />} />
-              <Route path="/signup" element={<AlreadyLoggedIn />} />
-            </>
-            :
-            <>
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/decks" element={<LoggedOut />} />
-              <Route path="/cards" element={<LoggedOut />} />
-              <Route path="/review" element={<LoggedOut />} />
-            </>
-          }
-          <Route path='/review-shared'>
-            <Route path='' element={<NotFound />} />
-            <Route path=":id" element={<ReviewShared />} />
-          </Route>
-          <Route path="*" element={<NotFound />}></Route>
-        </Routes>
       </div>
     </ApolloProvider>
   );

@@ -125,7 +125,7 @@ const Cards = () => {
                 <>
                     <div className='container'>
                         <div className='new-card-form'>
-                            <h2>{deck.title}</h2>
+                            <h2>{selectedCard ? "Edit card for " : "Add card to "}{deck.title}</h2>
                             {deck.description && <h3 className='description'>{deck.description}</h3>}
 
                             <form>
@@ -160,7 +160,7 @@ const Cards = () => {
                     <div className='container '>
                         {(deck.cards.length > 0) &&
                             <ul className='card-list'>
-
+                                <h2>Cards in {deck.title}</h2>
                                 {deck.cards.map(card => (
                                     <li onClick={() => { setSelectedCard(card); setFormState({ sideATitle: card.sideATitle, sideADescription: card.sideADescription, sideBTitle: card.sideBTitle, sideBDescription: card.sideBDescription }); }} key={card._id} className={`${(selectedCard?._id === card._id) && "selected-card"}`}>
 
