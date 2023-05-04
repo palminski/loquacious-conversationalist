@@ -135,11 +135,14 @@ const Review = () => {
                                 </>
 
                             }
-
+                        
                         </div>
-
+                        <div className='button-container'>
                         <button className='tab correct' onClick={() => handleCorrect()}>Correct</button>
                         <button className="tab incorrect" onClick={() => handleIncorrect()}>Incorrect</button>
+                        </div>
+
+                        
                     </>
                     :
                     <>

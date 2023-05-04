@@ -157,8 +157,10 @@ function ReviewShared() {
                                                 </>
                                             }
                                         </div>
-                                        <button className='tab correct' onClick={() => handleCorrect()}>Correct</button>
-                                        <button className="tab incorrect" onClick={() => handleIncorrect()}>Incorrect</button>
+                                        <div className='button-container'>
+                        <button className='tab correct' onClick={() => handleCorrect()}>Correct</button>
+                        <button className="tab incorrect" onClick={() => handleIncorrect()}>Incorrect</button>
+                        </div>
                                     </>
                                     :
                                     <>

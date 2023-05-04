@@ -234,7 +234,7 @@ nav ul {
   border-bottom-right-radius: 10px;
 }
 .selected-deck{
-  background-color: rgb(131, 115, 46) !important;
+  background-color: rgb(123, 111, 255) !important;
   width: 100% !important;
   border-radius: 0 !important; 
 }
@@ -497,7 +497,8 @@ label {
 .flashcard{
   background-color: rgb(30, 32, 58);
   width: 80%;
-  border-radius: 10px 10px 10px 0px;
+  max-width: 900px;
+  border-radius: 10px;
   padding: 10px;
   color: black;
 }
@@ -536,13 +537,20 @@ label {
 }
 
 
-
-.tab {
-  float:left;
+.button-container{
+  width: 80%;
+  max-width: 900px;
+  border-radius: 10px;
+  padding: 10px;
+  color: black;
+}
+.tab { 
+  
+  width: 45%;
   font-size: large;
-  margin-right: 5px;
+  margin: 10px;
   color: rgb(255, 255, 255);
-  border-radius: 0 0 10px 10px;
+  border-radius: 10px;
   border: solid rgb(30, 32, 58) 2px;
   border-top: 0;
   padding: 10px 20px 10px 20px;
@@ -552,7 +560,7 @@ label {
 }
 
 .correct {
-  background-color: rgb(38, 83, 41);
+  background-color: rgb(50, 109, 54);
 }
 .correct:hover {
   background-color: rgb(44, 126, 49);
@@ -560,7 +568,7 @@ label {
   border-top: 0;
 }
 .incorrect {
-  background-color: rgb(90, 33, 33);
+  background-color: rgb(124, 45, 45);
 }
 .incorrect:hover {
   background-color: rgb(133, 36, 36);
