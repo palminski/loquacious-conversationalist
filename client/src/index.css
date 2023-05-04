@@ -15,6 +15,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--background-color);
 }
+/* utility */
+.white {
+  color: white !important; 
+}
 
 button {
   cursor: pointer;
@@ -346,20 +350,20 @@ h2 {
 }
 .new-card-form{
   width: 80%;
-  
   margin: 0;
   padding-bottom: 15px;
   text-align: left;
   border-radius: 10px;
-  color: aliceblue;
+  color: rgb(0, 0, 0);
   background-color: rgb(30, 32, 58);
-  
 }
+.new-card-form h2 {
+  color: black;
+}
+
 
 .new-card-form form {
   background-color: rgb(80, 84, 126);
-  
-  
 }
 .edit-card {
   
@@ -374,9 +378,9 @@ label {
   width: 90%;
   height: 30px;
   font-size: large;
-  color: aliceblue;
+  color: rgb(0, 0, 0);
   background-color: rgba(240, 248, 255, 0);
-  border: solid 2px aliceblue;
+  border: solid 2px rgb(0, 0, 0);
   border-radius: 15px;
   transition-duration: 0.5s;
 }
@@ -385,24 +389,24 @@ label {
   padding: 5px;
   width: 90%;
   resize: none;
-  color: aliceblue;
+  color: rgb(0, 0, 0);
   background-color: rgba(240, 248, 255, 0);
-  border: solid 2px aliceblue;
+  border: solid 2px rgb(0, 0, 0);
   border-radius: 15px;
   transition-duration: 0.5s;
 }
 
 .edit-card input:hover {
-  background-color: rgba(30, 32, 58, 0.466);
+  background-color: rgba(97, 97, 97, 0.466);
 }
 .edit-card input:focus {
-  background-color: rgb(30, 32, 58);
+  background-color: rgb(255, 255, 255);
 }
 .edit-card textarea:hover {
-  background-color: rgba(30, 32, 58, 0.466);
+  background-color: rgba(87, 87, 87, 0.466);
 }
 .edit-card textarea:focus {
-  background-color: rgb(30, 32, 58);
+  background-color: rgb(255, 255, 255);
 }
 
 .edit-card h2 {
@@ -416,16 +420,20 @@ label {
   padding: 10px;
 }
 .side-a{
-  background-color: rgb(121, 123, 151) !important;
+  background-image: url("./assets/images/flashcardBackground.jpeg"); 
   border-radius: 10px 0 0 0;
   flex-grow: 1;
   width: auto;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .side-b{
-  background-color: rgb(131, 115, 46) !important;
+  background-image: url("./assets/images/flashcardBackgroundSideB.jpeg"); 
   border-radius: 0 10px 10px 0;
   width: auto;
   flex-grow: 1;
+  background-repeat: no-repeat;
+  background-size: cover;
  
 }
 .add-card-button {
@@ -491,6 +499,7 @@ label {
   width: 80%;
   border-radius: 10px 10px 10px 0px;
   padding: 10px;
+  color: black;
 }
 .correct-card {
   animation-name: correct-card;
@@ -512,15 +521,16 @@ label {
 }
 .flashcard-body{
   background-color: rgb(80, 84, 126);
+  
   border-radius: 10px;
 }
 .flip-button{
   font-size: large;
   padding: 10px 20px 10px 20px;
   margin: 10px;
-  color: rgb(255, 255, 255);
+  color: black;
   background-color: rgba(0, 0, 0, 0);
-  border: solid rgb(255, 255, 255) 2px;
+  border: solid rgb(0, 0, 0) 2px;
   width: 40%;
   border-radius: 10px;;
 }
@@ -561,8 +571,8 @@ label {
   margin: 5px 10px 5px 10px;
   min-height: 100px;
   transition-duration: 0.5s;
-  background-color: rgb(30, 32, 58);
-
+  background-color: rgba(14, 14, 14, 0.158);
+  color: black;
   border-radius: 10px;
 }
 
@@ -577,6 +587,7 @@ label {
 
 .card-title {
   min-height: 40px;
+  color: black;
 }
 
 .feedback-cover{
