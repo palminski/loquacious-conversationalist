@@ -35,7 +35,7 @@ function ReviewShared() {
     const [sideA, setSideA] = useState(true);
     const [descriptionVisable, setDescriptionVisable] = useState(false);
     const [lastCard, setLastCard] = useState('none');
-
+    const [flipState, setFlipState] = useState(true)
 
 
     //===[Functions]==============================================
@@ -72,6 +72,7 @@ function ReviewShared() {
         copyArray.shift();
         setSideA(true);
         setDescriptionVisable(false);
+        setFlipState(+ new Date());
         handleCover("correct");
         setCardsToReview(copyArray);
 
@@ -81,9 +82,16 @@ function ReviewShared() {
         copyArray.push(copyArray.shift());
         setSideA(true);
         setDescriptionVisable(false);
+        setFlipState(+ new Date());
         handleCover("incorrect");
         setCardsToReview(copyArray);
     }
+
+        //--handle flip
+        const handleFlip = () => {
+            setSideA(!sideA)
+            setFlipState(+ new Date());
+        }
 
     //--handle cover
     const handleCover = (lastCard) => {
@@ -113,11 +121,11 @@ function ReviewShared() {
                             <div className='container grow-in'>
                                 {cardsToReview.length > 0 ?
                                     <>
-                                        <div className={`flashcard `}>
+                                        <div key={flipState} className={`flashcard `}>
                                             <h2 className="flashcard-deck-title">{deck.title} - <span className='review-number'>{cardsToReview.length} cards left to review</span></h2>
                                             {sideA ?
                                                 <>
-                                                    <div className='flashcard-body side-a'>
+                                                    <div className='flashcard-body side-a' style={{animationName: "flip-over"}}>
                                                         <h2 className='card-title'>{cardsToReview[0].sideATitle}</h2>
                                                         {cardsToReview[0].sideADescription ?
                                                             <>
@@ -132,12 +140,12 @@ function ReviewShared() {
                                                                 </h2>
                                                             </>
                                                         }
-                                                        <button className='flip-button' onClick={() => setSideA(!sideA)}>Flip Card</button>
+                                                        <button className='flip-button' onClick={handleFlip}>Flip Card</button>
                                                     </div>
                                                 </>
                                                 :
                                                 <>
-                                                    <div className='flashcard-body side-b'>
+                                                    <div className='flashcard-body side-b' style={{animationName: "flip-over"}}>
                                                         <h2 className='card-title'>{cardsToReview[0].sideBTitle}</h2>
                                                         {cardsToReview[0].sideBDescription ?
                                                             <>
@@ -152,7 +160,7 @@ function ReviewShared() {
                                                                 </h2>
                                                             </>
                                                         }
-                                                        <button className='flip-button' onClick={() => setSideA(!sideA)}>Flip Card</button>
+                                                        <button className='flip-button' onClick={handleFlip}>Flip Card</button>
                                                     </div>
                                                 </>
                                             }
