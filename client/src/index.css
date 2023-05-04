@@ -20,6 +20,20 @@ body {
   color: white !important; 
 }
 
+/* Animations */
+@keyframes flip-over {
+  from{
+    transform: scaleY(0);
+  }
+  to{
+    transform: scaleY(1);
+  }
+}
+/* .flip {
+  animation-name: flip-over;
+  animation-duration: 0.5s;
+} */
+
 button {
   cursor: pointer;
 }
@@ -522,7 +536,7 @@ label {
 }
 .flashcard-body{
   background-color: rgb(80, 84, 126);
-  
+  animation-duration: 0.3s;
   border-radius: 10px;
 }
 .flip-button{
