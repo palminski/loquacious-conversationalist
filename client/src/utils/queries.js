@@ -28,3 +28,19 @@ query CurrentUser {
     }
   }
 `
+
+export const QUERY_DECK = gql`
+query Deck($deckId: ID!) {
+  deck(deckId: $deckId) {
+    title
+    description
+    cards {
+      sideBTitle
+      sideBDescription
+      sideATitle
+      sideADescription
+    }
+    _id
+  }
+}
+`

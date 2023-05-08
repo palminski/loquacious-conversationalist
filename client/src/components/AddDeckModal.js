@@ -21,7 +21,6 @@ const AddDeckModal = ({toggleModal}) => {
 
     async function handleFormSubmit (e) {
         e.preventDefault();
-        console.log(formState);
         
         try {
             const mutationResponse = await addDeck({
@@ -45,12 +44,14 @@ const AddDeckModal = ({toggleModal}) => {
             <div className='modal-background' onClick={toggleModal}>
                 <div className='modal-body' onClick={(e) => e.stopPropagation()}>
                     <h2>Add Deck</h2>
-                    <hr/>
+                    
                     <form onSubmit={handleFormSubmit}>
-                        <label htmlFor="title">Deck Title: </label>
+                        <label htmlFor="title">Deck Title</label>
+                        <br></br>
                         <input required={true} type="text" id="title" name="title" placeholder="Deck Title" onChange={handleFormChange} value={formState.title}></input>
                         <br />
-                        <label htmlFor="description">Deck Description: </label>
+                        <label htmlFor="description">Deck Description</label>
+                        <br></br>
                         <input type="text" id="description" name="description" placeholder="Deck Description" onChange={handleFormChange} value={formState.description}></input>
                         <br />
                         <button>Save</button>

@@ -15,6 +15,24 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--background-color);
 }
+/* utility */
+.white {
+  color: white !important; 
+}
+
+/* Animations */
+@keyframes flip-over {
+  from{
+    transform: scaleY(0);
+  }
+  to{
+    transform: scaleY(1);
+  }
+}
+/* .flip {
+  animation-name: flip-over;
+  animation-duration: 0.5s;
+} */
 
 button {
   cursor: pointer;
@@ -30,6 +48,7 @@ h1 {
 h2 {
   color: aliceblue;
 }
+
 /* Key Frames */
 @keyframes grow-in {
   from {
@@ -38,6 +57,14 @@ h2 {
   }
   to{
     transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to{
     opacity: 1;
   }
 }
@@ -96,8 +123,8 @@ h2 {
 
 /* utility */
 .container {
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
 .flex-between{
@@ -119,6 +146,25 @@ h2 {
   top: 93px;
   overflow: auto;
   position: fixed;
+}
+/* Home Styling */
+.welcome-card {
+  background-color: rgb(30, 32, 58);
+  border-radius: 10px;
+  color: aliceblue;
+  width: 80%;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.welcome-card p{
+  margin: 0;
+  padding: 10px;
+  background-color: rgb(49, 54, 99);
+  border-radius: 0 0 10px 10px;
+}
+.tutorial {
+  width: 60%;
 }
 
 /* Nav Bar Styling */
@@ -202,7 +248,7 @@ nav ul {
   border-bottom-right-radius: 10px;
 }
 .selected-deck{
-  background-color: rgb(131, 115, 46) !important;
+  background-color: rgb(123, 111, 255) !important;
   width: 100% !important;
   border-radius: 0 !important; 
 }
@@ -263,6 +309,8 @@ h2 {
 
 /* Modal */
 .modal-background {
+  animation-name: fade-in;
+  animation-duration: 0.5s;
   background: rgba(0, 0, 0, 0.67);
   bottom: 0;
   left: 0;
@@ -275,16 +323,37 @@ h2 {
 .modal-body {
 
   transition-duration: 0.5s;
-  padding: 10px;
+  padding-bottom:15px;
   border-radius: 15px 15px 15px 15px;
-  background: aliceblue;
+  background-color: rgb(80, 84, 126);
   top: 10px;
   bottom: 10%;
   margin: 50px auto;
   width: 80%;
 }
+.modal-body form{
+  padding: 15px;
+  background-color: aliceblue;
+}
+.modal-body input{
+  margin: 10px 0;
+  border-radius: 15px;
+  text-align: center;
+  width: 70%;
+  height: 30px;
+  font-size: large;
+  background-color: aliceblue;
+  border: solid 2px rgb(0, 0, 0);
+}
 .modal-body h2 {
   margin: 0;
+  
+}
+
+.modal-body button {
+  margin: 10px;
+  padding: 5px 105px;
+ 
 }
 
 /* Cards Page */
@@ -295,27 +364,27 @@ h2 {
 }
 .new-card-form{
   width: 80%;
-  
   margin: 0;
   padding-bottom: 15px;
   text-align: left;
-  border-radius: 10px 10px 10px 0;
-  color: aliceblue;
+  border-radius: 10px;
+  color: rgb(0, 0, 0);
   background-color: rgb(30, 32, 58);
-  
 }
+.new-card-form h2 {
+  color: black;
+}
+
 
 .new-card-form form {
   background-color: rgb(80, 84, 126);
-  
-  
 }
 .edit-card {
   
   padding: 0 10px 0 10px;
   text-align: center;
 }
-.edit-card label {
+label {
   font-size: larger;
 }
 .edit-card input {
@@ -323,9 +392,9 @@ h2 {
   width: 90%;
   height: 30px;
   font-size: large;
-  color: aliceblue;
+  color: rgb(0, 0, 0);
   background-color: rgba(240, 248, 255, 0);
-  border: solid 2px aliceblue;
+  border: solid 2px rgb(0, 0, 0);
   border-radius: 15px;
   transition-duration: 0.5s;
 }
@@ -334,24 +403,24 @@ h2 {
   padding: 5px;
   width: 90%;
   resize: none;
-  color: aliceblue;
+  color: rgb(0, 0, 0);
   background-color: rgba(240, 248, 255, 0);
-  border: solid 2px aliceblue;
+  border: solid 2px rgb(0, 0, 0);
   border-radius: 15px;
   transition-duration: 0.5s;
 }
 
 .edit-card input:hover {
-  background-color: rgba(30, 32, 58, 0.466);
+  background-color: rgba(97, 97, 97, 0.466);
 }
 .edit-card input:focus {
-  background-color: rgb(30, 32, 58);
+  background-color: rgb(255, 255, 255);
 }
 .edit-card textarea:hover {
-  background-color: rgba(30, 32, 58, 0.466);
+  background-color: rgba(87, 87, 87, 0.466);
 }
 .edit-card textarea:focus {
-  background-color: rgb(30, 32, 58);
+  background-color: rgb(255, 255, 255);
 }
 
 .edit-card h2 {
@@ -365,16 +434,20 @@ h2 {
   padding: 10px;
 }
 .side-a{
-  background-color: rgb(121, 123, 151) !important;
+  background-image: url("./assets/images/flashcardBackground.jpeg"); 
   border-radius: 10px 0 0 0;
   flex-grow: 1;
   width: auto;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .side-b{
-  background-color: rgb(131, 115, 46) !important;
+  background-image: url("./assets/images/flashcardBackgroundSideB.jpeg"); 
   border-radius: 0 10px 10px 0;
   width: auto;
   flex-grow: 1;
+  background-repeat: no-repeat;
+  background-size: cover;
  
 }
 .add-card-button {
@@ -393,15 +466,15 @@ h2 {
 .add-card-button:hover {
   background-color: rgb(121, 123, 151);
 }
-
+/* Card List */
 .card-list {
   background-color: rgb(30, 32, 58);
   color: aliceblue;
   list-style-type: none;
   padding: 0 10px 10px 10px;
-  border-radius: 0 0 10px 10px;
-  width: 60%;
-  margin: 0;
+  border-radius:10px;
+  width: 70%;
+  margin: 20;
   
   text-align: left;
 }
@@ -438,8 +511,10 @@ h2 {
 .flashcard{
   background-color: rgb(30, 32, 58);
   width: 80%;
-  border-radius: 10px 10px 10px 0px;
+  max-width: 900px;
+  border-radius: 10px;
   padding: 10px;
+  color: black;
 }
 .correct-card {
   animation-name: correct-card;
@@ -461,25 +536,35 @@ h2 {
 }
 .flashcard-body{
   background-color: rgb(80, 84, 126);
+  animation-duration: 0.3s;
   border-radius: 10px;
 }
 .flip-button{
   font-size: large;
   padding: 10px 20px 10px 20px;
   margin: 10px;
-  color: rgb(255, 255, 255);
+  color: black;
   background-color: rgba(0, 0, 0, 0);
-  border: solid rgb(255, 255, 255) 2px;
+  border: solid rgb(0, 0, 0) 2px;
   width: 40%;
   border-radius: 10px;;
 }
 
-.tab {
-  float:left;
+
+.button-container{
+  width: 80%;
+  max-width: 900px;
+  border-radius: 10px;
+  padding: 10px;
+  color: black;
+}
+.tab { 
+  
+  width: 45%;
   font-size: large;
-  margin-right: 5px;
+  margin: 10px;
   color: rgb(255, 255, 255);
-  border-radius: 0 0 10px 10px;
+  border-radius: 10px;
   border: solid rgb(30, 32, 58) 2px;
   border-top: 0;
   padding: 10px 20px 10px 20px;
@@ -489,7 +574,7 @@ h2 {
 }
 
 .correct {
-  background-color: rgb(38, 83, 41);
+  background-color: rgb(50, 109, 54);
 }
 .correct:hover {
   background-color: rgb(44, 126, 49);
@@ -497,7 +582,7 @@ h2 {
   border-top: 0;
 }
 .incorrect {
-  background-color: rgb(90, 33, 33);
+  background-color: rgb(124, 45, 45);
 }
 .incorrect:hover {
   background-color: rgb(133, 36, 36);
@@ -508,9 +593,13 @@ h2 {
   margin: 5px 10px 5px 10px;
   min-height: 100px;
   transition-duration: 0.5s;
-  background-color: rgb(30, 32, 58);
-
+  background-color: rgba(14, 14, 14, 0.158);
+  color: black;
   border-radius: 10px;
+}
+
+.zero-opacity{
+  background-color: rgb(30, 32, 58, 0);
 }
 .card-description:hover {
   margin: 5px 10px 5px 10px;
@@ -520,6 +609,7 @@ h2 {
 
 .card-title {
   min-height: 40px;
+  color: black;
 }
 
 .feedback-cover{
@@ -538,4 +628,84 @@ h2 {
 .correct-cover {
   animation-name: correct-card;
   animation-duration: 0.5s;
+}
+
+/* No deck Selected */
+.no-deck-warning{
+  background-color: rgb(30, 32, 58);
+  padding: 15px;
+  padding-top: 5px;
+  /* margin: 0 20px; */
+  border-radius: 10px;
+}
+.no-deck-warning button{
+  
+  margin: 10px;
+  padding: 5px 105px;
+}
+
+.log-in-button{
+  padding: 3px;
+margin: 10px;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 480px) {
+
+  .deck-list {
+    background-color: rgb(30, 32, 58);
+    color: aliceblue;
+    list-style-type: none;
+    padding-left: 0;
+    padding-bottom: 15px;
+    border-radius: 10px 10px 10px 0;
+    width: 100%;
+    margin: 0;
+    text-align: left;
+  }
+
+  .flashcard{
+    background-color: rgb(30, 32, 58);
+    width: 100%;
+    border-radius: 10px 10px 10px 0px;
+    padding: 10px;
+    
+  }
+
+  .new-card-form{
+    width: 100%;
+    margin: 0;
+    padding-bottom: 15px;
+    text-align: left;
+    border-radius: 10px 10px 10px 0;
+    color: aliceblue;
+    background-color: rgb(30, 32, 58);
+    
+  }
+
+  .welcome-card {
+    background-color: rgb(30, 32, 58);
+    border-radius: 10px;
+    color: aliceblue;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+
+  .tutorial {
+    width: 100%;
+  }
+
+  .card-list {
+    background-color: rgb(30, 32, 58);
+    color: aliceblue;
+    list-style-type: none;
+    padding: 0 10px 10px 10px;
+    border-radius: 0 0 10px 10px;
+    width: 90%;
+    margin: 0;
+    
+    text-align: left;
+  }
 }

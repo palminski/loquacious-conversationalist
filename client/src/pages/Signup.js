@@ -5,6 +5,7 @@ import Auth from "../utils/auth";
 
 
 const Signup = (props) => {
+
     const [formState, setFormState] = useState({ username: '', password: '' });
     const [addUser, {error}] = useMutation(ADD_USER);
 
@@ -25,12 +26,13 @@ const Signup = (props) => {
             });
             const token = response.data.addUser.token
             Auth.login(token);
-            props.setPageSelected("Home");
+
         }
         catch (error) {
             console.log(formState);
             console.log(error)
         }  
+        window.location = "/";
     }
 
     return (
@@ -38,12 +40,17 @@ const Signup = (props) => {
             
             <form onSubmit={handleFormSubmit}>
                 <label htmlFor="username">Username: </label>
+                <br/>
                 <input name="username" type="username" id="username" onChange={handleFormChange}/>
-
+                <br/>
+                
                 <label htmlFor="password">Password: </label>
+                
+                <br/>
                 <input name="password" type="password" id="password" onChange={handleFormChange}/>
-
-                <button type="submit">Submit</button>
+                <br/>
+                
+                <button className="log-in-button" type="submit">Submit</button>
             </form>
         </div>
     );

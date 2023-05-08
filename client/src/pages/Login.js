@@ -3,7 +3,9 @@ import { useMutation } from "@apollo/client";
 import Auth from '../utils/auth';
 import { LOGIN_USER } from "../utils/mutations";
 
+
 const Login = (props) => {
+    
     const [login, {error}] = useMutation(LOGIN_USER);
     const [formState, setFormState] = useState({ username: '', password: '' });
 
@@ -25,12 +27,14 @@ const Login = (props) => {
             });
             const token = response.data.loginUser.token
             Auth.login(token);
-            props.setPageSelected("Home");
+
         }
         catch (error) {
             console.log(formState);
             console.log(error)
         }  
+        
+        window.location = "/";
     }
 
     return (
@@ -38,12 +42,17 @@ const Login = (props) => {
             
             <form onSubmit={handleFormSubmit}>
                 <label htmlFor="username">Username: </label>
+                <br/>
                 <input name="username" type="username" id="username" onChange={handleFormChange}/>
-
+                <br/>
+                
                 <label htmlFor="password">Password: </label>
+                
+                <br/>
                 <input name="password" type="password" id="password" onChange={handleFormChange}/>
-
-                <button type="submit">Submit</button>
+                <br/>
+                
+                <button className="log-in-button" type="submit">Submit</button>
             </form>
         </div>
     );
