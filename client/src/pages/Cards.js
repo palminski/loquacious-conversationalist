@@ -9,7 +9,7 @@ const Cards = () => {
     //===[Redux]==============================================
     const dispatch = useDispatch();
     const deck = useSelector(selectDeck);
-    console.log(deck)
+    
 
     //===[Queries]============================================
     const { refetch } = useQuery(QUERY_CURRENT_USER);
@@ -32,7 +32,6 @@ const Cards = () => {
     async function handleFormSubmit(e) {
         e.preventDefault()
         try {
-
             if (!selectedCard) {
                 const mutationResponse = await addCard({
                     variables: {
@@ -41,16 +40,28 @@ const Cards = () => {
                         sideBTitle: formState.sideBTitle,
                         sideADescription: formState.sideADescription,
                         sideBDescription: formState.sideBDescription
+                    },
+                    optimisticResponse: {
+                        addCard: {
+                            _id: -1,
+                        __typename: 'Card',
+                        sideATitle: "test",
+                        sideBTitle: formState.sideBTitle,
+                        sideADescription: formState.sideADescription,
+                        sideBDescription: formState.sideBDescription
+                        }
                     }
                 });
                 setFormState({ sideATitle: '', sideADescription: '', sideBTitle: '', sideBDescription: '' });
                 refetch();
                 setSelectedCard(null);
-                const updatedCardArray = (mutationResponse.data.addCard.decks.find(x => x._id === deck._id));
+                const newCard = mutationResponse.data.addCard;
+                const updatedCardArray = [...deck.cards,newCard];
+                
                 dispatch(updateCards(updatedCardArray));
+                
             }
             else {
-                console.log("adding card");
                 const mutationResponse = await editCard({
                     variables: {
                         deckId: deck._id,
@@ -64,10 +75,13 @@ const Cards = () => {
                 setFormState({ sideATitle: '', sideADescription: '', sideBTitle: '', sideBDescription: '' });
                 refetch();
                 setSelectedCard(null);
-                const updatedCardArray = (mutationResponse.data.editCard.decks.find(x => x._id === deck._id));
+                
+                const newCard = mutationResponse.data.editCard;
+                const updatedCardArray = [...deck.cards];
+                updatedCardArray[updatedCardArray.findIndex((card) => card._id === newCard._id)] = newCard;
+
                 dispatch(updateCards(updatedCardArray));
             }
-
 
         }
         catch (error) {
@@ -87,7 +101,14 @@ const Cards = () => {
             refetch();
             setFormState({ sideATitle: '', sideADescription: '', sideBTitle: '', sideBDescription: '' });
             setSelectedCard(null);
-            const updatedCardArray = (mutationResponse.data.deleteCard.decks.find(x => x._id === deck._id));
+
+
+            const deletedCard = mutationResponse.data.deleteCard;
+            const updatedCardArray = [...deck.cards];
+
+            let index = updatedCardArray.findIndex((card) => card._id === deletedCard._id)
+            if (index !== -1) updatedCardArray.splice(index,1);
+
             dispatch(updateCards(updatedCardArray));
         }
         catch (error) {
@@ -104,8 +125,8 @@ const Cards = () => {
                 <>
                     <div className='container'>
                         <div className='new-card-form'>
-                            <h2>{deck.title}</h2>
-                            {deck.description && <h3 className='description'>{deck.description}</h3>}
+                            <h2 className='white'>{selectedCard ? "Edit card for " : "Add card to "}{deck.title}</h2>
+                            {deck.description && <h3 className='description white'>{deck.description}</h3>}
 
                             <form>
                                 <div className='flex-left edit-card'>
@@ -139,7 +160,7 @@ const Cards = () => {
                     <div className='container '>
                         {(deck.cards.length > 0) &&
                             <ul className='card-list'>
-
+                                <h2>Cards in {deck.title}</h2>
                                 {deck.cards.map(card => (
                                     <li onClick={() => { setSelectedCard(card); setFormState({ sideATitle: card.sideATitle, sideADescription: card.sideADescription, sideBTitle: card.sideBTitle, sideBDescription: card.sideBDescription }); }} key={card._id} className={`${(selectedCard?._id === card._id) && "selected-card"}`}>
 
@@ -149,6 +170,8 @@ const Cards = () => {
                             </ul>
                         }
                     </div>
+                    <h2><button onClick={() => {navigator.clipboard.writeText(`http://localhost:3000/review-shared/${deck._id}`)}}>Copy Shareable Link to CLipboard</button></h2>
+                    
                 </>
                 :
                         <div className='container'>

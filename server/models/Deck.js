@@ -1,8 +1,13 @@
-const {Schema} = require('mongoose');
-const cardSchema = require('./Card');
+const {Schema, model} = require('mongoose');
+// const cardSchema = require('./Card');
 
 const deckSchema = new Schema(
     {
+        userId : {
+            type: String,
+            required: true,
+            trim: true,
+        },
         title: {
             type: String,
             required: true,
@@ -13,7 +18,9 @@ const deckSchema = new Schema(
             required: false,
             trim: true
         },
-        cards: [cardSchema]
+        // cards: [cardSchema]
     }
 )
-module.exports = deckSchema
+
+const Deck = model('Deck', deckSchema);
+module.exports = Deck

@@ -36,7 +36,7 @@ class AuthService {
     }
     logout() {
         localStorage.removeItem('id_token');
-        
+        window.location.refresh();
     }
 }
 export default new AuthService();

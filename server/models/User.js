@@ -1,6 +1,6 @@
 const {Schema, model} = require('mongoose');
 const bcrypt = require('bcrypt');
-const deckSchema = require('./Deck');
+// const deckSchema = require('./Deck');
 
 const UserSchema = new Schema(
     {
@@ -16,7 +16,7 @@ const UserSchema = new Schema(
             minlength:8,
             trim: true
         },
-        decks:[deckSchema]
+        // decks:[deckSchema]
     },
 
 )

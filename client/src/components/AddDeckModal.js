@@ -21,7 +21,6 @@ const AddDeckModal = ({toggleModal}) => {
 
     async function handleFormSubmit (e) {
         e.preventDefault();
-        console.log(formState);
         
         try {
             const mutationResponse = await addDeck({

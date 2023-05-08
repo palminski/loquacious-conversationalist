@@ -1,7 +1,12 @@
-const {Schema} = require('mongoose');
+const {Schema, model} = require('mongoose');
 
 const cardSchema = new Schema(
     {
+        deckId : {
+            type: String,
+            required: true,
+            trim: true,
+        },
         sideATitle: {
             type: String,
             required: true,
@@ -24,4 +29,6 @@ const cardSchema = new Schema(
         },
     }
 )
-module.exports = cardSchema
+
+const Card = model('Card', cardSchema);
+module.exports = Card
