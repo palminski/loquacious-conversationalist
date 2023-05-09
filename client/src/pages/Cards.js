@@ -6,6 +6,8 @@ import { QUERY_CURRENT_USER } from '../utils/queries';
 import { setDeck, updateCards, selectDeck } from '../utils/slices/deckSlice';
 import { QRCodeSVG } from 'qrcode.react';
 
+import QRCodeModal from '../components/QRCodeModal';
+
 const sharedDeckURL = `http://localhost:3000/review-shared/`
 
 const Cards = () => {
@@ -27,7 +29,7 @@ const Cards = () => {
 
     const [selectedCard, setSelectedCard] = useState(null)
 
-   
+   const [modalOpen,setModalOpen] = useState(false);
 
     //===[Functions]==========================================
     function handleFormChange(e) {
@@ -119,7 +121,18 @@ const Cards = () => {
             console.log(error)
         }
     }
-
+    const toggleModal = () => {
+        if (document.body.style.overflow !== 'hidden') {
+            document.body.style.overflow = "hidden";
+            document.body.style.height = "100%";
+        }
+        else
+        {
+            document.body.style.overflow = "auto";
+            document.body.style.height = "auto";
+        };
+        setModalOpen(!modalOpen);
+    }
 
 
     //===[RETURN JSX]===============================================================================
@@ -178,8 +191,9 @@ const Cards = () => {
                     </div>
                     <h2><button onClick={() => {navigator.clipboard.writeText(sharedDeckURL+deck._id)}}>Copy Shareable Link to CLipboard</button></h2>
                     
-                    <QRCodeSVG value={sharedDeckURL+deck._id}/>
+                    <QRCodeSVG value={sharedDeckURL+deck._id} onClick={toggleModal} style={{cursor: 'zoom-in'}} imageSettings={{excavate: false}}/>
                     {/* This is where QR code iwll go for now */}
+                    {modalOpen && <QRCodeModal toggleModal={toggleModal}  link={sharedDeckURL+deck._id}/>}
                 </>
                 :
                         <div className='container'>

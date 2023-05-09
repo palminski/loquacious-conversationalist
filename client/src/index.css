@@ -126,7 +126,12 @@ h2 {
   margin-left: 30px;
   margin-right: 30px;
 }
-
+.flex-center{
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .flex-between{
   align-items: center;
   display: flex;
@@ -647,6 +652,15 @@ label {
 .log-in-button{
   padding: 3px;
 margin: 10px;
+}
+
+/* QR Code */
+
+.qr-code {
+  margin: 0;
+ width: 80%;
+ height: 80%;
+  
 }
 
 /* Responsive */
