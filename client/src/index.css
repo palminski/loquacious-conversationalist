@@ -503,7 +503,11 @@ label {
 }
 .selected-card{
   background-color: rgb(131, 115, 46) !important;
-  
+}
+
+.sharables {
+  display: inline;
+  text-align: left;
 }
 /* REVIEW PAGE */
 .card-to-review {
