@@ -8,6 +8,9 @@ import { QRCodeSVG } from 'qrcode.react';
 
 import QRCodeModal from '../components/QRCodeModal';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faClipboard, faClipboardCheck } from '@fortawesome/free-solid-svg-icons'
+
 const sharedDeckURL = `http://localhost:3000/review-shared/`
 
 const Cards = () => {
@@ -30,6 +33,8 @@ const Cards = () => {
     const [selectedCard, setSelectedCard] = useState(null)
 
     const [modalOpen, setModalOpen] = useState(false);
+
+    const [copied, setCopied] = useState(false)
 
     //===[Functions]==========================================
     function handleFormChange(e) {
@@ -173,7 +178,7 @@ const Cards = () => {
                         </div>
                     </div>
                     <div className='container' >
-                        <div className='flex-left'>
+                        <div className='flex-left-up'>
 
                             {(deck.cards.length > 0) &&
                                 <ul className='card-list' style={{ flex: 1 }}>
@@ -186,12 +191,20 @@ const Cards = () => {
                                     ))}
                                 </ul>
                             }
-                        
-                        <div className='sharables' style={{ flex: 1 }}>
-                            <h2><button onClick={() => { navigator.clipboard.writeText(sharedDeckURL + deck._id) }}>Copy Shareable Link to CLipboard</button></h2>
 
-                            <QRCodeSVG value={sharedDeckURL + deck._id} onClick={toggleModal} style={{ cursor: 'zoom-in' }} imageSettings={{ excavate: false }} />
-                        </div>
+                            <div className='sharables' style={{ flex: 1 }}>
+                                
+
+
+                                <QRCodeSVG value={sharedDeckURL + deck._id} onClick={toggleModal} style={{ cursor: 'zoom-in' }} imageSettings={{ excavate: false }} />
+                                {
+                                    !copied ?
+                                        <FontAwesomeIcon className='icon-button' onClick={() => { navigator.clipboard.writeText(sharedDeckURL + deck._id); setCopied(true) }} icon={faClipboard} />
+                                        :
+                                        <FontAwesomeIcon className='icon-button' onClick={() => { navigator.clipboard.writeText(sharedDeckURL + deck._id) }} icon={faClipboardCheck} />
+
+                                }
+                            </div>
                         </div>
 
                         {/* This is where QR code iwll go for now */}

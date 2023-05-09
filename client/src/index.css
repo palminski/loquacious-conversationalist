@@ -19,6 +19,16 @@ body {
 .white {
   color: white !important; 
 }
+/* Button Icons */
+.icon-button{
+  cursor: pointer;
+  transition-duration: 0.5s;
+  font-size: 50px;
+  display: block;
+}
+.icon-button:hover{
+  color: aliceblue;
+}
 
 /* Animations */
 @keyframes flip-over {
@@ -139,6 +149,12 @@ h2 {
 }
 .flex-left{
   align-items: center;
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap;
+}
+.flex-left-up{
+  align-items:start;
   display: flex;
   justify-content: left;
   flex-wrap: wrap;
@@ -506,8 +522,10 @@ label {
 }
 
 .sharables {
+  margin: 16px;
   display: inline;
   text-align: left;
+  
 }
 /* REVIEW PAGE */
 .card-to-review {
