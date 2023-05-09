@@ -4,6 +4,9 @@ import { useState } from 'react';
 import { ADD_CARD, EDIT_CARD, DELETE_CARD } from '../utils/mutations';
 import { QUERY_CURRENT_USER } from '../utils/queries';
 import { setDeck, updateCards, selectDeck } from '../utils/slices/deckSlice';
+import { QRCodeSVG } from 'qrcode.react';
+
+const sharedDeckURL = `http://localhost:3000/review-shared/`
 
 const Cards = () => {
     //===[Redux]==============================================
@@ -24,6 +27,7 @@ const Cards = () => {
 
     const [selectedCard, setSelectedCard] = useState(null)
 
+   
 
     //===[Functions]==========================================
     function handleFormChange(e) {
@@ -116,6 +120,8 @@ const Cards = () => {
         }
     }
 
+
+
     //===[RETURN JSX]===============================================================================
 
     return (
@@ -170,8 +176,10 @@ const Cards = () => {
                             </ul>
                         }
                     </div>
-                    <h2><button onClick={() => {navigator.clipboard.writeText(`http://localhost:3000/review-shared/${deck._id}`)}}>Copy Shareable Link to CLipboard</button></h2>
+                    <h2><button onClick={() => {navigator.clipboard.writeText(sharedDeckURL+deck._id)}}>Copy Shareable Link to CLipboard</button></h2>
                     
+                    <QRCodeSVG value={sharedDeckURL+deck._id}/>
+                    {/* This is where QR code iwll go for now */}
                 </>
                 :
                         <div className='container'>
