@@ -181,7 +181,7 @@ const Cards = () => {
                         <div className='flex-left-up'>
 
                             {(deck.cards.length > 0) &&
-                                <ul className='card-list' style={{ flex: 1 }}>
+                                <ul className='card-list' >
                                     <h2>Cards in {deck.title}</h2>
                                     {deck.cards.map(card => (
                                         <li onClick={() => { setSelectedCard(card); setFormState({ sideATitle: card.sideATitle, sideADescription: card.sideADescription, sideBTitle: card.sideBTitle, sideBDescription: card.sideBDescription }); }} key={card._id} className={`${(selectedCard?._id === card._id) && "selected-card"}`}>
@@ -192,9 +192,9 @@ const Cards = () => {
                                 </ul>
                             }
 
-                            <div className='sharables' style={{ flex: 1 }}>
+                            <div className='sharables' >
                                 
-
+                                <h2>Share this Deck</h2>
 
                                 <QRCodeSVG value={sharedDeckURL + deck._id} onClick={toggleModal} style={{ cursor: 'zoom-in' }} imageSettings={{ excavate: false }} />
                                 {
