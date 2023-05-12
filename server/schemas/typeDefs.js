@@ -38,8 +38,9 @@ const typeDefs = gql`
         loginUser(username: String!, password: String!): Auth
 
         addDeck(title: String!, description: String): Deck
+        
         deleteDeck(deckId: ID!): Deck
-
+        editDeck(deckId: ID! ,title: String!, description: String): Deck
         copyDeck(deckId: ID!): Deck
 
         addCard(deckId: ID!, sideATitle: String!, sideADescription: String, sideBTitle: String!, sideBDescription: String): Card
@@ -47,5 +48,5 @@ const typeDefs = gql`
         deleteCard(deckId: ID!, cardId: ID!): Card
     }
 `
-
+//editDeck(deckId: ID!,title: String!, description: String) Deck
 module.exports = typeDefs;

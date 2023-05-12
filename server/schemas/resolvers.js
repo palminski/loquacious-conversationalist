@@ -56,6 +56,17 @@ const resolvers = {
             }
             throw new AuthenticationError('you need to be logged in to add a deck');
         },
+        editDeck: async (parent, {deckId, title, description }, context) => {
+            if (context.user) {
+                updatedDeck = await Deck.findOneAndUpdate(
+                    { _id: deckId },
+                    { title, description },
+                    { new: true }
+                );
+                return updatedDeck
+            }
+            throw new AuthenticationError('You must be logged in to edit one of your decks!');
+        },
         deleteDeck: async (parent, { deckId }, context) => {
             if (context.user) {
                 await Card.deleteMany({ deckId: deckId });

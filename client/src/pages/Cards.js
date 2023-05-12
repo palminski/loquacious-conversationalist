@@ -150,7 +150,13 @@ const Cards = () => {
                     <div className='container'>
                         <div className='new-card-form'>
                             <h2 className='white'>{selectedCard ? "Edit card for " : "Add card to "}{deck.title}</h2>
-                            {deck.description && <h3 className='description white'>{deck.description}</h3>}
+                            {deck.description && 
+                            <>
+                            <hr></hr>
+                            <h3 className='description white'>{deck.description}</h3>
+                            </>
+                            
+                            }
                             <form>
                                 <div className='flex-left edit-card'>
                                     <div className='side-form side-a'>

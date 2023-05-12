@@ -16,6 +16,9 @@ body {
   background-color: var(--background-color);
 }
 
+hr {
+  margin: 0px;
+}
 /* utility */
 .white {
   color: white !important;
