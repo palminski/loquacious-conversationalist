@@ -1,9 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useMutation, useQuery } from '@apollo/client';
 import { useState } from 'react';
-import { ADD_CARD, EDIT_CARD, DELETE_CARD } from '../utils/mutations';
+import { ADD_CARD, EDIT_CARD, DELETE_CARD, EDIT_DECK } from '../utils/mutations';
 import { QUERY_CURRENT_USER } from '../utils/queries';
-import { setDeck, updateCards, selectDeck } from '../utils/slices/deckSlice';
+import { setDeck, updateCards, selectDeck, updateDeck } from '../utils/slices/deckSlice';
 import { QRCodeSVG } from 'qrcode.react';
 
 import QRCodeModal from '../components/QRCodeModal';
@@ -17,6 +17,7 @@ const Cards = () => {
     //===[Redux]==============================================
     const dispatch = useDispatch();
     const deck = useSelector(selectDeck);
+    console.log(deck)
 
 
     //===[Queries]============================================
@@ -26,6 +27,7 @@ const Cards = () => {
     const [addCard] = useMutation(ADD_CARD);
     const [editCard] = useMutation(EDIT_CARD);
     const [deleteCard] = useMutation(DELETE_CARD);
+    const [editDeck] = useMutation(EDIT_DECK);
 
     //===[States]=============================================
 
@@ -48,10 +50,36 @@ const Cards = () => {
     function handleDeckFormChange(e) {
         setDeckFormState({ ...deckFormState, [e.target.name]: e.target.value });
     }
+    function startEditingDeck() {
+        setEditingDeck(true);
+        setDeckFormState({ description: deck.description, title: deck.title });
+    }
     async function handleDeckSubmit() {
-        console.log(deckFormState);
-        setDeckFormState({ description: "", title: "" })
-        setEditingDeck(false);
+        try {
+            const mutationResponse = await editDeck({
+                variables: {
+                    deckId: deck._id,
+                    title: deckFormState.title,
+                    description: deckFormState.description
+                },
+                optimisticResponse: {
+                    editDeck: {
+                        _id: deck._id,
+                        title: deckFormState.title,
+                        description: deckFormState.description
+                    }
+                }
+            })
+            console.log(deckFormState);
+            setDeckFormState({ description: "", title: "" })
+            setEditingDeck(false);
+            const updatedDeck = mutationResponse.data.editDeck;
+            dispatch(updateDeck(updatedDeck));
+        }
+        catch (error) {
+            console.log(error)
+        }
+
     }
     async function handleFormSubmit(e) {
         e.preventDefault()
@@ -171,7 +199,7 @@ const Cards = () => {
                                 </form>
                                 :
                                 <>
-                                    <h2 className='white'>{selectedCard ? "Edit card for " : "Add card to "}{deck.title} - <FontAwesomeIcon onClick={() => setEditingDeck(true)} className='icon-button' icon={faPencil} /></h2>
+                                    <h2 className='white'>{selectedCard ? "Edit card for " : "Add card to "}{deck.title} - <FontAwesomeIcon onClick={startEditingDeck} className='icon-button' icon={faPencil} /></h2>
                                     {deck.description &&
                                         <>
                                             <hr></hr>
