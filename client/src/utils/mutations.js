@@ -31,6 +31,15 @@ mutation AddDeck($title: String!, $description: String) {
   }
 }
 `
+export const EDIT_DECK = gql`
+mutation EditDeck($deckId: ID!, $title: String!, $description: String) {
+  editDeck(deckId: $deckId, title: $title, description: $description) {
+    _id
+    title
+    description
+  }
+}
+`
 
 export const DELETE_DECK = gql`
 mutation DeleteDeck($deckId: ID!) {

@@ -28,12 +28,12 @@ hr {
 .icon-button {
   cursor: pointer;
   transition-duration: 0.5s;
-  font-size: 50px;
-  display: block;
+
 }
 
 .icon-button:hover {
-  color: aliceblue;
+  color: rgb(214, 219, 136);
+  transform: scale(1.1);
 }
 
 .copy-link{
@@ -437,7 +437,9 @@ h2 {
 }
 
 /* Cards Page */
-
+.edit-deck-form {
+  border-radius: 10px 10px 0 0;
+}
 .description {
   padding: 15px;
   margin: 0;

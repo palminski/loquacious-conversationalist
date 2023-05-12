@@ -9,7 +9,7 @@ import { QRCodeSVG } from 'qrcode.react';
 import QRCodeModal from '../components/QRCodeModal';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faClipboard, faClipboardCheck } from '@fortawesome/free-solid-svg-icons'
+import { faClipboard, faClipboardCheck, faPencil, faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
 
 const sharedDeckURL = `http://localhost:3000/review-shared/`
 
@@ -28,6 +28,11 @@ const Cards = () => {
     const [deleteCard] = useMutation(DELETE_CARD);
 
     //===[States]=============================================
+
+    const [editingDeck, setEditingDeck] = useState(false);
+
+    const [deckFormState, setDeckFormState] = useState({ description: "", title: "" });
+
     const [formState, setFormState] = useState({ sideATitle: '', sideADescription: '', sideBTitle: '', sideBDescription: '' });
 
     const [selectedCard, setSelectedCard] = useState(null)
@@ -39,6 +44,14 @@ const Cards = () => {
     //===[Functions]==========================================
     function handleFormChange(e) {
         setFormState({ ...formState, [e.target.name]: e.target.value });
+    }
+    function handleDeckFormChange(e) {
+        setDeckFormState({ ...deckFormState, [e.target.name]: e.target.value });
+    }
+    async function handleDeckSubmit() {
+        console.log(deckFormState);
+        setDeckFormState({ description: "", title: "" })
+        setEditingDeck(false);
     }
     async function handleFormSubmit(e) {
         e.preventDefault()
@@ -149,14 +162,24 @@ const Cards = () => {
                     {/* NEW CARD FORM */}
                     <div className='container'>
                         <div className='new-card-form'>
-                            <h2 className='white'>{selectedCard ? "Edit card for " : "Add card to "}{deck.title}</h2>
-                            {deck.description && 
-                            <>
-                            <hr></hr>
-                            <h3 className='description white'>{deck.description}</h3>
-                            </>
-                            
-                            }
+                            {editingDeck ?
+                                <form className='edit-deck-form'>
+                                    <h2 className='white'><input required={true} type="text" id="title" name="title" onChange={handleDeckFormChange} value={deckFormState.title}></input> - <FontAwesomeIcon onClick={handleDeckSubmit} className='icon-button' icon={faFloppyDisk} /></h2>
+                                    <hr></hr>
+                                    <h3 className='description white'><input type="text" id="description" name="description" onChange={handleDeckFormChange} value={deckFormState.description}></input></h3>
+
+                                </form>
+                                :
+                                <>
+                                    <h2 className='white'>{selectedCard ? "Edit card for " : "Add card to "}{deck.title} - <FontAwesomeIcon onClick={() => setEditingDeck(true)} className='icon-button' icon={faPencil} /></h2>
+                                    {deck.description &&
+                                        <>
+                                            <hr></hr>
+                                            <h3 className='description white'>{deck.description}</h3>
+                                        </>
+                                    }
+                                </>}
+
                             <form>
                                 <div className='flex-left edit-card'>
                                     <div className='side-form side-a'>
@@ -206,22 +229,22 @@ const Cards = () => {
 
                             </div>
                         </div>
-                            <h3 className='copy-link' >
-                                <span className='highlight' onClick={() => { navigator.clipboard.writeText(sharedDeckURL + deck._id); setCopied(true) }}>
+                        <h3 className='copy-link' >
+                            <span className='highlight' onClick={() => { navigator.clipboard.writeText(sharedDeckURL + deck._id); setCopied(true) }}>
                                 Click here to copy a sharable link! {
-                            !copied ?
-                                <FontAwesomeIcon   icon={faClipboard} />
-                                :
-                                <FontAwesomeIcon  icon={faClipboardCheck} />
+                                    !copied ?
+                                        <FontAwesomeIcon icon={faClipboard} />
+                                        :
+                                        <FontAwesomeIcon icon={faClipboardCheck} />
 
-                        }
-                                </span>
-                                
-                        <br></br>
-                        Or use the OQ code above!
+                                }
+                            </span>
+
+                            <br></br>
+                            Or use the OQ code above!
                         </h3>
                         <h3></h3>
-                        
+
                     </div>
 
 
