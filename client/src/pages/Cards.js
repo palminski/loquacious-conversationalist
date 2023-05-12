@@ -192,9 +192,9 @@ const Cards = () => {
                         <div className='new-card-form'>
                             {editingDeck ?
                                 <form className='edit-deck-form'>
-                                    <h2 className='white'><input required={true} type="text" id="title" name="title" onChange={handleDeckFormChange} value={deckFormState.title}></input> - <FontAwesomeIcon onClick={handleDeckSubmit} className='icon-button' icon={faFloppyDisk} /></h2>
+                                    <h2 className='white'>Title: <input className='edit-deck-input' required={true} type="text" id="title" name="title" onChange={handleDeckFormChange} value={deckFormState.title}></input> - <FontAwesomeIcon onClick={handleDeckSubmit} className='icon-button' icon={faFloppyDisk} /></h2>
                                     <hr></hr>
-                                    <h3 className='description white'><input type="text" id="description" name="description" onChange={handleDeckFormChange} value={deckFormState.description}></input></h3>
+                                    <h3 className='description white'>Description: <input className='edit-deck-input' type="text" id="description" name="description" onChange={handleDeckFormChange} value={deckFormState.description}></input></h3>
 
                                 </form>
                                 :

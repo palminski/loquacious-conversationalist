@@ -14,6 +14,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--background-color);
+  overflow: hidden;
 }
 
 hr {
@@ -440,6 +441,26 @@ h2 {
 .edit-deck-form {
   border-radius: 10px 10px 0 0;
 }
+.edit-deck-input {
+  border-radius: 15px;
+  background-color: rgba(240, 248, 255, 0.212);
+  padding: 10px;
+  transition-duration: 0.5s;
+  width: 60%;
+  color: aliceblue;
+
+  font-size: large;
+    
+    font-weight: bold;
+}
+.edit-deck-input:hover {
+background-color: rgba(240, 248, 255, 0.575);
+color: aliceblue;
+}
+.edit-deck-input:focus {
+  background-color: rgb(240, 248, 255);
+  color: black;
+}
 .description {
   padding: 15px;
   margin: 0;
@@ -794,7 +815,6 @@ label {
 
   .deck-list {
     background-color: rgb(30, 32, 58);
-    color: aliceblue;
     list-style-type: none;
     padding-left: 0;
     padding-bottom: 15px;
@@ -803,47 +823,62 @@ label {
     margin: 0;
     text-align: left;
   }
-
   .flashcard {
     background-color: rgb(30, 32, 58);
-    width: 100%;
-    border-radius: 10px 10px 10px 0px;
+    width: auto;
+    border-radius: 10px;
     padding: 10px;
 
   }
-
+  .button-container{
+    width: auto;
+  }
+  .tab {
+    width: 80%;
+  }
+  .flip-button{
+    width: 80%;
+  }
   .new-card-form {
     width: 100%;
     margin: 0;
     padding-bottom: 15px;
     text-align: left;
-    border-radius: 10px 10px 10px 0;
-    color: aliceblue;
+    border-radius: 10px;
+    
     background-color: rgb(30, 32, 58);
-
   }
+  .side-a{
+    border-radius: 10px 10px 0 0;
+  }
+  .side-b{
+    margin-top: 0;
+    border-radius: 0 0 10px 0;
+  }
+  .sharables{
 
+    margin: 0;
+    margin-top: 5px;
+  }
   .welcome-card {
     background-color: rgb(30, 32, 58);
     border-radius: 10px;
-    color: aliceblue;
+    
     width: 100%;
     text-align: left;
     margin-bottom: 10px;
   }
-
   .tutorial {
     width: 100%;
   }
-
   .card-list {
     background-color: rgb(30, 32, 58);
     color: aliceblue;
     list-style-type: none;
     padding: 0 10px 10px 10px;
-    border-radius: 0 0 10px 10px;
-    width: 90%;
-    margin: 0;
+    
+    width: 100%;
+    margin-bottom: 10px;
 
     text-align: left;
   }
