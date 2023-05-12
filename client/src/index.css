@@ -33,6 +33,20 @@ body {
   color: aliceblue;
 }
 
+.copy-link{
+  color: rgb(30, 32, 58);
+  
+  
+  text-align: left;
+  margin-bottom: 30px;
+}
+.highlight:hover{
+  color: rgb(255, 255, 255);
+  transition-duration: 0.5s;
+  cursor: pointer;
+}
+
+
 /* Animations */
 @keyframes flip-over {
   from {
@@ -587,14 +601,13 @@ label {
 .sharables {
   margin: 16px;
 
-  background-color: rgb(30, 32, 58);
+  background-color: rgb(80, 84, 126);
   border-radius: 10px;
   text-align: left;
 
   padding: 10px;
 }
 
-.sharables-container {}
 
 /* REVIEW PAGE */
 .card-to-review {

@@ -193,21 +193,29 @@ const Cards = () => {
                             }
 
                             <div className='sharables' >
-                                
-                                <h2>Share this Deck</h2>
+
+
 
                                 <QRCodeSVG value={sharedDeckURL + deck._id} onClick={toggleModal} style={{ cursor: 'zoom-in' }} imageSettings={{ excavate: false }} />
-                                {
-                                    !copied ?
-                                        <FontAwesomeIcon className='icon-button' onClick={() => { navigator.clipboard.writeText(sharedDeckURL + deck._id); setCopied(true) }} icon={faClipboard} />
-                                        :
-                                        <FontAwesomeIcon className='icon-button' onClick={() => { navigator.clipboard.writeText(sharedDeckURL + deck._id) }} icon={faClipboardCheck} />
 
-                                }
                             </div>
                         </div>
+                            <h3 className='copy-link' >
+                                <span className='highlight' onClick={() => { navigator.clipboard.writeText(sharedDeckURL + deck._id); setCopied(true) }}>
+                                Click here to copy a sharable link! {
+                            !copied ?
+                                <FontAwesomeIcon   icon={faClipboard} />
+                                :
+                                <FontAwesomeIcon  icon={faClipboardCheck} />
 
-                        {/* This is where QR code iwll go for now */}
+                        }
+                                </span>
+                                
+                        <br></br>
+                        Or use the OQ code above!
+                        </h3>
+                        <h3></h3>
+                        
                     </div>
 
 
