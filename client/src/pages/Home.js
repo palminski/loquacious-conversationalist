@@ -12,7 +12,7 @@ const Home = () => {
             <div className="container">
             <div className="welcome-card">
                     <h2>Welcome to Loquacious Cards!</h2>
-                    <p style={{fontSize: "large"}}>Loquacious Cards is a free online flashcard app where users can create decks, review them, and share them with others. To get started simply log-in or sign-up and create a deck! Alternatively, if you already have a link to a deck you would like to review enter it into the search bar in your browser and begin reviewing immediatly, no account required!</p>
+                    <p style={{fontSize: "large"}}>Loquacious Cards is a free online flashcard app where users can create decks, review them, and share them with others. To get started simply log-in or sign-up and create a deck! Alternatively, if you already have a link to a deck you would like to review, enter it into the search bar in your browser and begin reviewing immediately, no account required!</p>
                 </div>
                 <div className="welcome-card tutorial">
                     <h2>Decks</h2>
@@ -26,8 +26,8 @@ const Home = () => {
                 </div>
                 <div className="welcome-card tutorial">
                     <h2>Review</h2>
-                    <p>This page is used to review cards in the selected deck. Upon clicking this link your deck will be shuffled and cards will appear on the page one at a time. You will be able to flip the card and/or reveal the description(assuming the card has one). Below these two options you can select weather you got the card correct, or incorrect. Upon making a selection the card will be removed from the review session or moved to the back of the deck. Once all cards have been marked correct you will be given the option to reshuffle the deck and review again. Leaving this page mid way through a review will also reshuffle the deck.
-                        <br></br>If you are logged into an accound and reviewing a deck made by someone else you will be able to make a copy of it. This copy will act like any other deck you may have created and cards can be added, edited, and deleted like any other deck.
+                    <p>This page is used to review cards in the selected deck. Upon clicking this link your deck will be shuffled and cards will appear on the page one at a time. You will be able to flip the card and/or reveal the description(assuming the card has one). Below these two options you can select whether you got the card correct, or incorrect. Upon making a selection the card will be removed from the review session or moved to the back of the deck. Once all cards have been marked correct you will be given the option to reshuffle the deck and review again. Leaving this page midway through a review will also reshuffle the deck.
+                        <br></br>If you are logged into an account and reviewing a deck made by someone else you will be able to make a copy of it. This copy will act like any other deck you may have created and cards can be added, edited, and deleted like any other deck.
                     </p>
                 </div>
 
