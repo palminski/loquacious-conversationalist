@@ -205,6 +205,7 @@ function ReviewShared() {
                         </>}
                     {(Auth.loggedIn() && !copied) && 
                     <>
+                    <h3>Click Button Below to Copy This Deck!</h3>
                     <FontAwesomeIcon onClick={handleCopy} className='icon-button' icon={faFloppyDisk} />
                     </>}
                 </>
