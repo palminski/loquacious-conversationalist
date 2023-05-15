@@ -55,6 +55,10 @@ const Cards = () => {
         setDeckFormState({ description: deck.description, title: deck.title });
     }
     async function handleDeckSubmit() {
+        if (!deckFormState.title.trim()) {
+            setDeckFormState({ ...deckFormState, title: "no title given" });
+            return;
+        } 
         try {
             const mutationResponse = await editDeck({
                 variables: {
@@ -83,6 +87,19 @@ const Cards = () => {
     }
     async function handleFormSubmit(e) {
         e.preventDefault()
+        if (!formState.sideBTitle.trim() && !formState.sideATitle.trim()) {
+            setFormState({ ...formState, sideBTitle: "no title given" , sideATitle: "no title given"});
+            return;
+        } 
+        if (!formState.sideATitle.trim()) {
+            setFormState({ ...formState, sideATitle: "no title given" });
+            return;
+        } 
+        if (!formState.sideBTitle.trim()) {
+            setFormState({ ...formState, sideBTitle: "no title given" });
+            return;
+        } 
+        
         try {
             if (!selectedCard) {
                 const mutationResponse = await addCard({
@@ -192,7 +209,7 @@ const Cards = () => {
                         <div className='new-card-form'>
                             {editingDeck ?
                                 <form className='edit-deck-form'>
-                                    <h2 className='white'>Title: <input className='edit-deck-input' required={true} type="text" id="title" name="title" onChange={handleDeckFormChange} value={deckFormState.title}></input> - <FontAwesomeIcon onClick={handleDeckSubmit} className='icon-button' icon={faFloppyDisk} /></h2>
+                                    <h2 className='white' >Title: <input className='edit-deck-input' required={true} type="text" id="title" name="title" onChange={handleDeckFormChange} value={deckFormState.title}></input> - <FontAwesomeIcon onClick={handleDeckSubmit} className='icon-button' icon={faFloppyDisk} /></h2>
                                     <hr></hr>
                                     <h3 className='description white'>Description: <input className='edit-deck-input' type="text" id="description" name="description" onChange={handleDeckFormChange} value={deckFormState.description}></input></h3>
 
