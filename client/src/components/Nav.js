@@ -8,9 +8,9 @@ import { selectDeck } from '../utils/slices/deckSlice';
 const Nav = (props) => {
 
     const deck = useSelector(selectDeck);
-    console.log(deck)
+
     const {pathname: location} = useLocation();
-    console.log(location)
+
 
 
 

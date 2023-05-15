@@ -11,13 +11,14 @@ import QRCodeModal from '../components/QRCodeModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClipboard, faClipboardCheck, faPencil, faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
 
-const sharedDeckURL = `http://localhost:3000/review-shared/`
+const sharedDeckURL = `${window.location.host}/review-shared/`
+
 
 const Cards = () => {
     //===[Redux]==============================================
     const dispatch = useDispatch();
     const deck = useSelector(selectDeck);
-    console.log(deck)
+
 
 
     //===[Queries]============================================
@@ -74,7 +75,7 @@ const Cards = () => {
                     }
                 }
             })
-            console.log(deckFormState);
+
             setDeckFormState({ description: "", title: "" })
             setEditingDeck(false);
             const updatedDeck = mutationResponse.data.editDeck;
