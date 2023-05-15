@@ -29,7 +29,7 @@ const Signup = (props) => {
 
         }
         catch (error) {
-            console.log(formState);
+
             console.log(error)
         }  
         window.location = "/";

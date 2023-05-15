@@ -30,7 +30,7 @@ const Login = (props) => {
 
         }
         catch (error) {
-            console.log(formState);
+
             console.log(error)
         }  
         

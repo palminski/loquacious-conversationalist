@@ -10,7 +10,7 @@ function ReviewShared() {
 
     const { id: deckId } = useParams();
 
-    console.log(deckId)
+
     //===[Queries]=============================================   
     const { loading, data } = useQuery(QUERY_DECK, {
         variables: { deckId: deckId }
@@ -18,7 +18,7 @@ function ReviewShared() {
 
     const {refetch} = useQuery(QUERY_CURRENT_USER);
 
-    console.log(data);
+
     const deck = (data?.deck)
     let copyArray = []
     if (deck) {

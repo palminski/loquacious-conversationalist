@@ -19,7 +19,6 @@ const resolvers = {
         },
         deck: async (parent, { deckId }) => {
             try {
-                console.log('===[TEST]===')
                 return Deck.findOne({ _id: deckId });
             }
             catch {
@@ -56,6 +55,17 @@ const resolvers = {
             }
             throw new AuthenticationError('you need to be logged in to add a deck');
         },
+        editDeck: async (parent, {deckId, title, description }, context) => {
+            if (context.user) {
+                updatedDeck = await Deck.findOneAndUpdate(
+                    { _id: deckId },
+                    { title, description },
+                    { new: true }
+                );
+                return updatedDeck
+            }
+            throw new AuthenticationError('You must be logged in to edit one of your decks!');
+        },
         deleteDeck: async (parent, { deckId }, context) => {
             if (context.user) {
                 await Card.deleteMany({ deckId: deckId });
@@ -68,8 +78,7 @@ const resolvers = {
             if (context.user) {
                 const deckToCopy = await Deck.findOne({ _id: deckId });
                 const cardsToCopy = await Card.find({ deckId: deckId });
-                console.log(deckToCopy);
-                console.log(cardsToCopy);
+
                 const deck = await Deck.create({ userId: context.user._id, title: deckToCopy.title, description: deckToCopy.description })
                 for (i = 0; i < cardsToCopy.length; i++) {
                     Card.create({
