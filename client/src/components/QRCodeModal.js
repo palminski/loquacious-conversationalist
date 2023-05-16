@@ -10,7 +10,7 @@ const QRCodeModal = ({toggleModal, link}) => {
     return(
         <>
             
-            <div className='modal-background' onClick={toggleModal}>
+            <div className='modal-background qr-background' onClick={toggleModal}>
                 <div className='flex-center'>
                     <QRCodeSVG className='qr-code' style={{cursor: 'zoom-out'}} value={link}  />
                 

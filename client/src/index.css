@@ -377,6 +377,9 @@ h2 {
   overflow: auto;
   position: fixed;
 }
+.qr-background {
+  background: rgba(255, 255, 255, 0.67);
+}
 
 .modal-body {
 
@@ -607,7 +610,7 @@ label {
 .sharables {
   margin: 16px;
 
-  background-color: rgb(80, 84, 126);
+  background-color: rgb(255, 255, 255);
   border-radius: 10px;
   text-align: left;
 
