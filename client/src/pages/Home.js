@@ -5,7 +5,7 @@ const Home = () => {
 
     return (
         <div className="grow-in">
-            <div className="container">
+            <div className="container slow-pulse">
             <div className="hero">
                     <h1>Loquacious Cards</h1>
                     <hr></hr>

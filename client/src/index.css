@@ -1,6 +1,8 @@
 :root {
   --background-color: rgb(138, 141, 175);
   --gradient: linear-gradient(to top right, rgb(49, 54, 99),rgb(80, 90, 182));
+  --dark-gradient: linear-gradient(to top right, rgb(30, 32, 58),rgb(44, 49, 94));
+  --selected-gradient: linear-gradient(to top right,rgb(131, 137, 201), rgb(130, 218, 206));
   
 }
 
@@ -17,8 +19,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--background-color);
   background-image: url(./assets/images/background-2.jpg);
-  
   background-size: 100% auto;
+  background-position: initial;
+  animation: bg-scroll 10s  infinite alternate;
+  animation-timing-function: ease-in-out;
+
 }
 
 hr {
@@ -30,9 +35,8 @@ hr {
   background-image: var(--gradient);
   padding: 5vh 0 10vh 0;
   width: 50%;
-  border-radius: 10px 90px 10px 10px;
-  
-  
+  border-radius: 10px 90px 10px 10px; 
+  filter: drop-shadow(0 3px 4px black);
 }
 .mini-hero{
   background-color: rgb(49, 54, 99);
@@ -41,9 +45,22 @@ hr {
   padding: 5vh 0 5vh 0;
   width: 30%;
   border-radius: 10px 90px;
+  filter: drop-shadow(0 3px 4px black);
+}
+
+.slow-pulse{
+  animation: hero-pulse 10s  infinite alternate;
+  animation-timing-function: ease-in-out;
 }
 .hero h1{
   font-size: 40px;
+  text-shadow: 0px 5px 5px black;
+}
+.hero h2 {
+  text-shadow: 0px 5px 5px black;
+}
+.mini-hero h2 {
+  text-shadow: 0px 5px 5px black;
 }
 
 
@@ -56,6 +73,27 @@ hr {
   100% {transform: skewX(0);}
 }
 
+@keyframes bg-scroll {
+  0% {
+    background-size: 100% auto;
+    background-position: initial;
+  }
+  50%{
+    background-size: 105% auto;
+  }
+  100% {
+    background-size: 100% auto;
+    background-position: 0 100px;
+  }
+}
+
+@keyframes hero-pulse {
+
+  50%{
+    transform: scale(1.02);
+  }
+
+}
 
 
 
@@ -226,9 +264,10 @@ h2 {
 
 .welcome-card p {
   margin: 0;
-  padding: 10px;
+  padding: 10px 20px 30px 30px;
   background-color: rgb(49, 54, 99);
-  border-radius: 0 0 10px 10px;
+  background-image: var(--gradient);
+  border-radius: 0 0 10px 70px;
 }
 
 .tutorial {
@@ -297,11 +336,12 @@ nav ul {
 /* Decks */
 .deck-list {
   background-color: rgb(30, 32, 58);
+  background-image: var(--dark-gradient);
   color: aliceblue;
   list-style-type: none;
   padding-left: 0;
   padding-bottom: 15px;
-  border-radius: 10px 10px 10px 0;
+  border-radius: 10px 70px 10px 0;
   width: 80%;
   margin: 0;
   text-align: left;
@@ -336,6 +376,7 @@ nav ul {
 
 .selected-deck {
   background-color: rgb(67, 131, 216) !important;
+  background-image: var(--selected-gradient);
   width: 100% !important;
   border-radius: 0 !important;
 }
@@ -567,7 +608,7 @@ label {
 
 .side-a {
   background-image: url("./assets/images/flashcardFront.jpg");
-  border-radius: 10px 0 0 0;
+  border-radius: 10px 0px 0 0;
   flex-grow: 1;
   width: auto;
   background-repeat: no-repeat;
@@ -576,7 +617,7 @@ label {
 
 .side-b {
   background-image: url("./assets/images/flashcardBack.jpg");
-  border-radius: 0 10px 10px 0;
+  border-radius: 0px 90px 10px 0;
   width: auto;
   flex-grow: 1;
   background-repeat: no-repeat;
@@ -664,9 +705,10 @@ label {
 
 .flashcard {
   background-color: rgb(30, 32, 58);
+  background-image: var(--dark-gradient);
   width: 80%;
   max-width: 900px;
-  border-radius: 10px;
+  border-radius: 10px 90px;
   padding: 10px;
   color: black;
 }
@@ -695,18 +737,18 @@ label {
 .flashcard-body {
   background-color: rgb(80, 84, 126);
   animation-duration: 0.3s;
-  border-radius: 10px;
+  border-radius: 10px 90px;
 }
 
 .flip-button {
   font-size: large;
   padding: 10px 20px 10px 20px;
   margin: 10px;
-  color: black;
+  color: rgba(0, 0, 0, 0.705);
   background-color: rgba(0, 0, 0, 0);
-  border: solid rgb(0, 0, 0) 2px;
+  border: solid rgba(0, 0, 0, 0.644) 2px;
   width: 40%;
-  border-radius: 10px;
+  border-radius: 10px 90px;
   ;
 }
 
@@ -725,7 +767,7 @@ label {
   font-size: large;
   margin: 10px;
   color: rgb(255, 255, 255);
-  border-radius: 10px;
+  border-radius: 90px 10px;
   border: solid rgb(30, 32, 58) 2px;
   border-top: 0;
   padding: 10px 20px 10px 20px;
@@ -829,6 +871,28 @@ label {
 
 /* Responsive */
 
+@media screen and (max-width:955px) {
+  .side-a {
+    border-radius: 10px 90px 0 0;
+  }
+
+  .side-b {
+    margin-top: 0;
+    border-radius: 0 0 10px 0;
+  }
+  
+  .flashcard-body{
+    border-radius: 10px 90px;
+  }
+
+  .hero {
+    width: 100%;
+  }
+  .mini-hero {
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 480px) {
 
   .deck-list {
@@ -845,7 +909,7 @@ label {
   .flashcard {
     background-color: rgb(30, 32, 58);
     width: auto;
-    border-radius: 10px;
+    border-radius: 10px 90px;
     padding: 10px;
 
   }
@@ -873,7 +937,7 @@ label {
   }
 
   .side-a {
-    border-radius: 10px 10px 0 0;
+    border-radius: 10px 90px 0 0;
   }
 
   .side-b {
@@ -910,5 +974,9 @@ label {
     margin-bottom: 10px;
 
     text-align: left;
+  }
+
+  .flashcard-body{
+    border-radius: 10px 90px;
   }
 }
