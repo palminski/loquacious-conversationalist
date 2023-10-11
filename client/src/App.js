@@ -27,8 +27,8 @@ import { Routes, Route } from 'react-router-dom';
 const httpLink = createHttpLink({
   //This can be changed to '/graphql' if using proxy in package.json
   //Swap these between development and production
-  uri: 'http://localhost:3001/graphql'
-  // uri: '/graphql'
+  // uri: 'http://localhost:3001/graphql'
+  uri: '/graphql'
 });
 
 const authLink = setContext((_, { headers }) => {

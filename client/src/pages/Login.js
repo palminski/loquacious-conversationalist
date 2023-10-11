@@ -39,8 +39,9 @@ const Login = (props) => {
 
     return (
         <div className="grow-in"> 
-            
-            <form onSubmit={handleFormSubmit}>
+            <div className="container">
+            <form onSubmit={handleFormSubmit} className="signup-login">
+            <h1>Log In</h1>
                 <label htmlFor="username">Username: </label>
                 <br/>
                 <input name="username" type="username" id="username" onChange={handleFormChange}/>
@@ -54,6 +55,7 @@ const Login = (props) => {
                 
                 <button className="log-in-button" type="submit">Submit</button>
             </form>
+            </div>
         </div>
     );
 }

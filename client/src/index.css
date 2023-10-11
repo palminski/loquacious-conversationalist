@@ -97,6 +97,24 @@ hr {
 
 
 
+.signup-login{
+  background-image: var(--gradient);
+  border-radius: 10px 90px;
+  width: 50%;
+  text-align: left;
+  padding: 10px;
+  padding-left: 75px;
+}
+.signup-login label{
+  color: aliceblue;
+}
+.signup-login h1{
+  
+  margin: 0;
+}
+
+
+
 
 
 /* utility */
@@ -458,8 +476,9 @@ h2 {
 
   transition-duration: 0.5s;
   padding-bottom: 15px;
-  border-radius: 15px 15px 15px 15px;
+  border-radius: 10px 90px 15px 90px;
   background-color: rgb(80, 84, 126);
+  background-image: var(--gradient);
   top: 10px;
   bottom: 10%;
   margin: 50px auto;
@@ -469,6 +488,7 @@ h2 {
 .modal-body form {
   padding: 15px;
   background-color: aliceblue;
+  border-radius: 10px 90px 10px 90px;
 }
 
 .modal-body input {
@@ -890,6 +910,10 @@ label {
   }
   .mini-hero {
     width: 100%;
+  }
+
+  .signup-login{
+    width: auto;
   }
 }
 
