@@ -5,6 +5,8 @@ import { useQuery, useMutation } from "@apollo/client";
 import { useState } from "react";
 import Auth from "../utils/auth";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
 
 function ReviewShared() {
 
@@ -203,7 +205,8 @@ function ReviewShared() {
                         </>}
                     {(Auth.loggedIn() && !copied) && 
                     <>
-                    <button onClick={handleCopy}>Copy Deck</button>
+                    <h3>Click Button Below to Copy This Deck!</h3>
+                    <FontAwesomeIcon onClick={handleCopy} className='icon-button' icon={faFloppyDisk} />
                     </>}
                 </>
             }

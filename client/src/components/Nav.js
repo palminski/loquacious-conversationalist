@@ -28,9 +28,9 @@ const Nav = (props) => {
 
 
             <ul>
-                <Link to='/'>
-                    <li className={`${(location === '/') && 'current-navigation-link'} navigation-link`}>
-                        Home
+                <Link to='about'>
+                    <li className={`${(location === '/about') && 'current-navigation-link'} navigation-link`}>
+                        About
                     </li>
                 </Link>
                 {!Auth.loggedIn() &&

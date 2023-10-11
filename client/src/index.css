@@ -1,5 +1,9 @@
 :root {
   --background-color: rgb(138, 141, 175);
+  --gradient: linear-gradient(to top right, rgb(49, 54, 99),rgb(80, 90, 182));
+  --dark-gradient: linear-gradient(to top right, rgb(30, 32, 58),rgb(44, 49, 94));
+  --selected-gradient: linear-gradient(to top right,rgb(131, 137, 201), rgb(130, 218, 206));
+  
 }
 
 ::placeholder {
@@ -14,12 +18,105 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--background-color);
-  
+  background-image: url(./assets/images/background-2.jpg);
+  background-size: 100% auto;
+  background-position: initial;
+  animation: bg-scroll 10s  infinite alternate;
+  animation-timing-function: ease-in-out;
+
 }
 
 hr {
   margin: 0px;
 }
+
+.hero {
+  background-color: rgb(49, 54, 99);
+  background-image: var(--gradient);
+  padding: 5vh 0 10vh 0;
+  width: 50%;
+  border-radius: 10px 90px 10px 10px; 
+  filter: drop-shadow(0 3px 4px black);
+}
+.mini-hero{
+  background-color: rgb(49, 54, 99);
+  background-image: var(--gradient);
+  margin-top: 10px;
+  padding: 5vh 0 5vh 0;
+  width: 30%;
+  border-radius: 10px 90px;
+  filter: drop-shadow(0 3px 4px black);
+}
+
+.slow-pulse{
+  animation: hero-pulse 10s  infinite alternate;
+  animation-timing-function: ease-in-out;
+}
+.hero h1{
+  font-size: 40px;
+  text-shadow: 0px 5px 5px black;
+}
+.hero h2 {
+  text-shadow: 0px 5px 5px black;
+}
+.mini-hero h2 {
+  text-shadow: 0px 5px 5px black;
+}
+
+
+@keyframes skew {
+  0% {transform: skewX(0);}
+  20% {transform: skewX(-2deg);}
+  40% {transform: skewX(2deg);}
+  60% {transform: skewX(-1deg);}
+  80% {transform: skewX(1deg);}
+  100% {transform: skewX(0);}
+}
+
+@keyframes bg-scroll {
+  0% {
+    background-size: 100% auto;
+    background-position: initial;
+  }
+  50%{
+    background-size: 105% auto;
+  }
+  100% {
+    background-size: 100% auto;
+    background-position: 0 100px;
+  }
+}
+
+@keyframes hero-pulse {
+
+  50%{
+    transform: scale(1.02);
+  }
+
+}
+
+
+
+.signup-login{
+  background-image: var(--gradient);
+  border-radius: 10px 90px;
+  width: 50%;
+  text-align: left;
+  padding: 10px;
+  padding-left: 75px;
+}
+.signup-login label{
+  color: aliceblue;
+}
+.signup-login h1{
+  
+  margin: 0;
+}
+
+
+
+
+
 /* utility */
 .white {
   color: white !important;
@@ -37,19 +134,19 @@ hr {
   transform: scale(1.1);
 }
 
-.copy-link{
+.copy-link {
   color: rgb(30, 32, 58);
-  
-  
+
+
   text-align: left;
   margin-bottom: 30px;
 }
-.highlight:hover{
+
+.highlight:hover {
   color: rgb(255, 255, 255);
   transition-duration: 0.5s;
   cursor: pointer;
 }
-
 
 /* Animations */
 @keyframes flip-over {
@@ -61,11 +158,6 @@ hr {
     transform: scaleY(1);
   }
 }
-
-/* .flip {
-  animation-name: flip-over;
-  animation-duration: 0.5s;
-} */
 
 button {
   cursor: pointer;
@@ -108,14 +200,9 @@ h2 {
 }
 
 
-
-
-
-
-
 @keyframes correct-card {
   from {
-    background-color: rgb(44, 126, 49);
+    background-color: rgb(115, 182, 120);
   }
 
   to {
@@ -125,7 +212,7 @@ h2 {
 
 @keyframes incorrect-card {
   from {
-    background-color: rgb(133, 36, 36);
+    background-color: rgb(202, 111, 111);
   }
 
   to {
@@ -139,8 +226,6 @@ h2 {
   animation-duration: 0.3s;
   animation-timing-function: ease-out;
 }
-
-
 
 /* utility */
 .container {
@@ -197,9 +282,10 @@ h2 {
 
 .welcome-card p {
   margin: 0;
-  padding: 10px;
+  padding: 10px 20px 30px 30px;
   background-color: rgb(49, 54, 99);
-  border-radius: 0 0 10px 10px;
+  background-image: var(--gradient);
+  border-radius: 0 0 10px 70px;
 }
 
 .tutorial {
@@ -211,8 +297,9 @@ h2 {
   text-align: left;
   font-size: xx-large;
   padding: 10px;
-   
+
 }
+
 .flex-container {
   position: relative;
 }
@@ -220,6 +307,7 @@ h2 {
 .top-bar {
   padding: 10px;
   background-color: rgb(49, 54, 99);
+  background-image: linear-gradient(0deg, rgb(49, 54, 99),rgb(80, 90, 182));
 }
 
 .home-button {
@@ -266,11 +354,12 @@ nav ul {
 /* Decks */
 .deck-list {
   background-color: rgb(30, 32, 58);
+  background-image: var(--dark-gradient);
   color: aliceblue;
   list-style-type: none;
   padding-left: 0;
   padding-bottom: 15px;
-  border-radius: 10px 10px 10px 0;
+  border-radius: 10px 70px 10px 0;
   width: 80%;
   margin: 0;
   text-align: left;
@@ -304,7 +393,8 @@ nav ul {
 }
 
 .selected-deck {
-  background-color: rgb(131, 115, 46) !important;
+  background-color: rgb(67, 131, 216) !important;
+  background-image: var(--selected-gradient);
   width: 100% !important;
   border-radius: 0 !important;
 }
@@ -378,12 +468,17 @@ h2 {
   position: fixed;
 }
 
+.qr-background {
+  background: rgba(255, 255, 255, 0.67);
+}
+
 .modal-body {
 
   transition-duration: 0.5s;
   padding-bottom: 15px;
-  border-radius: 15px 15px 15px 15px;
+  border-radius: 10px 90px 15px 90px;
   background-color: rgb(80, 84, 126);
+  background-image: var(--gradient);
   top: 10px;
   bottom: 10%;
   margin: 50px auto;
@@ -393,6 +488,7 @@ h2 {
 .modal-body form {
   padding: 15px;
   background-color: aliceblue;
+  border-radius: 10px 90px 10px 90px;
 }
 
 .modal-body input {
@@ -414,13 +510,13 @@ h2 {
 .modal-body button {
   margin: 10px;
   padding: 5px 105px;
-
 }
 
 /* Cards Page */
 .edit-deck-form {
   border-radius: 10px 10px 0 0;
 }
+
 .edit-deck-input {
   border-radius: 15px;
   background-color: rgba(240, 248, 255, 0.212);
@@ -430,17 +526,20 @@ h2 {
   color: aliceblue;
 
   font-size: large;
-    
-    font-weight: bold;
+
+  font-weight: bold;
 }
+
 .edit-deck-input:hover {
-background-color: rgba(240, 248, 255, 0.575);
-color: aliceblue;
+  background-color: rgba(240, 248, 255, 0.575);
+  color: aliceblue;
 }
+
 .edit-deck-input:focus {
   background-color: rgb(240, 248, 255);
   color: black;
 }
+
 .description {
   padding: 15px;
   margin: 0;
@@ -529,7 +628,7 @@ label {
 
 .side-a {
   background-image: url("./assets/images/flashcardFront.jpg");
-  border-radius: 10px 0 0 0;
+  border-radius: 10px 0px 0 0;
   flex-grow: 1;
   width: auto;
   background-repeat: no-repeat;
@@ -538,7 +637,7 @@ label {
 
 .side-b {
   background-image: url("./assets/images/flashcardBack.jpg");
-  border-radius: 0 10px 10px 0;
+  border-radius: 0px 90px 10px 0;
   width: auto;
   flex-grow: 1;
   background-repeat: no-repeat;
@@ -607,7 +706,7 @@ label {
 .sharables {
   margin: 16px;
 
-  background-color: rgb(80, 84, 126);
+  background-color: rgb(255, 255, 255);
   border-radius: 10px;
   text-align: left;
 
@@ -626,9 +725,10 @@ label {
 
 .flashcard {
   background-color: rgb(30, 32, 58);
+  background-image: var(--dark-gradient);
   width: 80%;
   max-width: 900px;
-  border-radius: 10px;
+  border-radius: 10px 90px;
   padding: 10px;
   color: black;
 }
@@ -657,18 +757,18 @@ label {
 .flashcard-body {
   background-color: rgb(80, 84, 126);
   animation-duration: 0.3s;
-  border-radius: 10px;
+  border-radius: 10px 90px;
 }
 
 .flip-button {
   font-size: large;
   padding: 10px 20px 10px 20px;
   margin: 10px;
-  color: black;
+  color: rgba(0, 0, 0, 0.705);
   background-color: rgba(0, 0, 0, 0);
-  border: solid rgb(0, 0, 0) 2px;
+  border: solid rgba(0, 0, 0, 0.644) 2px;
   width: 40%;
-  border-radius: 10px;
+  border-radius: 10px 90px;
   ;
 }
 
@@ -687,7 +787,7 @@ label {
   font-size: large;
   margin: 10px;
   color: rgb(255, 255, 255);
-  border-radius: 10px;
+  border-radius: 90px 10px;
   border: solid rgb(30, 32, 58) 2px;
   border-top: 0;
   padding: 10px 20px 10px 20px;
@@ -697,7 +797,7 @@ label {
 }
 
 .correct {
-  background-color: rgb(50, 109, 54);
+  background-color: rgb(75, 121, 78);
 }
 
 .correct:hover {
@@ -707,7 +807,7 @@ label {
 }
 
 .incorrect {
-  background-color: rgb(124, 45, 45);
+  background-color: rgb(156, 85, 85);
 }
 
 .incorrect:hover {
@@ -791,6 +891,32 @@ label {
 
 /* Responsive */
 
+@media screen and (max-width:955px) {
+  .side-a {
+    border-radius: 10px 90px 0 0;
+  }
+
+  .side-b {
+    margin-top: 0;
+    border-radius: 0 0 10px 0;
+  }
+  
+  .flashcard-body{
+    border-radius: 10px 90px;
+  }
+
+  .hero {
+    width: 100%;
+  }
+  .mini-hero {
+    width: 100%;
+  }
+
+  .signup-login{
+    width: auto;
+  }
+}
+
 @media screen and (max-width: 480px) {
 
   .deck-list {
@@ -803,63 +929,78 @@ label {
     margin: 0;
     text-align: left;
   }
+
   .flashcard {
     background-color: rgb(30, 32, 58);
     width: auto;
-    border-radius: 10px;
+    border-radius: 10px 90px;
     padding: 10px;
 
   }
-  .button-container{
+
+  .button-container {
     width: auto;
   }
+
   .tab {
     width: 80%;
   }
-  .flip-button{
+
+  .flip-button {
     width: 80%;
   }
+
   .new-card-form {
     width: 100%;
     margin: 0;
     padding-bottom: 15px;
     text-align: left;
     border-radius: 10px;
-    
+
     background-color: rgb(30, 32, 58);
   }
-  .side-a{
-    border-radius: 10px 10px 0 0;
+
+  .side-a {
+    border-radius: 10px 90px 0 0;
   }
-  .side-b{
+
+  .side-b {
     margin-top: 0;
     border-radius: 0 0 10px 0;
   }
-  .sharables{
+
+  .sharables {
 
     margin: 0;
     margin-top: 5px;
   }
+
   .welcome-card {
     background-color: rgb(30, 32, 58);
     border-radius: 10px;
-    
+
     width: 100%;
     text-align: left;
     margin-bottom: 10px;
   }
+
   .tutorial {
     width: 100%;
   }
+
   .card-list {
     background-color: rgb(30, 32, 58);
     color: aliceblue;
     list-style-type: none;
     padding: 0 10px 10px 10px;
-    
+
     width: 100%;
     margin-bottom: 10px;
 
     text-align: left;
+  }
+
+  .flashcard-body{
+    border-radius: 10px 90px;
   }
 }
