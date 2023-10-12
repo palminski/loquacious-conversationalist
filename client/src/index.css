@@ -33,7 +33,7 @@ hr {
 .hero {
   background-color: rgb(49, 54, 99);
   background-image: var(--gradient);
-  padding: 5vh 0 10vh 0;
+  padding: 10px 0 20px 0;
   width: 50%;
   border-radius: 10px 90px 10px 10px; 
   filter: drop-shadow(0 3px 4px black);
@@ -61,6 +61,18 @@ hr {
 }
 .mini-hero h2 {
   text-shadow: 0px 5px 5px black;
+}
+
+.alert {
+  background-image: var(--gradient);
+  text-align: left;
+  padding: 2px;
+  margin-top: 10px;
+  padding-left: 50px;
+  border-radius: 10px 90px;
+  color: rgb(255, 148, 148);
+  width: 50%;
+
 }
 
 
@@ -914,6 +926,9 @@ label {
 
   .signup-login{
     width: auto;
+  }
+  .alert {
+    width: 90%;
   }
 }
 

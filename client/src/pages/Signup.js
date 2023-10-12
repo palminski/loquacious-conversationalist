@@ -2,15 +2,18 @@ import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
+import Alert from "../components/Alert";
 
 
 const Signup = (props) => {
 
     const [formState, setFormState] = useState({ username: '', password: '' });
     const [addUser, { error }] = useMutation(ADD_USER);
+    const [alertState, setAlertState] = useState(false);
 
     const handleFormChange = (event) => {
         const { name, value } = event.target;
+        setAlertState(false);
         setFormState({
             ...formState,
             [name]: value,
@@ -26,13 +29,14 @@ const Signup = (props) => {
             });
             const token = response.data.addUser.token
             Auth.login(token);
+            window.location = "/";
 
         }
         catch (error) {
 
-            console.log(error)
+            setAlertState(true);
         }
-        window.location = "/";
+        
     }
 
     return (
@@ -53,6 +57,7 @@ const Signup = (props) => {
 
                     <button className="log-in-button" type="submit">Submit</button>
                 </form>
+                {alertState && <Alert message={"Unable to signup. Username already taken"}></Alert>}
             </div>
 
         </div>
