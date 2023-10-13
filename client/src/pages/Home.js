@@ -15,11 +15,11 @@ const Home = () => {
                 
                 {Auth.loggedIn() ?
                     <div className="mini-hero">
-                        <h2>Sign Up Free Today!</h2>
+                        <h2>Use Links above to get started!</h2>
                     </div>
                     :
                     <div className="mini-hero">
-                        <h2>Use Links above to get started!</h2>
+                        <h2>Sign Up Free Today!</h2>
                     </div>}
 
             </div>
